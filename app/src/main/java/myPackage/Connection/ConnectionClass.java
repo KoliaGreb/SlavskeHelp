@@ -21,7 +21,6 @@ public class ConnectionClass {
             } catch (ClassNotFoundException e) {
                 return null;
             }
-           //я до своєї підключуся
             ConnURL = "jdbc:jtds:sqlserver://touristinfo.database.windows.net/SlavskeHelp";
             try {
                 conn = DriverManager.getConnection(ConnURL, "dbadmin", "Kolia1928374655");
