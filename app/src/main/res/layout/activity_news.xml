@@ -7,5 +7,6 @@
     tools:context="com.example.q.slavskehelp.News">
 <ImageButton
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content" />
+    android:layout_height="wrap_content"
+    android:onClick="onclickmenuTest"/>
 </android.support.constraint.ConstraintLayout>
