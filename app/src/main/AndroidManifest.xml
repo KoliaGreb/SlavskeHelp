@@ -14,7 +14,11 @@
         <activity
             android:name=".Left_menu"
             android:label="@string/title_activity_left_menu"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity android:name=".News"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
     </application>
 
 </manifest>
