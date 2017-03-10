@@ -1,12 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group
+        android:id="@+id/menu_top"
+        android:checkableBehavior="single">
 
-    <item android:id="@+id/nav_account"
-        android:title="@string/account"/>
+        <item android:id="@+id/nav_news"
+            android:icon="@mipmap/ic_event_black_24dp"
+            android:title="@string/account"/>
 
-    <item android:id="@+id/nav_search"
-        android:title="@string/search"/>
+        <item android:id="@+id/nav_search"
+            android:icon="@mipmap/ic_search_black_24dp"
+            android:title="@string/search"/>
 
-    <item android:id="@+id/nav_wether"
-        android:title="@string/wether"/>
+        <item android:id="@+id/nav_map"
+            android:icon="@mipmap/ic_explore_black_24dp"
+            android:title="@string/map"/>
+
+        <item android:id="@+id/nav_wether"
+            android:icon="@mipmap/ic_cloud_black_24dp"
+            android:title="@string/wether"/>
+
+        <item android:id="@+id/nav_web_cam"
+            android:icon="@mipmap/ic_videocam_black_24dp"
+            android:title="@string/web_cam"/>
+    </group>
+    <group
+        android:id="@+id/menu_bottom"
+        android:checkableBehavior="none">
+
+        <item android:id="@+id/nav_account"
+            android:icon="@mipmap/ic_account_circle_black_24dp"
+            android:title="@string/account"/>
+
+        <item android:id="@+id/nav_change_acc"
+            android:icon="@mipmap/ic_exit_to_app_black_24dp"
+            android:title="@string/change_acc"/>
+    </group>
 </menu>

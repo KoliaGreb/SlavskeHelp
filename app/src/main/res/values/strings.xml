@@ -1,12 +1,13 @@
 <resources>
     <string name="app_name">SlavskeHelp</string>
-    <string name="title_activity_left_menu">Left_menu</string>
-
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-
-    <string name="action_settings">Settings</string>
     <string name="account">Профіль</string>
     <string name="search">Пошук інформації</string>
     <string name="wether">Погода</string>
+    <string name="news">Новини</string>
+    <string name="map">Карта</string>
+    <string name="web_cam">Веб-камери</string>
+    <string name="change_acc">Змінити аккаунт</string>
+
 </resources>
