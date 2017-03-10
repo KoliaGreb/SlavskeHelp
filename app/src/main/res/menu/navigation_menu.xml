@@ -24,6 +24,7 @@
             android:icon="@mipmap/ic_videocam_black_24dp"
             android:title="@string/web_cam"/>
     </group>
+
     <group
         android:id="@+id/menu_bottom"
         android:checkableBehavior="none">
