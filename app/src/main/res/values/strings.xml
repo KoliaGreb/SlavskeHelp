@@ -6,4 +6,7 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+    <string name="account">Профіль</string>
+    <string name="search">Пошук інформації</string>
+    <string name="wether">Погода</string>
 </resources>
