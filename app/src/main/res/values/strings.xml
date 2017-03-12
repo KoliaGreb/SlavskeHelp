@@ -9,5 +9,9 @@
     <string name="map">Карта</string>
     <string name="web_cam">Веб-камери</string>
     <string name="change_acc">Змінити аккаунт</string>
-
+    <string name="login">Вхід</string>
+    <string name="regist"><u>Зареєструватись</u></string>
+    <string name="instruction">Вхід</string>
+    <string name="image_login">Логін</string>
+    <string name="image_pass">Пароль</string>
 </resources>
