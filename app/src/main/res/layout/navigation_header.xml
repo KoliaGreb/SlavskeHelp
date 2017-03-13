@@ -10,6 +10,7 @@
     android:layout_height="match_parent"
     android:text="@string/app_name"
     android:textSize="32sp"
+    android:typeface="serif"
     android:textColor="@color/colorHeaderText"
-    android:textStyle="italic|bold"/>
+    android:textStyle="bold|italic"/>
 </RelativeLayout>

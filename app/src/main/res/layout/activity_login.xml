@@ -123,11 +123,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="@string/regist"
-                android:linksClickable="true"
-                android:autoLink="all"
                 android:textColorLink="@color/colorMainText"
                 android:textColor="@color/colorMainText"
-
+                android:onClick="registration_start"
 
                 />
         </LinearLayout>
