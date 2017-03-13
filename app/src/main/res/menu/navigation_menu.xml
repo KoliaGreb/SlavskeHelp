@@ -6,7 +6,8 @@
 
         <item android:id="@+id/nav_news"
             android:icon="@mipmap/ic_event_black_24dp"
-            android:title="@string/news"/>
+            android:title="@string/news"
+            android:onClick="news_activity_start"/>
 
         <item android:id="@+id/nav_search"
             android:icon="@mipmap/ic_search_black_24dp"
@@ -35,6 +36,7 @@
 
         <item android:id="@+id/nav_change_acc"
             android:icon="@mipmap/ic_exit_to_app_black_24dp"
-            android:title="@string/change_acc"/>
+            android:title="@string/change_acc"
+            android:onClick="login_activity_start"/>
     </group>
 </menu>

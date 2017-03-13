@@ -11,17 +11,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".News"></activity>
-        <activity
-            android:name=".Login"
-            android:windowSoftInputMode="stateHidden">
-        </activity>
-        <activity android:name=".Registration">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            <activity android:name=".News"
+                android:windowSoftInputMode="stateHidden">
+
+            </activity>
+            <activity
+                android:name=".Login"
+                android:windowSoftInputMode="stateHidden">
+
+            </activity>
+            <activity android:name=".Registration"
+                android:windowSoftInputMode="stateHidden">
+
+                <intent-filter>
+                    <action android:name="android.intent.action.MAIN" />
+                    <category android:name="android.intent.category.LAUNCHER" />
+                </intent-filter>
+
+            </activity>
     </application>
 
 </manifest>
