@@ -14,4 +14,11 @@
     <string name="instruction">Вхід</string>
     <string name="image_login">Логін</string>
     <string name="image_pass">Пароль</string>
+    <string name="image_pass_check">Повторіть пароль</string>
+    <string name="image_surname">Прізвище</string>
+    <string name="image_name">Ім`я</string>
+    <string name="image_phone">Контактний телефон</string>
+    <string name="image_email">Електронна пошта</string>
+    <string name="image_city">Населений пункт</string>
+    <string name="regist_button">Реєстрація</string>
 </resources>
