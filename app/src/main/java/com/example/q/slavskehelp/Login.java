@@ -12,17 +12,37 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import myPackage.Connection.ConnectionClass;
 
 public class Login extends AppCompatActivity
 {
 
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
+    private EditText mLogin;
+    private EditText mPassword;
+    private LinearLayout mError_layout;
+    private TextView mError_text;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        mLogin=(EditText) findViewById(R.id.login_sing_in);
+        mPassword=(EditText) findViewById(R.id.password_sing_in);
         mDrawerLayout=(DrawerLayout) findViewById(R.id.drawer_layout);
+        mError_layout=(LinearLayout) findViewById(R.id.layout_error);
+        mError_text=(TextView) findViewById(R.id.error_text);
         mToggle=new ActionBarDrawerToggle(this, mDrawerLayout, R.string.navigation_drawer_open,R.string.navigation_drawer_close);
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
@@ -64,5 +84,51 @@ public class Login extends AppCompatActivity
     public void registration_start(View view) {
         Intent newsIntent=new Intent(Login.this, Registration.class);
         startActivity(newsIntent);
+    }
+
+    public void Sing_inClick(View view) {
+        ConnectionClass connectionClass=new ConnectionClass();
+        java.sql.Connection connection=connectionClass.CONN();
+        if(connection==null) {
+            Toast.makeText(Login.this,
+                    "Сервер не доступний, вибачте за незручності!",
+                    Toast.LENGTH_SHORT).show();
+            return;
+        }
+        Statement stmt = null;
+        ResultSet rs = null;
+        try
+        {
+            String SQL1="SELECT login, password FROM Auth_User";
+            stmt = connection.createStatement();
+            rs =  stmt.executeQuery(SQL1);
+            int error_pass=0;
+            while (rs.next()) {
+                if(rs.getString(1).equals(mLogin.getText().toString())&& rs.getString(2).equals(mPassword.getText().toString()))
+                {
+                    error_pass=-1;
+                    Intent profileIntent=new Intent(Login.this, Profile.class);
+                    startActivity(profileIntent);
+                }
+                else if(rs.getString(1).equals(mLogin.getText().toString()))
+                {
+                    error_pass++;
+                    break;
+                }
+            }
+            if(error_pass!=0)
+            {
+                mError_text.setText("Не вірний пароль!");
+            }
+            else if(error_pass!=-1)
+            {
+                mError_text.setText("Не вірні логін та пароль!");
+            }
+            mError_layout.setVisibility(View.VISIBLE);
+            connection.close();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

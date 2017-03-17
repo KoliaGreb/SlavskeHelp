@@ -24,7 +24,10 @@ public class TestActivity extends AppCompatActivity {
             return; // тут ексепшен напишег
         try
         {
-        String SQL1="";
+        String SQL1="INSERT INTO Auth_User" +
+                "(login,password,name,surname,phone,email,city,can_add_note)" +
+                "VALUES" +
+                "('kolia','1111','Микола','Греб','+380965137938','koliahreb@meta.ua','Славське', 1)";
         PreparedStatement preparedStmt = connection.prepareStatement(SQL1);
         preparedStmt.executeUpdate();
     }

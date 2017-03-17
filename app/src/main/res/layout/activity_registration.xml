@@ -95,7 +95,7 @@
                 android:src="@mipmap/ic_lock_open_black_24dp" />
 
             <EditText
-                android:id="@+id/password_check"
+                android:id="@+id/password_check_input"
                 android:layout_width="0dp"
                 android:layout_height="36dp"
                 android:layout_weight="6"
@@ -120,7 +120,7 @@
                 android:src="@mipmap/ic_recent_actors_black_24dp" />
 
             <EditText
-                android:id="@+id/surname"
+                android:id="@+id/surname_input"
                 android:layout_width="0dp"
                 android:layout_height="36dp"
                 android:layout_weight="6"
@@ -145,7 +145,7 @@
                 android:src="@mipmap/ic_contacts_black_24dp" />
 
             <EditText
-                android:id="@+id/name"
+                android:id="@+id/name_input"
                 android:layout_width="0dp"
                 android:layout_height="36dp"
                 android:layout_weight="6"
@@ -170,13 +170,13 @@
                 android:src="@mipmap/ic_contact_phone_black_24dp" />
 
             <EditText
-                android:id="@+id/phone"
+                android:id="@+id/phone_input"
                 android:layout_width="0dp"
                 android:layout_height="36dp"
                 android:layout_weight="6"
                 android:background="@drawable/border_black"
                 android:hint="@string/image_phone"
-                android:inputType="text"
+                android:inputType="phone"
                 android:padding="2dp" />
         </LinearLayout>
 
@@ -195,13 +195,13 @@
                 android:src="@mipmap/ic_contact_mail_black_24dp" />
 
             <EditText
-                android:id="@+id/email"
+                android:id="@+id/email_input"
                 android:layout_width="0dp"
                 android:layout_height="36dp"
                 android:layout_weight="6"
                 android:background="@drawable/border_black"
                 android:hint="@string/image_email"
-                android:inputType="text"
+                android:inputType="textEmailAddress"
                 android:padding="2dp" />
         </LinearLayout>
 
@@ -220,7 +220,7 @@
                 android:src="@mipmap/ic_location_city_black_24dp" />
 
             <EditText
-                android:id="@+id/city"
+                android:id="@+id/city_input"
                 android:layout_width="0dp"
                 android:layout_height="36dp"
                 android:layout_weight="6"
@@ -253,6 +253,7 @@
                 android:gravity="center"
                 android:text="@string/regist_button"
                 android:textColor="@color/colorHeaderText"
+                android:onClick="Registration_click"
 
                 />
 

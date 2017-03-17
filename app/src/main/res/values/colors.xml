@@ -6,5 +6,6 @@
     <color name="colorBackground">#D7DDEA</color>
     <color name="colorMainText">#2b2c3e</color>
     <color name="colorHeaderText">#FFFFFF</color>
+    <color name="colorErrors">#FF0000</color>
 
 </resources>
