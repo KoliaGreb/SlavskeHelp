@@ -24,7 +24,7 @@
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:src="@mipmap/ic_account_circle_black_48dp"
+                        android:src="@drawable/ic_1489671517_account_circle"
                         android:contentDescription="@string/instruction" />
                 </LinearLayout>
 
