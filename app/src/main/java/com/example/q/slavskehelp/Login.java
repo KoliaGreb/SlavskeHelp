@@ -33,7 +33,6 @@ public class Login extends AppCompatActivity
     private EditText mPassword;
     private LinearLayout mError_layout;
     private TextView mError_text;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -108,6 +107,7 @@ public class Login extends AppCompatActivity
                 {
                     error_pass=-1;
                     Intent profileIntent=new Intent(Login.this, Profile.class);
+                    News.Auth_User=mLogin.getText().toString();
                     startActivity(profileIntent);
                 }
                 else if(rs.getString(1).equals(mLogin.getText().toString()))
@@ -116,19 +116,37 @@ public class Login extends AppCompatActivity
                     break;
                 }
             }
-            if(error_pass!=0)
+            if(error_pass!=0 && error_pass!=-1)
             {
                 mError_text.setText("Не вірний пароль!");
+                mError_layout.setVisibility(View.VISIBLE);
             }
             else if(error_pass!=-1)
             {
                 mError_text.setText("Не вірні логін та пароль!");
+                mError_layout.setVisibility(View.VISIBLE);
             }
-            mError_layout.setVisibility(View.VISIBLE);
             connection.close();
         }
         catch (SQLException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void profile_activity_start(MenuItem item) {
+        if(News.Auth_User.equals("Авторизація не пройдена"))
+        {
+            Toast.makeText(Login.this,
+                    "Пройдіть авторизацію!!",
+                    Toast.LENGTH_SHORT).show();
+            Intent newsIntent=new Intent(Login.this, Login.class);
+            startActivity(newsIntent);
+
+        }
+        else
+        {
+            Intent newsIntent=new Intent(Login.this, Profile.class);
+            startActivity(newsIntent);
         }
     }
 }

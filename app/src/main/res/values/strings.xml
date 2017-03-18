@@ -11,6 +11,7 @@
     <string name="change_acc">Змінити аккаунт</string>
     <string name="login">Вхід</string>
     <string name="regist"><u>Зареєструватись</u></string>
+    <string name="update_profile"><u>Редагувати профіль</u></string>
     <string name="instruction">Вхід</string>
     <string name="image_login">Логін</string>
     <string name="image_pass">Пароль</string>

@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.sql.PreparedStatement;
@@ -50,6 +51,7 @@ public class Registration extends AppCompatActivity
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
     }
 
     @Override
@@ -115,8 +117,28 @@ public class Registration extends AppCompatActivity
                    e.printStackTrace();
                }
                Intent profileIntent=new Intent(Registration.this, Profile.class);
+               profileIntent.putExtra("auth_user",mLogin.getText().toString());
+               News.Auth_User=mLogin.getText().toString();
                startActivity(profileIntent);
 
+           }
+
+           public void profile_activity_start(MenuItem item)
+           {
+               if(News.Auth_User.equals("Авторизація не пройдена"))
+               {
+                   Toast.makeText(Registration.this,
+                           "Пройдіть авторизацію!!",
+                           Toast.LENGTH_SHORT).show();
+                   Intent newsIntent=new Intent(Registration.this, Login.class);
+                   startActivity(newsIntent);
+
+               }
+               else
+               {
+                   Intent newsIntent=new Intent(Registration.this, Profile.class);
+                   startActivity(newsIntent);
+               }
            }
        }
 

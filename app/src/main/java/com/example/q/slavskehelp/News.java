@@ -12,10 +12,12 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class News extends AppCompatActivity
        {
-
+    public static String Auth_User="Авторизація не пройдена";
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
 
@@ -28,6 +30,7 @@ public class News extends AppCompatActivity
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
     }
 
     @Override
@@ -50,14 +53,33 @@ public class News extends AppCompatActivity
         }
     }
 
-    public void news_activity_start(MenuItem item) {
-        Intent newsIntent=new Intent(News.this, News.class);
-        startActivity(newsIntent);
+            public void news_activity_start(MenuItem item)
+            {
+                Intent newsIntent=new Intent(News.this, News.class);
+                startActivity(newsIntent);
 
-    }
+            }
 
-           public void login_activity_start(MenuItem item) {
+           public void login_activity_start(MenuItem item)
+           {
                Intent newsIntent=new Intent(News.this, Login.class);
                startActivity(newsIntent);
+           }
+           public void profile_activity_start(MenuItem item)
+           {
+               if(Auth_User.equals("Авторизація не пройдена"))
+               {
+                   Toast.makeText(News.this,
+                           "Пройдіть авторизацію!!",
+                           Toast.LENGTH_SHORT).show();
+                   Intent newsIntent=new Intent(News.this, Login.class);
+                   startActivity(newsIntent);
+
+               }
+               else
+               {
+                   Intent newsIntent=new Intent(News.this, Profile.class);
+                   startActivity(newsIntent);
+               }
            }
        }
