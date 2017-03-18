@@ -1,8 +1,7 @@
 package com.example.q.slavskehelp;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.telecom.Connection;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import java.sql.PreparedStatement;

@@ -21,8 +21,6 @@ import java.sql.Statement;
 import myPackage.Connection.ConnectionClass;
 
 public class Profile extends AppCompatActivity {
-
-    private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
     private EditText mLogin;
     private EditText mName;
@@ -37,6 +35,7 @@ public class Profile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+        DrawerLayout mDrawerLayout;
         mLogin=(EditText) findViewById(R.id.login_profile);
         mName=(EditText) findViewById(R.id.name_profile);
         mSurname=(EditText) findViewById(R.id.surname_profile);
@@ -49,7 +48,9 @@ public class Profile extends AppCompatActivity {
         mToggle=new ActionBarDrawerToggle(this, mDrawerLayout, R.string.navigation_drawer_open,R.string.navigation_drawer_close);
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        if(getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
         ConnectionClass connectionClass=new ConnectionClass();
         java.sql.Connection connection=connectionClass.CONN();
         if(connection==null) {
@@ -58,14 +59,12 @@ public class Profile extends AppCompatActivity {
                     Toast.LENGTH_SHORT).show();
             return;
         }
-        Statement stmt = null;
-        ResultSet rs = null;
         try
         {
             String SQL1="SELECT login, name, surname, phone, email, city FROM Auth_User WHERE login='"
                     +News.Auth_User+"'";
-            stmt = connection.createStatement();
-            rs =  stmt.executeQuery(SQL1);
+            Statement stmt = connection.createStatement();
+            ResultSet rs =  stmt.executeQuery(SQL1);
             while (rs.next()) {
                 mLogin.setText(rs.getString(1));
                 mName.setText(rs.getString(2));
@@ -84,14 +83,7 @@ public class Profile extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        if (mToggle.onOptionsItemSelected(item)) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+        return mToggle.onOptionsItemSelected(item)||super.onOptionsItemSelected(item);
     }
     @Override
     public void onBackPressed() {
