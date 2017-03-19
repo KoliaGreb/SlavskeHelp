@@ -23,4 +23,9 @@
     <string name="image_city">Населений пункт</string>
     <string name="regist_button">Реєстрація</string>
     <string name="action_settings">Settings</string>
+    <string name="button_search">Знайти</string>
+    <string name="change_category_text">Виберіть категорію :</string>
+    <string name="change_type_text">Виберіть тип :</string>
+    <string name="title_activity_horizontal_scroll">Horizontal_scroll</string>
+    <string name="section_format">Hello World from section: %1$d</string>
 </resources>
