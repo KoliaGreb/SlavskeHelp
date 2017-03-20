@@ -11,7 +11,8 @@
 
         <item android:id="@+id/nav_search"
             android:icon="@mipmap/ic_search_black_24dp"
-            android:title="@string/search"/>
+            android:title="@string/search"
+            android:onClick="search_activity_start"/>
 
         <item android:id="@+id/nav_map"
             android:icon="@mipmap/ic_explore_black_24dp"

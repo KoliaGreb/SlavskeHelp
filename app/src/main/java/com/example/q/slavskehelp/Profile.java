@@ -179,4 +179,9 @@ public class Profile extends AppCompatActivity {
             startActivity(newsIntent);
         }
     }
+
+    public void search_activity_start(MenuItem item) {
+        Intent newsIntent=new Intent(Profile.this, Search.class);
+        startActivity(newsIntent);
+    }
 }

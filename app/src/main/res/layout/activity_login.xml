@@ -24,7 +24,7 @@
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:src="@drawable/ic_1489671517_account_circle"
+                        app:srcCompat="@drawable/ic_1489671517_account_circle"
                         android:contentDescription="@string/instruction" />
                 </LinearLayout>
 
@@ -92,7 +92,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:src="@drawable/ic_error_black_48px"/>
+                app:srcCompat="@drawable/ic_error_black_48px"/>
             <TextView
                 android:layout_gravity="center"
                 android:gravity="center"

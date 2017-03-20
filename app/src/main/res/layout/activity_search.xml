@@ -28,7 +28,7 @@
                 android:padding="2dp"
                 android:layout_width="0dp"
                 android:layout_height="36dp"
-                android:layout_weight="3"
+                android:layout_weight="1"
                 android:textSize="24sp"
                 android:textColor="@color/colorMainText"
                 android:text="@string/change_category_text"
@@ -41,7 +41,111 @@
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="3"
+            android:layout_weight="2"
+            android:orientation="horizontal"
+            android:baselineAligned="false">
+            <LinearLayout
+                android:id="@+id/select_home"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:onClick="select_home_category_click"
+                >
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="3"
+                    android:padding="4dp"
+                    app:srcCompat="@drawable/ic_private_house"
+
+                    />
+            <TextView
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:padding="2dp"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:textSize="12sp"
+                android:textColor="@color/colorMainText"
+                android:text="@string/home"
+                />
+                </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/select_taxi"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:onClick="select_taxi_category_click"
+                >
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="3"
+                    android:padding="4dp"
+                    app:srcCompat="@drawable/ic_taxi_svgrepo_com"
+                    />
+                <TextView
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:textSize="12sp"
+                    android:textColor="@color/colorMainText"
+                    android:text="@string/taxi"
+
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/select_entertainment"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:onClick="select_entertainment_category_click"
+                >
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="3"
+                    android:padding="4dp"
+                    app:srcCompat="@drawable/ic_ski"
+                    />
+                <TextView
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:textSize="12sp"
+                    android:textColor="@color/colorMainText"
+                    android:text="@string/entertainment"
+
+                    />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/change_type_layout"
+            android:visibility="gone"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:orientation="horizontal"
             >
             <TextView
@@ -56,6 +160,499 @@
                 android:text="@string/change_type_text"
                 />
         </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/home_layout"
+            android:visibility="gone"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:orientation="horizontal"
+            android:baselineAligned="false">
+            <LinearLayout
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                >
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="3"
+                    android:padding="4dp"
+                    app:srcCompat="@drawable/ic_hotel"
+
+                    />
+                <TextView
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:textSize="12sp"
+                    android:textColor="@color/colorMainText"
+                    android:text="@string/hotel"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                >
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="3"
+                    android:padding="4dp"
+                    app:srcCompat="@drawable/ic_base"
+                    />
+                <TextView
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:textSize="12sp"
+                    android:textColor="@color/colorMainText"
+                    android:text="@string/base"
+
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                >
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="3"
+                    android:padding="4dp"
+                    app:srcCompat="@drawable/ic_house"
+                    />
+                <TextView
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:textSize="12sp"
+                    android:textColor="@color/colorMainText"
+                    android:text="@string/private_sector"
+
+                    />
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/entertainment_layout"
+            android:visibility="gone"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:orientation="horizontal"
+            android:baselineAligned="false">
+            <LinearLayout
+                android:id="@+id/left_arrow_layout"
+                android:visibility="gone"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                >
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="3"
+                    android:padding="4dp"
+                    app:srcCompat="@drawable/ic_left_arrow"
+                    android:onClick="left_arrow_click"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/tennis_layout"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:orientation="vertical"
+                >
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="3"
+                    android:padding="4dp"
+                    app:srcCompat="@drawable/ic_equipment"
+
+                    />
+                <TextView
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:textSize="12sp"
+                    android:textColor="@color/colorMainText"
+                    android:text="@string/tenis"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/sauna_layout"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:orientation="vertical"
+                >
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="3"
+                    android:padding="4dp"
+                    app:srcCompat="@drawable/ic_sauna999"
+                    />
+                <TextView
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:textSize="12sp"
+                    android:textColor="@color/colorMainText"
+                    android:text="@string/sauna"
+
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/biliard_layout"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:orientation="vertical"
+                >
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="3"
+                    android:padding="4dp"
+                    app:srcCompat="@drawable/ic_stick"
+                    />
+                <TextView
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:textSize="12sp"
+                    android:textColor="@color/colorMainText"
+                    android:text="@string/billiards"
+
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/bowling_layout"
+                android:visibility="gone"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:orientation="vertical"
+                >
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="3"
+                    android:padding="4dp"
+                    app:srcCompat="@drawable/ic_bowling"
+                    />
+                <TextView
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:textSize="12sp"
+                    android:textColor="@color/colorMainText"
+                    android:text="@string/bouling"
+
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/big_tennis_layout"
+                android:visibility="gone"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:orientation="vertical"
+                >
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="3"
+                    android:padding="4dp"
+                    app:srcCompat="@drawable/ic_sport"
+                    />
+                <TextView
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:textSize="12sp"
+                    android:textColor="@color/colorMainText"
+                    android:text="@string/big_tenis"
+
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/bicycle_layout"
+                android:visibility="gone"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:orientation="vertical"
+                >
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="3"
+                    android:padding="4dp"
+                    app:srcCompat="@drawable/ic_bicycle"
+                    />
+                <TextView
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:textSize="12sp"
+                    android:textColor="@color/colorMainText"
+                    android:text="@string/velo_run"
+
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/kvadro_layout"
+                android:visibility="gone"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:orientation="vertical"
+                >
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="3"
+                    android:src="@mipmap/kvadro"
+                    />
+                <TextView
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:textSize="12sp"
+                    android:textColor="@color/colorMainText"
+                    android:text="@string/kvadro_run"
+
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/horse_layout"
+                android:visibility="gone"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:orientation="vertical"
+                >
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="3"
+                    android:padding="4dp"
+                    app:srcCompat="@drawable/ic_horse1"
+                    />
+                <TextView
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:textSize="12sp"
+                    android:textColor="@color/colorMainText"
+                    android:text="@string/hourse_tourism"
+
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/right_arrow_layout"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                >
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="3"
+                    android:padding="4dp"
+                    app:srcCompat="@drawable/ic_right_arrow"
+                    android:onClick="right_arrow_click"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/taxi_layout"
+            android:visibility="gone"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:orientation="horizontal"
+            android:baselineAligned="false">
+            <LinearLayout
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                >
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="3"
+                    android:padding="4dp"
+                    app:srcCompat="@drawable/ic_programs_icon_summer_winter_session"
+
+                    />
+                <TextView
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:textSize="12sp"
+                    android:textColor="@color/colorMainText"
+                    android:text="@string/all_seasons"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                >
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="3"
+                    android:padding="4dp"
+                    app:srcCompat="@drawable/ic_snowmann"
+                    />
+                <TextView
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:textSize="12sp"
+                    android:textColor="@color/colorMainText"
+                    android:text="@string/winter"
+
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                >
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="3"
+                    android:padding="4dp"
+                    app:srcCompat="@drawable/ic_caravan"
+                    />
+                <TextView
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:textSize="12sp"
+                    android:textColor="@color/colorMainText"
+                    android:text="@string/summer"
+
+                    />
+            </LinearLayout>
+        </LinearLayout>
+
 
 
         <LinearLayout
@@ -79,8 +676,6 @@
                 android:layout_height="match_parent"
                 android:text="@string/button_search"
                 android:background="@drawable/border_button"
-                android:drawableRight="@drawable/ic_search_white_24px"
-
                 android:textColor="@color/colorHeaderText"
                 android:onClick="search_Click"
                 />

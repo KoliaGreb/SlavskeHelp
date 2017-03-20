@@ -26,6 +26,21 @@
     <string name="button_search">Знайти</string>
     <string name="change_category_text">Виберіть категорію :</string>
     <string name="change_type_text">Виберіть тип :</string>
-    <string name="title_activity_horizontal_scroll">Horizontal_scroll</string>
-    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="home">Житло</string>
+    <string name="taxi">Таксі</string>
+    <string name="entertainment">Розваги</string>
+    <string name="hotel">Готелі</string>
+    <string name="base">Бази відпочинку</string>
+    <string name="private_sector">Приватний сектор</string>
+    <string name="all_seasons">Всі сезони</string>
+    <string name="winter">Зима</string>
+    <string name="summer">Літо</string>
+    <string name="tenis">Настільний теніс</string>
+    <string name="sauna">Сауна</string>
+    <string name="hourse_tourism">Кінний туризм</string>
+    <string name="billiards">Більярд</string>
+    <string name="bouling">Боулінг</string>
+    <string name="big_tenis">Великий теніс</string>
+    <string name="kvadro_run">Подорожі на квадроциклах</string>
+    <string name="velo_run">Подорожі на велосипедах</string>
 </resources>

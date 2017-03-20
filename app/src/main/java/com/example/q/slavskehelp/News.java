@@ -73,4 +73,9 @@ public class News extends AppCompatActivity
                    startActivity(newsIntent);
                }
            }
+
+           public void search_activity_start(MenuItem item) {
+               Intent newsIntent=new Intent(News.this, Search.class);
+               startActivity(newsIntent);
+           }
        }

@@ -138,4 +138,9 @@ public class Login extends AppCompatActivity
             startActivity(newsIntent);
         }
     }
+
+    public void search_activity_start(MenuItem item) {
+        Intent newsIntent=new Intent(Login.this, Search.class);
+        startActivity(newsIntent);
+    }
 }
