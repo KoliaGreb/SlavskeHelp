@@ -172,12 +172,14 @@
             android:orientation="horizontal"
             android:baselineAligned="false">
             <LinearLayout
+                android:id="@+id/hotel_layout"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:orientation="vertical"
+                android:onClick="hotel_select_click"
                 >
                 <ImageView
                     android:layout_width="match_parent"
@@ -201,12 +203,14 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/base_layout"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:orientation="vertical"
+                android:onClick="base_select_click"
                 >
                 <ImageView
                     android:layout_width="match_parent"
@@ -230,12 +234,14 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/private_sector_layout"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:orientation="vertical"
+                android:onClick="private_sector_select_click"
                 >
                 <ImageView
                     android:layout_width="match_parent"
@@ -298,6 +304,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="3"
                 android:orientation="vertical"
+                android:onClick="tenis_select_click"
                 >
                 <ImageView
                     android:layout_width="match_parent"
@@ -328,6 +335,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="3"
                 android:orientation="vertical"
+                android:onClick="sauna_select_click"
                 >
                 <ImageView
                     android:layout_width="match_parent"
@@ -358,6 +366,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="3"
                 android:orientation="vertical"
+                android:onClick="biliard_select_click"
                 >
                 <ImageView
                     android:layout_width="match_parent"
@@ -389,6 +398,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="3"
                 android:orientation="vertical"
+                android:onClick="bowling_select_click"
                 >
                 <ImageView
                     android:layout_width="match_parent"
@@ -420,6 +430,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="3"
                 android:orientation="vertical"
+                android:onClick="big_tenis_select_click"
                 >
                 <ImageView
                     android:layout_width="match_parent"
@@ -451,6 +462,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="3"
                 android:orientation="vertical"
+                android:onClick="bicycle_select_click"
                 >
                 <ImageView
                     android:layout_width="match_parent"
@@ -482,6 +494,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="3"
                 android:orientation="vertical"
+                android:onClick="kvadro_select_click"
                 >
                 <ImageView
                     android:layout_width="match_parent"
@@ -512,6 +525,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="3"
                 android:orientation="vertical"
+                android:onClick="horse_select_click"
                 >
                 <ImageView
                     android:layout_width="match_parent"
@@ -566,12 +580,14 @@
             android:orientation="horizontal"
             android:baselineAligned="false">
             <LinearLayout
+                android:id="@+id/all_seasons_layout"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:orientation="vertical"
+                android:onClick="all_seasons_select_click"
                 >
                 <ImageView
                     android:layout_width="match_parent"
@@ -595,12 +611,14 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/winter_layout"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:orientation="vertical"
+                android:onClick="winter_select_click"
                 >
                 <ImageView
                     android:layout_width="match_parent"
@@ -624,12 +642,14 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/summer_layout"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:orientation="vertical"
+                android:onClick="summer_select_click"
                 >
                 <ImageView
                     android:layout_width="match_parent"
@@ -678,6 +698,9 @@
                 android:background="@drawable/border_button"
                 android:textColor="@color/colorHeaderText"
                 android:onClick="search_Click"
+                android:drawableRight="@drawable/ic_add_drawable"
+                android:drawableEnd="@drawable/ic_add_drawable"
+
                 />
             <LinearLayout
                 android:layout_width="0dp"
