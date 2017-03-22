@@ -17,6 +17,7 @@
         <item android:id="@+id/nav_map"
             android:icon="@mipmap/ic_explore_black_24dp"
             android:title="@string/map"
+            android:onClick="web_cam_actiyity_start"
             />
 
         <item android:id="@+id/nav_wether"

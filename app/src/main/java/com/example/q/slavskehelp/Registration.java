@@ -137,8 +137,17 @@ public class Registration extends AppCompatActivity
            }
 
            public void web_cam_actiyity_start(MenuItem item) {
-               Intent newsIntent=new Intent(Registration.this, Web_camera.class);
-               startActivity(newsIntent);
+               Intent intent;
+               switch (item.getItemId()) {
+                   case R.id.nav_web_cam:
+                       intent = new Intent(Registration.this, Web_camera.class);
+                       startActivity(intent);
+                       break;
+                   case R.id.nav_map:
+                       intent = new Intent(Registration.this, MapsActivity.class);
+                       startActivity(intent);
+                       break;
+               }
            }
        }
 
