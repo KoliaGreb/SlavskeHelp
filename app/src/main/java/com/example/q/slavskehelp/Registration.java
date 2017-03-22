@@ -135,5 +135,10 @@ public class Registration extends AppCompatActivity
                Intent newsIntent=new Intent(Registration.this, Search.class);
                startActivity(newsIntent);
            }
+
+           public void web_cam_actiyity_start(MenuItem item) {
+               Intent newsIntent=new Intent(Registration.this, Web_camera.class);
+               startActivity(newsIntent);
+           }
        }
 

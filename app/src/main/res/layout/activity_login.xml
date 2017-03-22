@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="10dp"
+        android:padding="20dp"
         >
             <LinearLayout
                 android:layout_gravity="center"
@@ -48,7 +48,7 @@
                         android:id="@+id/login_sing_in"
                         android:layout_width="0dp"
                         android:layout_height="36dp"
-                        android:layout_weight="3"
+                        android:layout_weight="6"
                         android:background="@drawable/border_black"
                         android:contentDescription="@string/image_pass"
                         android:hint="@string/image_login"
@@ -73,7 +73,7 @@
                 android:inputType="textPassword"
                 android:layout_width="0dp"
                 android:layout_height="36dp"
-                android:layout_weight="3"
+                android:layout_weight="6"
                 android:padding="2dp"
                 android:background="@drawable/border_black"
                 android:hint="@string/image_pass"

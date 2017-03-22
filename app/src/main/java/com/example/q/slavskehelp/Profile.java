@@ -184,4 +184,9 @@ public class Profile extends AppCompatActivity {
         Intent newsIntent=new Intent(Profile.this, Search.class);
         startActivity(newsIntent);
     }
+
+    public void web_cam_actiyity_start(MenuItem item) {
+        Intent newsIntent=new Intent(Profile.this, Web_camera.class);
+        startActivity(newsIntent);
+    }
 }

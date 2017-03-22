@@ -43,4 +43,8 @@
     <string name="big_tenis">Великий теніс</string>
     <string name="kvadro_run">Подорожі на квадроциклах</string>
     <string name="velo_run">Подорожі на велосипедах</string>
+    <string name="web_cam_string_1">Гора Тростян</string>
+    <string name="web_cam_string_2">Захар Беркут веб-камера №1</string>
+    <string name="web_cam_string_3">Захар Беркут веб-камера №2</string>
+    <string name="title_activity_maps">Map</string>
 </resources>

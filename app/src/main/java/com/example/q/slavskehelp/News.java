@@ -78,4 +78,9 @@ public class News extends AppCompatActivity
                Intent newsIntent=new Intent(News.this, Search.class);
                startActivity(newsIntent);
            }
+
+           public void web_cam_actiyity_start(MenuItem item) {
+               Intent newsIntent=new Intent(News.this, Web_camera.class);
+               startActivity(newsIntent);
+           }
        }

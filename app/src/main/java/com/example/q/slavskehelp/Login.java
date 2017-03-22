@@ -143,4 +143,9 @@ public class Login extends AppCompatActivity
         Intent newsIntent=new Intent(Login.this, Search.class);
         startActivity(newsIntent);
     }
+
+    public void web_cam_actiyity_start(MenuItem item) {
+        Intent newsIntent=new Intent(Login.this, Web_camera.class);
+        startActivity(newsIntent);
+    }
 }

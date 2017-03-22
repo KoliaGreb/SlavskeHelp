@@ -177,6 +177,7 @@ public class Search extends AppCompatActivity {
         }
         else
         {
+            right_arrow.setVisibility(View.VISIBLE);
             bowling_Layout.setVisibility(View.VISIBLE);
             big_tennis_Layout.setVisibility(View.VISIBLE);
             bicycle_Layout.setVisibility(View.GONE);
@@ -459,5 +460,10 @@ public class Search extends AppCompatActivity {
         bicycle_Layout.setBackgroundResource(R.drawable.border_without);
         kvadro_Layout.setBackgroundResource(R.drawable.border_without);
         horse_Layout.setBackgroundResource(R.drawable.border_red);
+    }
+
+    public void web_cam_actiyity_start(MenuItem item) {
+        Intent newsIntent=new Intent(Search.this, Web_camera.class);
+        startActivity(newsIntent);
     }
 }

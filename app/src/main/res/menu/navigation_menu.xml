@@ -24,7 +24,8 @@
 
         <item android:id="@+id/nav_web_cam"
             android:icon="@mipmap/ic_videocam_black_24dp"
-            android:title="@string/web_cam"/>
+            android:title="@string/web_cam"
+            android:onClick="web_cam_actiyity_start"/>
     </group>
 
     <group
