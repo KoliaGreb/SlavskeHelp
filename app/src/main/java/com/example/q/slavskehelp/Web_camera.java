@@ -22,19 +22,12 @@ import myPackage.Connection.ConnectionClass;
 
 public class Web_camera extends AppCompatActivity {
     private ActionBarDrawerToggle mToggle;
-    private LinearLayout web_cam_1;
-    private LinearLayout web_cam_2;
-    private LinearLayout web_cam_3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web_camera);
         DrawerLayout mDrawerLayout;
-        web_cam_1=(LinearLayout) findViewById(R.id.web_cam_1);
-        web_cam_2=(LinearLayout) findViewById(R.id.web_cam_2);
-        web_cam_3=(LinearLayout) findViewById(R.id.web_cam_3);
-
         mDrawerLayout=(DrawerLayout) findViewById(R.id.drawer_layout);
         mToggle=new ActionBarDrawerToggle(this, mDrawerLayout, R.string.navigation_drawer_open,R.string.navigation_drawer_close);
         mDrawerLayout.addDrawerListener(mToggle);
@@ -43,8 +36,6 @@ public class Web_camera extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
     }
-
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         return mToggle.onOptionsItemSelected(item)||super.onOptionsItemSelected(item);
@@ -58,7 +49,6 @@ public class Web_camera extends AppCompatActivity {
             super.onBackPressed();
         }
     }
-
     public void news_activity_start(MenuItem item) {
         Intent newsIntent=new Intent(Web_camera.this, News.class);
         startActivity(newsIntent);
@@ -73,7 +63,6 @@ public class Web_camera extends AppCompatActivity {
         Intent newsIntent=new Intent(Web_camera.this, Registration.class);
         startActivity(newsIntent);
     }
-
     public void profile_activity_start(MenuItem item) {
         if(News.Auth_User.equals("Авторизація не пройдена"))
         {

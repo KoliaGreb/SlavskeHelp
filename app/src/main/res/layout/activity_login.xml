@@ -40,7 +40,7 @@
                         android:layout_width="0dp"
                         android:layout_height="36dp"
                         android:layout_weight="1"
-                        android:src="@mipmap/ic_account_box_black_24dp"
+                        app:srcCompat="@drawable/ic_account_box_48px"
                         android:contentDescription="@string/image_login" />
                     <EditText
                         android:padding="2dp"
@@ -67,7 +67,7 @@
                 android:layout_width="0dp"
                 android:layout_height="36dp"
                 android:layout_weight="1"
-                android:src="@mipmap/ic_lock_black_24dp"/>
+                app:srcCompat="@drawable/ic_lock_48px"/>
             <EditText
                 android:id="@+id/password_sing_in"
                 android:inputType="textPassword"
@@ -126,7 +126,6 @@
                 android:background="@drawable/border_button"
                 android:textColor="@color/colorHeaderText"
                 android:onClick="Sing_inClick"
-
                 />
             <LinearLayout
                 android:layout_width="0dp"

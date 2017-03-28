@@ -31,29 +31,19 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setHomeButtonEnabled(true);
         }
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
     }
 
-
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
+        // Add a marker in Slavske and move the camera
         LatLng sydney = new LatLng(48.85, 23.45 );
         mMap.addMarker(new MarkerOptions().position(sydney).title("Slavske"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -62,7 +52,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         if (id == android.R.id.home) {
             onBackPressed();  return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 }

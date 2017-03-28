@@ -35,19 +35,20 @@
             android:layout_gravity="center"
             android:layout_weight="1"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="7dp">
 
             <ImageView
                 android:layout_width="0dp"
-                android:layout_height="36dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:contentDescription="@string/image_login"
-                android:src="@mipmap/ic_account_box_black_24dp" />
+                app:srcCompat="@drawable/ic_account_box_48px" />
 
             <EditText
                 android:id="@+id/login_input"
                 android:layout_width="0dp"
-                android:layout_height="36dp"
+                android:layout_height="match_parent"
                 android:layout_weight="6"
                 android:background="@drawable/border_black"
                 android:hint="@string/image_login"
@@ -61,18 +62,19 @@
             android:layout_gravity="center"
             android:layout_weight="1"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="7dp">
 
             <ImageView
                 android:layout_width="0dp"
-                android:layout_height="36dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:src="@mipmap/ic_lock_black_24dp" />
+                app:srcCompat="@drawable/ic_lock_48px" />
 
             <EditText
                 android:id="@+id/password_input"
                 android:layout_width="0dp"
-                android:layout_height="36dp"
+                android:layout_height="match_parent"
                 android:layout_weight="6"
                 android:background="@drawable/border_black"
                 android:hint="@string/image_pass"
@@ -86,18 +88,19 @@
             android:layout_gravity="center"
             android:layout_weight="1"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="7dp">
 
             <ImageView
                 android:layout_width="0dp"
-                android:layout_height="36dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:src="@mipmap/ic_lock_open_black_24dp" />
+                app:srcCompat="@drawable/ic_lock_open_48px" />
 
             <EditText
                 android:id="@+id/password_check_input"
                 android:layout_width="0dp"
-                android:layout_height="36dp"
+                android:layout_height="match_parent"
                 android:layout_weight="6"
                 android:background="@drawable/border_black"
                 android:hint="@string/image_pass_check"
@@ -111,18 +114,19 @@
             android:layout_gravity="center"
             android:layout_weight="1"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="7dp">
 
             <ImageView
                 android:layout_width="0dp"
-                android:layout_height="36dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:src="@mipmap/ic_recent_actors_black_24dp" />
+                app:srcCompat="@drawable/ic_recent_actors_48px" />
 
             <EditText
                 android:id="@+id/surname_input"
                 android:layout_width="0dp"
-                android:layout_height="36dp"
+                android:layout_height="match_parent"
                 android:layout_weight="6"
                 android:background="@drawable/border_black"
                 android:hint="@string/image_surname"
@@ -136,18 +140,19 @@
             android:layout_gravity="center"
             android:layout_weight="1"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="7dp">
 
             <ImageView
                 android:layout_width="0dp"
-                android:layout_height="36dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:src="@mipmap/ic_contacts_black_24dp" />
+                app:srcCompat="@drawable/ic_contacts_48px" />
 
             <EditText
                 android:id="@+id/name_input"
                 android:layout_width="0dp"
-                android:layout_height="36dp"
+                android:layout_height="match_parent"
                 android:layout_weight="6"
                 android:background="@drawable/border_black"
                 android:hint="@string/image_name"
@@ -161,18 +166,19 @@
             android:layout_gravity="center"
             android:layout_weight="1"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="7dp">
 
             <ImageView
                 android:layout_width="0dp"
-                android:layout_height="36dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:src="@mipmap/ic_contact_phone_black_24dp" />
+                app:srcCompat="@drawable/ic_contact_phone_48px" />
 
             <EditText
                 android:id="@+id/phone_input"
                 android:layout_width="0dp"
-                android:layout_height="36dp"
+                android:layout_height="match_parent"
                 android:layout_weight="6"
                 android:background="@drawable/border_black"
                 android:hint="@string/image_phone"
@@ -186,18 +192,19 @@
             android:layout_gravity="center"
             android:layout_weight="1"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="7dp">
 
             <ImageView
                 android:layout_width="0dp"
-                android:layout_height="36dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:src="@mipmap/ic_contact_mail_black_24dp" />
+                app:srcCompat="@drawable/ic_contact_mail_48px" />
 
             <EditText
                 android:id="@+id/email_input"
                 android:layout_width="0dp"
-                android:layout_height="36dp"
+                android:layout_height="match_parent"
                 android:layout_weight="6"
                 android:background="@drawable/border_black"
                 android:hint="@string/image_email"
@@ -211,18 +218,19 @@
             android:layout_gravity="center"
             android:layout_weight="1"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="7dp">
 
             <ImageView
                 android:layout_width="0dp"
-                android:layout_height="36dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:src="@mipmap/ic_location_city_black_24dp" />
+                app:srcCompat="@drawable/ic_location_city_48px" />
 
             <EditText
                 android:id="@+id/city_input"
                 android:layout_width="0dp"
-                android:layout_height="36dp"
+                android:layout_height="match_parent"
                 android:layout_weight="6"
                 android:background="@drawable/border_black"
                 android:hint="@string/image_city"
@@ -235,7 +243,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="7dp">
 
             <LinearLayout
                 android:layout_width="0dp"
