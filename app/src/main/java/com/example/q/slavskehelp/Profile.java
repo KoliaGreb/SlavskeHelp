@@ -189,7 +189,7 @@ public class Profile extends AppCompatActivity {
         Intent intent;
         switch (item.getItemId()) {
             case R.id.nav_web_cam:
-                intent = new Intent(Profile.this, Web_camera.class);
+                intent = new Intent(Profile.this, web_cam_other_version.class);
                 startActivity(intent);
                 break;
             case R.id.nav_map:

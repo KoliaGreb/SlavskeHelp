@@ -44,7 +44,11 @@
     <string name="kvadro_run">Подорожі на квадроциклах</string>
     <string name="velo_run">Подорожі на велосипедах</string>
     <string name="web_cam_string_1">Гора Тростян</string>
-    <string name="web_cam_string_2">Захар Беркут веб-камера №1</string>
-    <string name="web_cam_string_3">Захар Беркут веб-камера №2</string>
+    <string name="web_cam_string_2">Захар Беркут №1</string>
+    <string name="web_cam_string_3">Захар Беркут №2</string>
     <string name="title_activity_maps">Map</string>
+    <string name="title_activity_web_cam_other_version">web_cam_other_version</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 </resources>

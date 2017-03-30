@@ -13,9 +13,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/slavskel_gerb"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/slavskel_gerb"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
@@ -51,8 +51,10 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity
-            android:name=".MapsActivity"/>
+        <activity android:name=".MapsActivity" />
+        <activity android:name=".web_cam_other_version">
+
+        </activity>
     </application>
 
 </manifest>

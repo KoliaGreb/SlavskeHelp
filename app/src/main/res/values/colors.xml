@@ -3,12 +3,14 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="colorBackground">#D7DDEA</color>
+    <color name="colorBackground">#FAFAFA</color>
     <color name="colorMainText">#2b2c3e</color>
     <color name="colorHeaderText">#FFFFFF</color>
     <color name="colorErrors">#FF0000</color>
     <color name="default_primary_color">#607D8B</color>
     <color name="dark_primary_color">#455A64</color>
-    <color name="accent_color">#536DFE</color>
+    <color name="accent_color">#FF5722</color>
+    <color name="accent_color_light">#ffab91</color>
     <color name="light_primary_color">#CFD8DC</color>
+    <color name="bottom_menu_selectors">#ffab91</color>
 </resources>

@@ -36,7 +36,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:orientation="horizontal"
-            android:padding="7dp">
+            android:padding="3dp">
 
             <ImageView
                 android:layout_width="0dp"
@@ -63,13 +63,14 @@
             android:layout_weight="1"
             android:gravity="center"
             android:orientation="horizontal"
-            android:padding="7dp">
+            android:padding="3dp">
 
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/ic_lock_48px" />
+                app:srcCompat="@drawable/ic_lock_48px"
+                android:contentDescription="@string/image_pass" />
 
             <EditText
                 android:id="@+id/password_input"
@@ -89,13 +90,14 @@
             android:layout_weight="1"
             android:gravity="center"
             android:orientation="horizontal"
-            android:padding="7dp">
+            android:padding="3dp">
 
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/ic_lock_open_48px" />
+                app:srcCompat="@drawable/ic_lock_open_48px"
+                android:contentDescription="@string/image_pass" />
 
             <EditText
                 android:id="@+id/password_check_input"
@@ -115,13 +117,14 @@
             android:layout_weight="1"
             android:gravity="center"
             android:orientation="horizontal"
-            android:padding="7dp">
+            android:padding="3dp">
 
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/ic_recent_actors_48px" />
+                app:srcCompat="@drawable/ic_recent_actors_48px"
+                android:contentDescription="@string/image_surname" />
 
             <EditText
                 android:id="@+id/surname_input"
@@ -141,13 +144,14 @@
             android:layout_weight="1"
             android:gravity="center"
             android:orientation="horizontal"
-            android:padding="7dp">
+            android:padding="3dp">
 
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/ic_contacts_48px" />
+                app:srcCompat="@drawable/ic_contacts_48px"
+                android:contentDescription="@string/image_name" />
 
             <EditText
                 android:id="@+id/name_input"
@@ -167,13 +171,14 @@
             android:layout_weight="1"
             android:gravity="center"
             android:orientation="horizontal"
-            android:padding="7dp">
+            android:padding="3dp">
 
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/ic_contact_phone_48px" />
+                app:srcCompat="@drawable/ic_contact_phone_48px"
+                android:contentDescription="@string/image_phone" />
 
             <EditText
                 android:id="@+id/phone_input"
@@ -193,13 +198,14 @@
             android:layout_weight="1"
             android:gravity="center"
             android:orientation="horizontal"
-            android:padding="7dp">
+            android:padding="3dp">
 
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/ic_contact_mail_48px" />
+                app:srcCompat="@drawable/ic_contact_mail_48px"
+                android:contentDescription="@string/image_email" />
 
             <EditText
                 android:id="@+id/email_input"
@@ -219,13 +225,14 @@
             android:layout_weight="1"
             android:gravity="center"
             android:orientation="horizontal"
-            android:padding="7dp">
+            android:padding="3dp">
 
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/ic_location_city_48px" />
+                app:srcCompat="@drawable/ic_location_city_48px"
+                android:contentDescription="@string/image_city" />
 
             <EditText
                 android:id="@+id/city_input"
@@ -244,7 +251,7 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:orientation="horizontal"
-            android:padding="7dp">
+            android:padding="3dp">
 
             <LinearLayout
                 android:layout_width="0dp"
