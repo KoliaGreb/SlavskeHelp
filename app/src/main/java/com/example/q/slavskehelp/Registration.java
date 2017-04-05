@@ -147,6 +147,10 @@ public class Registration extends AppCompatActivity
                        intent = new Intent(Registration.this, MapsActivity.class);
                        startActivity(intent);
                        break;
+                   case R.id.nav_wether:
+                       intent = new Intent(Registration.this, Weather.class);
+                       startActivity(intent);
+                       break;
                }
            }
        }

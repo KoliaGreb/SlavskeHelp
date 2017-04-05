@@ -90,6 +90,10 @@ public class News extends AppCompatActivity
                        intent = new Intent(News.this, MapsActivity.class);
                        startActivity(intent);
                        break;
+                   case R.id.nav_wether:
+                       intent = new Intent(News.this, Weather.class);
+                       startActivity(intent);
+                       break;
                }
            }
        }

@@ -196,6 +196,10 @@ public class Profile extends AppCompatActivity {
                 intent = new Intent(Profile.this, MapsActivity.class);
                 startActivity(intent);
                 break;
+            case R.id.nav_wether:
+                intent = new Intent(Profile.this, Weather.class);
+                startActivity(intent);
+                break;
         }
     }
 }

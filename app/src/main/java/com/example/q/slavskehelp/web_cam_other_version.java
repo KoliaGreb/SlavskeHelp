@@ -1,5 +1,6 @@
 package com.example.q.slavskehelp;
 
+import android.annotation.SuppressLint;
 import android.content.ClipData;
 import android.content.Intent;
 import android.net.Uri;
@@ -12,6 +13,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,6 +26,7 @@ public class web_cam_other_version extends AppCompatActivity {
     private View home3;
 
 
+    @SuppressLint("SetJavaScriptEnabled")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,16 +48,21 @@ public class web_cam_other_version extends AppCompatActivity {
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         WebView myWebView = (WebView) findViewById(R.id.view_web1);
+        myWebView.getSettings().setJavaScriptEnabled(true);
+        myWebView.getSettings().setPluginState(WebSettings.PluginState.ON);
         myWebView.loadUrl("http://cdn.ua/code/sneg.info/camera/index.php?camera=04&width=640&height=360&view=&stream=04.stream&image=http%3A%2F%2Fdev.sneg.info%2Fcamera%2F4%2Flast.jpg&autoplay=1&stage=3");
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
+        @SuppressLint("SetJavaScriptEnabled")
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             WebView myWebView = (WebView) findViewById(R.id.view_web1);
-            switch (item.getItemId()) {
+            myWebView.getSettings().setJavaScriptEnabled(true);
+            myWebView.getSettings().setPluginState(WebSettings.PluginState.ON);
+             switch (item.getItemId()) {
                 case R.id.navigation_home:
                     home1.setBackgroundColor(getResources().getColor(R.color.accent_color));
                     home2.setBackgroundColor(getResources().getColor(R.color.accent_color_light));
@@ -135,6 +143,10 @@ public class web_cam_other_version extends AppCompatActivity {
                 break;
             case R.id.nav_map:
                 intent = new Intent(web_cam_other_version.this, MapsActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.nav_wether:
+                intent = new Intent(web_cam_other_version.this, Weather.class);
                 startActivity(intent);
                 break;
         }

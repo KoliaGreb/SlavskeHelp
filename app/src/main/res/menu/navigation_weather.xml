@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:checkableBehavior="single"
+        android:id="@+id/navigation_today"
+        android:icon="@drawable/ic_calendar"
+        android:title="@string/wether_today" />
+
+    <item
+        android:checkableBehavior="single"
+        android:id="@+id/navigation_5day"
+        android:icon="@drawable/ic_calendar5"
+        android:title="@string/wether_5day" />
+
+    <item
+        android:checkableBehavior="single"
+        android:id="@+id/navigation_14day"
+        android:icon="@drawable/ic_calendar14"
+        android:title="@string/wether_14day" />
+</menu>

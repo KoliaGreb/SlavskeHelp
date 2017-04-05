@@ -48,7 +48,7 @@
     <string name="web_cam_string_3">Захар Беркут №2</string>
     <string name="title_activity_maps">Map</string>
     <string name="title_activity_web_cam_other_version">web_cam_other_version</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="wether_today">Сьогодні</string>
+    <string name="wether_5day">На 5 днів</string>
+    <string name="wether_14day">На 14 днів</string>
 </resources>

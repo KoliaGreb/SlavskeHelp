@@ -116,6 +116,10 @@ public class Web_camera extends AppCompatActivity {
                 intent = new Intent(Web_camera.this, MapsActivity.class);
                 startActivity(intent);
                 break;
+            case R.id.nav_wether:
+                intent = new Intent(Web_camera.this, Weather.class);
+                startActivity(intent);
+                break;
         }
     }
 }

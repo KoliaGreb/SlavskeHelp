@@ -52,9 +52,8 @@
             android:value="@string/google_maps_key" />
 
         <activity android:name=".MapsActivity" />
-        <activity android:name=".web_cam_other_version">
-
-        </activity>
+        <activity android:name=".web_cam_other_version"></activity>
+        <activity android:name=".Weather"></activity>
     </application>
 
 </manifest>

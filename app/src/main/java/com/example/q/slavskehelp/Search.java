@@ -473,6 +473,10 @@ public class Search extends AppCompatActivity {
                 intent = new Intent(Search.this, MapsActivity.class);
                 startActivity(intent);
                 break;
+            case R.id.nav_wether:
+                intent = new Intent(Search.this, Weather.class);
+                startActivity(intent);
+                break;
         }
     }
 }
