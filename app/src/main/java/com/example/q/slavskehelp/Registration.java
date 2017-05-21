@@ -46,7 +46,6 @@ public class Registration extends AppCompatActivity
         if(getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
-
     }
 
     @Override
@@ -110,9 +109,7 @@ public class Registration extends AppCompatActivity
                profileIntent.putExtra("auth_user",mLogin.getText().toString());
                News.Auth_User=mLogin.getText().toString();
                startActivity(profileIntent);
-
            }
-
            public void profile_activity_start(MenuItem item)
            {
                if(News.Auth_User.equals("Авторизація не пройдена"))
@@ -122,7 +119,6 @@ public class Registration extends AppCompatActivity
                            Toast.LENGTH_SHORT).show();
                    Intent newsIntent=new Intent(Registration.this, Login.class);
                    startActivity(newsIntent);
-
                }
                else
                {
@@ -130,12 +126,10 @@ public class Registration extends AppCompatActivity
                    startActivity(newsIntent);
                }
            }
-
            public void search_activity_start(MenuItem item) {
                Intent newsIntent=new Intent(Registration.this, Search.class);
                startActivity(newsIntent);
            }
-
            public void web_cam_actiyity_start(MenuItem item) {
                Intent intent;
                switch (item.getItemId()) {

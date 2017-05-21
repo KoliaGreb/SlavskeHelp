@@ -160,68 +160,7 @@ public class GetWeatherFromApi extends AsyncTask<String, Void, String> {
                     for(int j=0;j<weather.length();j++) {
                         weather_text = weather.getJSONObject(j).getString("description");
                         String icon = weather.getJSONObject(j).getString("icon");
-                        switch (icon) {
-                            case "01d":
-                                icon5[i].setImageResource(R.drawable.ic_01d);
-
-                                break;
-                            case "01n":
-                                icon5[i].setImageResource(R.drawable.ic_01n);
-
-                                break;
-                            case "02d":
-                                icon5[i].setImageResource(R.drawable.ic_02d);
-
-                                break;
-                            case "02n":
-                                icon5[i].setImageResource(R.drawable.ic_02n);
-
-                                break;
-                            case "03d":
-                                icon5[i].setImageResource(R.drawable.ic_03d);
-
-                                break;
-                            case "03n":
-                                icon5[i].setImageResource(R.drawable.ic_03n);
-
-                                break;
-                            case "04d":
-                                icon5[i].setImageResource(R.drawable.ic_04d);
-                                break;
-                            case "04n":
-                                icon5[i].setImageResource(R.drawable.ic_04n);
-                                break;
-                            case "09d":
-                                icon5[i].setImageResource(R.drawable.ic_09d);
-                                break;
-                            case "09n":
-                                icon5[i].setImageResource(R.drawable.ic_09n);
-                                break;
-                            case "10d":
-                                icon5[i].setImageResource(R.drawable.ic_10d);
-                                break;
-                            case "10n":
-                                icon5[i].setImageResource(R.drawable.ic_10n);
-                                break;
-                            case "11d":
-                                icon5[i].setImageResource(R.drawable.ic_11d);
-                                break;
-                            case "11n":
-                                icon5[i].setImageResource(R.drawable.ic_11n);
-                                break;
-                            case "13d":
-                                icon5[i].setImageResource(R.drawable.ic_13d);
-                                break;
-                            case "13n":
-                                icon5[i].setImageResource(R.drawable.ic_13n);
-                                break;
-                            case "50d":
-                                icon5[i].setImageResource(R.drawable.ic_50d);
-                                break;
-                            default:
-                                icon5[i].setImageResource(R.drawable.ic_50n);
-                                break;
-                        }
+                        ImageGenerator(icon5[i], icon);
                         String res = weather_text.substring(0, 1).toUpperCase() + weather_text.substring(1);
                         value5[i].setText(res);
                     }
@@ -239,7 +178,6 @@ public class GetWeatherFromApi extends AsyncTask<String, Void, String> {
                         {
                             temp5[i].setText(""+String.valueOf(temperatureDay) + "°C");
                         }
-
                     weather5_Layout_temp_and_value[i].addView(temp5[i]);
                     weather5_Layout_temp_and_value[i].addView(value5[i]);
                     weather5_Layout_hum_and_wind[i].addView(wind5[i]);

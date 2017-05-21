@@ -18,11 +18,13 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
-
     private GoogleMap mMap;
+    private LatLngBounds Slavske = new LatLngBounds(
+            new LatLng(48.85, 23.45), new LatLng(48.85, 23.45));
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,21 +36,17 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
     }
-
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
         // Add a marker in Slavske and move the camera
-        LatLng sydney = new LatLng(48.85, 23.45 );
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Slavske"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-
+        LatLng city = new LatLng(48.85, 23.45 );
+        mMap.addMarker(new MarkerOptions().position(city).title("Slavske"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(Slavske.getCenter(),12));
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-
         if (id == android.R.id.home) {
             onBackPressed();  return true;
         }
