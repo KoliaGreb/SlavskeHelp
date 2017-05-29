@@ -2,6 +2,7 @@ package com.example.q.slavskehelp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -21,18 +22,23 @@ import myPackage.Connection.ConnectionClass;
 
 public class Login extends AppCompatActivity
 {
-
-
     private ActionBarDrawerToggle mToggle;
     private EditText mLogin;
     private EditText mPassword;
     private LinearLayout mError_layout;
     private TextView mError_text;
+    private NavigationView navigationView;
+    private TextView text;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         DrawerLayout mDrawerLayout;
+        navigationView = (NavigationView) this.findViewById(R.id.navigation_left);
+        View navView = navigationView.getHeaderView(0);
+        text = (TextView) navView.findViewById(R.id.head);
+        text.setText(News.Auth_User);
         mLogin=(EditText) findViewById(R.id.login_sing_in);
         mPassword=(EditText) findViewById(R.id.password_sing_in);
         mDrawerLayout=(DrawerLayout) findViewById(R.id.drawer_layout);
@@ -97,6 +103,7 @@ public class Login extends AppCompatActivity
                     error_pass=-1;
                     Intent profileIntent=new Intent(Login.this, Profile.class);
                     News.Auth_User=mLogin.getText().toString();
+                    //mUser_name.setText(mLogin.getText().toString());
                     startActivity(profileIntent);
                 }
                 else if(rs.getString(1).equals(mLogin.getText().toString()))

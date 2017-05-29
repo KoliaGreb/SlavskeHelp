@@ -712,6 +712,7 @@
 
     </LinearLayout>
     <android.support.design.widget.NavigationView
+        android:id="@+id/navigation_left"
         android:background="@color/colorBackground"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"

@@ -54,7 +54,9 @@
         <activity android:name=".MapsActivity" />
         <activity android:name=".web_cam_other_version" />
         <activity android:name=".Weather" />
-        <activity android:name=".Search_v2"></activity>
+        <activity android:name=".Search_v2" />
+        <activity android:name=".Result_Search" />
+        <activity android:name=".AddNote"></activity>
     </application>
 
 </manifest>

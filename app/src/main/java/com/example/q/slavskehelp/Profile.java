@@ -1,6 +1,7 @@
 package com.example.q.slavskehelp;
 
 import android.content.Intent;
+import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -30,11 +31,17 @@ public class Profile extends AppCompatActivity {
     private EditText mCity;
     private TextView mText_Change_Profile;
     private Button mButton_Change_Profile;
+    private NavigationView navigationView;
+    private TextView text;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+        navigationView = (NavigationView) this.findViewById(R.id.navigation_left);
+        View navView = navigationView.getHeaderView(0);
+        text = (TextView) navView.findViewById(R.id.head);
+        text.setText(News.Auth_User);
         DrawerLayout mDrawerLayout;
         mLogin=(EditText) findViewById(R.id.login_profile);
         mName=(EditText) findViewById(R.id.name_profile);

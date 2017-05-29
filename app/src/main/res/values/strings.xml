@@ -51,4 +51,12 @@
     <string name="wether_today">Сьогодні</string>
     <string name="wether_5day">На 5 днів</string>
     <string name="wether_14day">На 14 днів</string>
+    <string name="title_activity_temp">temp</string>
+    <string name="prompt">Виберіть категорію : </string>
+    <string-array name="category_array">
+        <item>Житло</item>
+        <item>Таксі</item>
+        <item>Розваги</item>
+    </string-array>
+    <string name="type_name">Виберіть тип: </string>
 </resources>

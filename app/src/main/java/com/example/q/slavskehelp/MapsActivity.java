@@ -1,5 +1,6 @@
 package com.example.q.slavskehelp;
 
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;

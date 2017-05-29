@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -24,13 +25,18 @@ public class web_cam_other_version extends AppCompatActivity {
     private View home1;
     private View home2;
     private View home3;
-
+    private NavigationView navigationView;
+    private TextView text;
 
     @SuppressLint("SetJavaScriptEnabled")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web_cam_other_version);
+        navigationView = (NavigationView) this.findViewById(R.id.navigation_left);
+        View navView = navigationView.getHeaderView(0);
+        text = (TextView) navView.findViewById(R.id.head);
+        text.setText(News.Auth_User);
         home1=(View) findViewById(R.id.navigation_home);
         home2=(View) findViewById(R.id.navigation_dashboard);
         home3=(View) findViewById(R.id.navigation_notifications);

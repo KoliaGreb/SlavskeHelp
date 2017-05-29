@@ -1,33 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/colorBackground"
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="com.example.q.slavskehelp.web_cam_other_version">
-    <LinearLayout
-        android:layout_width="match_parent"
+    tools:context="com.example.q.slavskehelp.Result_Search">
+    <android.support.design.widget.CoordinatorLayout
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
-            <WebView
-                android:id="@+id/view_web1"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"/>
-        <android.support.design.widget.BottomNavigationView
-            android:id="@+id/navigation"
-            android:layout_width="match_parent"
+        android:layout_width="match_parent">
+        <include layout="@layout/content_temp" />
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            app:itemBackground="@color/accent_color"
-            app:itemTextColor="@color/bottom_menu_colors"
-            app:itemIconTint="@color/bottom_menu_colors"
-            app:menu="@menu/navigation" />
-    </LinearLayout>
-
+            android:layout_gravity="bottom|end"
+            android:layout_margin="@dimen/fab_margin"
+            app:srcCompat="@android:drawable/ic_input_add"/>
+    </android.support.design.widget.CoordinatorLayout>
 
     <android.support.design.widget.NavigationView
         android:id="@+id/navigation_left"
@@ -37,9 +28,6 @@
         app:menu="@menu/navigation_menu"
         app:headerLayout="@layout/navigation_header"
         android:layout_gravity="start">
-
     </android.support.design.widget.NavigationView>
 
-
 </android.support.v4.widget.DrawerLayout>
-

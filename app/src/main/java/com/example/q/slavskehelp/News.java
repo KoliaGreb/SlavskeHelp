@@ -1,24 +1,33 @@
 package com.example.q.slavskehelp;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class News extends AppCompatActivity
        {
     public static String Auth_User="Авторизація не пройдена";
-
+           private NavigationView navigationView;
+            private TextView text;
     private ActionBarDrawerToggle mToggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news);
+        navigationView = (NavigationView) this.findViewById(R.id.navigation_left);
+        View navView = navigationView.getHeaderView(0);
+        text = (TextView) navView.findViewById(R.id.head);
+        text.setText(News.Auth_User);
         DrawerLayout mDrawerLayout;
         mDrawerLayout=(DrawerLayout) findViewById(R.id.drawer_layout);
         mToggle=new ActionBarDrawerToggle(this, mDrawerLayout, R.string.navigation_drawer_open,R.string.navigation_drawer_close);
@@ -27,6 +36,7 @@ public class News extends AppCompatActivity
         if(getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
+
 
     }
 

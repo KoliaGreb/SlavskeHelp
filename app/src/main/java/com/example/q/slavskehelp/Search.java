@@ -2,6 +2,7 @@ package com.example.q.slavskehelp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -11,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class Search extends AppCompatActivity {
@@ -47,11 +49,17 @@ public class Search extends AppCompatActivity {
     private LinearLayout select_home_Layout;
     private LinearLayout select_taxi_Layout;
     private LinearLayout select_entertainment_Layout;
+    private NavigationView navigationView;
+    private TextView text;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
+        navigationView = (NavigationView) this.findViewById(R.id.navigation_left);
+        View navView = navigationView.getHeaderView(0);
+        text = (TextView) navView.findViewById(R.id.head);
+        text.setText(News.Auth_User);
         mSearch_Button=(Button) findViewById(R.id.button_search);
 
         hotel_Layout=(LinearLayout) findViewById(R.id.hotel_layout);
@@ -140,7 +148,8 @@ public class Search extends AppCompatActivity {
     }
 
     public void search_Click(View view) {
-
+        Intent newsIntent=new Intent(Search.this, Result_Search.class);
+        startActivity(newsIntent);
     }
 
     public void right_arrow_click(View view) {

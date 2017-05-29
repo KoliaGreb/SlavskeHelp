@@ -2,6 +2,7 @@ package com.example.q.slavskehelp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -9,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.sql.PreparedStatement;
@@ -26,11 +28,17 @@ public class Registration extends AppCompatActivity
            private EditText mPhone;
            private EditText mEmail;
            private EditText mCity;
+           private NavigationView navigationView;
+           private TextView text;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
+        navigationView = (NavigationView) this.findViewById(R.id.navigation_left);
+        View navView = navigationView.getHeaderView(0);
+        text = (TextView) navView.findViewById(R.id.head);
+        text.setText(News.Auth_User);
         DrawerLayout mDrawerLayout;
         mLogin=(EditText) findViewById(R.id.login_input);
         mPassword=(EditText) findViewById(R.id.password_input);

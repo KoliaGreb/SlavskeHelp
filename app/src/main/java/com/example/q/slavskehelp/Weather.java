@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -48,11 +49,17 @@ public class Weather extends AppCompatActivity {
     public static LinearLayout weather14_Layout[]=new LinearLayout[14];
     public static LinearLayout weather5_Layout_main;
     public static LinearLayout linlaHeaderProgress;
+    private NavigationView navigationView;
+    private TextView text;
     @SuppressLint("SetJavaScriptEnabled")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weather);
+        navigationView = (NavigationView) this.findViewById(R.id.navigation_left);
+        View navView = navigationView.getHeaderView(0);
+        text = (TextView) navView.findViewById(R.id.head);
+        text.setText(News.Auth_User);
         weather5_Layout_main=(LinearLayout) findViewById(R.id.layout_weather_5day);
         linlaHeaderProgress = (LinearLayout) findViewById(R.id.linlaHeaderProgress);
         wether1=(View) findViewById(R.id.navigation_today);
