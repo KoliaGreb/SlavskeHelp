@@ -265,7 +265,6 @@
             </LinearLayout>
         </LinearLayout>
 
-
         <LinearLayout
             android:id="@+id/entertainment_layout"
             android:visibility="gone"
@@ -667,13 +666,9 @@
                     android:textSize="12sp"
                     android:textColor="@color/colorMainText"
                     android:text="@string/summer"
-
                     />
             </LinearLayout>
         </LinearLayout>
-
-
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -699,17 +694,13 @@
                 android:onClick="search_Click"
                 android:drawableRight="@drawable/ic_add_drawable"
                 android:drawableEnd="@drawable/ic_add_drawable"
-
                 />
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="match_parent">
-
             </LinearLayout>
         </LinearLayout>
-
-
     </LinearLayout>
     <android.support.design.widget.NavigationView
         android:id="@+id/navigation_left"
@@ -719,7 +710,5 @@
         app:menu="@menu/navigation_menu"
         app:headerLayout="@layout/navigation_header"
         android:layout_gravity="start">
-
     </android.support.design.widget.NavigationView>
-
 </android.support.v4.widget.DrawerLayout>

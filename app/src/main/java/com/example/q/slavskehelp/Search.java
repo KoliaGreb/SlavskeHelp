@@ -16,9 +16,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class Search extends AppCompatActivity {
-    static {
-        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
-    }
     private ActionBarDrawerToggle mToggle;
     private Button mSearch_Button;
 
@@ -51,7 +48,7 @@ public class Search extends AppCompatActivity {
     private LinearLayout select_entertainment_Layout;
     private NavigationView navigationView;
     private TextView text;
-
+    public static int ID_Type=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,7 +58,7 @@ public class Search extends AppCompatActivity {
         text = (TextView) navView.findViewById(R.id.head);
         text.setText(News.Auth_User);
         mSearch_Button=(Button) findViewById(R.id.button_search);
-
+        mSearch_Button.setEnabled(false);
         hotel_Layout=(LinearLayout) findViewById(R.id.hotel_layout);
         base_Layout=(LinearLayout) findViewById(R.id.base_layout);
         private_sector_Layout=(LinearLayout) findViewById(R.id.private_sector_layout);
@@ -234,6 +231,8 @@ public class Search extends AppCompatActivity {
     }
 
     public void hotel_select_click(View view) {
+        mSearch_Button.setEnabled(true);
+        ID_Type=1;
         hotel_Layout.setBackgroundResource(R.drawable.border_red);
         base_Layout.setBackgroundResource(R.drawable.border_without);
         private_sector_Layout.setBackgroundResource(R.drawable.border_without);
@@ -251,6 +250,8 @@ public class Search extends AppCompatActivity {
     }
 
     public void base_select_click(View view) {
+        mSearch_Button.setEnabled(true);
+        ID_Type=13;
         hotel_Layout.setBackgroundResource(R.drawable.border_without);
         base_Layout.setBackgroundResource(R.drawable.border_red);
         private_sector_Layout.setBackgroundResource(R.drawable.border_without);
@@ -268,6 +269,8 @@ public class Search extends AppCompatActivity {
     }
 
     public void private_sector_select_click(View view) {
+        mSearch_Button.setEnabled(true);
+        ID_Type=2;
         hotel_Layout.setBackgroundResource(R.drawable.border_without);
         base_Layout.setBackgroundResource(R.drawable.border_without);
         private_sector_Layout.setBackgroundResource(R.drawable.border_red);
@@ -285,6 +288,8 @@ public class Search extends AppCompatActivity {
     }
 
     public void all_seasons_select_click(View view) {
+        mSearch_Button.setEnabled(true);
+        ID_Type=4;
         hotel_Layout.setBackgroundResource(R.drawable.border_without);
         base_Layout.setBackgroundResource(R.drawable.border_without);
         private_sector_Layout.setBackgroundResource(R.drawable.border_without);
@@ -302,6 +307,8 @@ public class Search extends AppCompatActivity {
     }
 
     public void winter_select_click(View view) {
+        mSearch_Button.setEnabled(true);
+        ID_Type=3;
         hotel_Layout.setBackgroundResource(R.drawable.border_without);
         base_Layout.setBackgroundResource(R.drawable.border_without);
         private_sector_Layout.setBackgroundResource(R.drawable.border_without);
@@ -319,6 +326,8 @@ public class Search extends AppCompatActivity {
     }
 
     public void summer_select_click(View view) {
+        mSearch_Button.setEnabled(true);
+        ID_Type=5;
         hotel_Layout.setBackgroundResource(R.drawable.border_without);
         base_Layout.setBackgroundResource(R.drawable.border_without);
         private_sector_Layout.setBackgroundResource(R.drawable.border_without);
@@ -336,6 +345,8 @@ public class Search extends AppCompatActivity {
     }
 
     public void tenis_select_click(View view) {
+        mSearch_Button.setEnabled(true);
+        ID_Type=8;
         hotel_Layout.setBackgroundResource(R.drawable.border_without);
         base_Layout.setBackgroundResource(R.drawable.border_without);
         private_sector_Layout.setBackgroundResource(R.drawable.border_without);
@@ -353,6 +364,8 @@ public class Search extends AppCompatActivity {
     }
 
     public void sauna_select_click(View view) {
+        mSearch_Button.setEnabled(true);
+        ID_Type=14;
         hotel_Layout.setBackgroundResource(R.drawable.border_without);
         base_Layout.setBackgroundResource(R.drawable.border_without);
         private_sector_Layout.setBackgroundResource(R.drawable.border_without);
@@ -370,6 +383,8 @@ public class Search extends AppCompatActivity {
     }
 
     public void biliard_select_click(View view) {
+        mSearch_Button.setEnabled(true);
+        ID_Type=6;
         hotel_Layout.setBackgroundResource(R.drawable.border_without);
         base_Layout.setBackgroundResource(R.drawable.border_without);
         private_sector_Layout.setBackgroundResource(R.drawable.border_without);
@@ -387,6 +402,8 @@ public class Search extends AppCompatActivity {
     }
 
     public void bowling_select_click(View view) {
+        mSearch_Button.setEnabled(true);
+        ID_Type=7;
         hotel_Layout.setBackgroundResource(R.drawable.border_without);
         base_Layout.setBackgroundResource(R.drawable.border_without);
         private_sector_Layout.setBackgroundResource(R.drawable.border_without);
@@ -404,6 +421,8 @@ public class Search extends AppCompatActivity {
     }
 
     public void big_tenis_select_click(View view) {
+        mSearch_Button.setEnabled(true);
+        ID_Type=12;
         hotel_Layout.setBackgroundResource(R.drawable.border_without);
         base_Layout.setBackgroundResource(R.drawable.border_without);
         private_sector_Layout.setBackgroundResource(R.drawable.border_without);
@@ -421,6 +440,8 @@ public class Search extends AppCompatActivity {
     }
 
     public void bicycle_select_click(View view) {
+        mSearch_Button.setEnabled(true);
+        ID_Type=10;
         hotel_Layout.setBackgroundResource(R.drawable.border_without);
         base_Layout.setBackgroundResource(R.drawable.border_without);
         private_sector_Layout.setBackgroundResource(R.drawable.border_without);
@@ -438,6 +459,8 @@ public class Search extends AppCompatActivity {
     }
 
     public void kvadro_select_click(View view) {
+        mSearch_Button.setEnabled(true);
+        ID_Type=9;
         hotel_Layout.setBackgroundResource(R.drawable.border_without);
         base_Layout.setBackgroundResource(R.drawable.border_without);
         private_sector_Layout.setBackgroundResource(R.drawable.border_without);
@@ -455,6 +478,8 @@ public class Search extends AppCompatActivity {
     }
 
     public void horse_select_click(View view) {
+        mSearch_Button.setEnabled(true);
+        ID_Type=11;
         hotel_Layout.setBackgroundResource(R.drawable.border_without);
         base_Layout.setBackgroundResource(R.drawable.border_without);
         private_sector_Layout.setBackgroundResource(R.drawable.border_without);

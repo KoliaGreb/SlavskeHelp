@@ -33,7 +33,6 @@ public class DownloadImageFromDB extends AsyncTask<Void, Void, Bitmap> {
             }
             try
             {
-
                 String SQL1="SELECT CAST(pictures as varchar(MAX)) FROM Category WHERE id=1";
                 Statement stmt = connection.createStatement();
                 ResultSet rs =  stmt.executeQuery(SQL1);

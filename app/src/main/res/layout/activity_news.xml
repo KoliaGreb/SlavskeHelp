@@ -7,11 +7,114 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.example.q.slavskehelp.News">
-    <LinearLayout
+    <ScrollView
+        android:id="@+id/scroll_result_search"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
-    </LinearLayout>
+        android:layout_height="wrap_content"
+        android:visibility="visible">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/button_shadow"
+                    android:layout_margin="5dp"
+                    >
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Перше засідання оргкомітету Дня Славське-2017 відбулось успішно!
+        Готуємось... Свято буде! )))
+        #ДеньСлавське2017 #15липня"
+                    android:gravity="center"/>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:src="@drawable/rada"
+                    android:layout_gravity="top"
+                   />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="18 травня 2017 о 18:03"/>
+            </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/button_shadow"
+            android:layout_margin="5dp"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="З 30-го квітня до 9-го травня у смт Славське тривали аматорські змагання з пішохідного туризму."
+                android:gravity="center"/>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:src="@drawable/turism"
+                android:layout_gravity="top"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="24 квітня 2017 о 14:27"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/button_shadow"
+                android:layout_margin="5dp"
+                >
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="7-9 лютого 2017 року, вперше за останні кілька років, на навчально-спортивній базі олімпійської підготовки «Динамо» в смт. Славське відбувся чемпіонат Львівської області з гірськолижного спорту серед чоловіків та жінок, юніорів та юніорок, юнаків та дівчат."
+                    android:gravity="center"/>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:src="@drawable/sky"
+                    android:layout_gravity="top"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="11 лютого 2017 о 21:15"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/button_shadow"
+                android:layout_margin="5dp"
+                >
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Афіша до Дня Славська 2015 року"
+                    android:gravity="center"/>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:src="@drawable/afisha"
+                    android:layout_gravity="top"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="1 липня 2015 о 11:37"/>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
     <android.support.design.widget.NavigationView
         android:id="@+id/navigation_left"
         android:background="@color/colorBackground"

@@ -1,11 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.q.slavskehelp.Result_Search"
-    tools:showIn="@layout/activity_result__search">
+    tools:context="com.example.q.slavskehelp.Result_Search">
+    <!--tools:showIn="@layout/activity_result__search"-->
 
-</android.support.constraint.ConstraintLayout>
+    <ScrollView
+    android:id="@+id/scroll_result_search"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:visibility="visible">
+
+    <LinearLayout
+        android:id="@+id/layout_result_search"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center">
+        <LinearLayout
+            android:id="@+id/buttons_sort"
+            android:layout_width="fill_parent"
+            android:layout_height="72dp"
+            android:orientation="horizontal"
+            android:gravity="center">
+            <ImageButton
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/ic_attach_money_black_24dp" />
+            <ImageButton
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/ic_access_time_black_24dp" />
+            <ImageButton
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/ic_star_half_black_24dp" />
+        </LinearLayout>
+
+    </LinearLayout>
+    </ScrollView>
+</android.support.v4.widget.DrawerLayout>

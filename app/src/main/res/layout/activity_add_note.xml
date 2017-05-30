@@ -18,11 +18,12 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:gravity="center">
+            android:gravity="center"
+            android:padding="20dp">
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="36dp"
                 android:text="@string/prompt"
                 android:layout_margin="4dp"
                 android:textSize="14sp"
@@ -32,7 +33,7 @@
             <Spinner
                 android:id="@+id/category_spinner"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="36dp"
                 android:layout_margin="4dp"
                 android:textSize="14sp"
                 android:gravity="center"
@@ -44,7 +45,7 @@
                 android:id="@+id/typeNameView"
                 android:visibility="gone"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="36dp"
                 android:text="@string/type_name"
                 android:layout_margin="4dp"
                 android:textSize="14sp"
@@ -55,14 +56,113 @@
                 android:visibility="gone"
                 android:id="@+id/type_spinner"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="36dp"
                 android:layout_margin="4dp"
                 android:textSize="14sp"
                 android:gravity="center"
                 android:layout_gravity="center"
-                
                 >
             </Spinner>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/note_name"
+                android:layout_margin="4dp"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                />
+            <EditText
+                android:inputType="text|textMultiLine"
+                android:id="@+id/note_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:textSize="14sp"
+                android:minHeight="36dp"
+                android:layout_gravity="center"
+                android:background="@drawable/border_black"
+                android:padding="2dp"
+                >
+            </EditText>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/note_description"
+                android:layout_margin="4dp"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                />
+            <EditText
+                android:inputType="text|textMultiLine"
+                android:id="@+id/note_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:textSize="14sp"
+                android:layout_gravity="center"
+                android:background="@drawable/border_black"
+                android:minHeight="72dp"
+                android:padding="2dp"
+                >
+            </EditText>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/note_price"
+                android:layout_margin="4dp"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                />
+            <EditText
+                android:inputType="number|numberDecimal"
+                android:id="@+id/note_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:textSize="14sp"
+                android:minHeight="36dp"
+                android:layout_gravity="center"
+                android:background="@drawable/border_black"
+                android:padding="2dp"
+                >
+            </EditText>
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="horizontal"
+                android:layout_weight="1.5"
+                >
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent">
+
+                </LinearLayout>
+                <Button
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_weight="3"
+                    android:layout_height="match_parent"
+                    android:text="@string/note_add"
+                    android:background="@drawable/border_button"
+                    android:textColor="@color/colorHeaderText"
+                    android:onClick="AddClick"
+                    android:drawableRight="@drawable/ic_playlist_add_black_24dp"
+                    android:drawableEnd="@drawable/ic_playlist_add_black_24dp"
+                    />
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent">
+
+                </LinearLayout>
+            </LinearLayout>
 
         </LinearLayout>
     </ScrollView>

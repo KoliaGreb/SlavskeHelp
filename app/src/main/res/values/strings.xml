@@ -54,9 +54,13 @@
     <string name="title_activity_temp">temp</string>
     <string name="prompt">Виберіть категорію : </string>
     <string-array name="category_array">
-        <item>Житло</item>
-        <item>Таксі</item>
-        <item>Розваги</item>
+        <item>житло</item>
+        <item>таксі</item>
+        <item>розваги</item>
     </string-array>
     <string name="type_name">Виберіть тип: </string>
+    <string name="note_name">Назва : </string>
+    <string name="note_description">Опис : </string>
+    <string name="note_add">Додати </string>
+    <string name="note_price">Ціна(грн.): </string>
 </resources>
