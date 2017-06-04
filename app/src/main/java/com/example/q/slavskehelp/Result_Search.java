@@ -50,6 +50,14 @@ public class Result_Search extends AppCompatActivity {
     private ImageButton ratings;
     public static ScrollView scrollResultSearch;
     public static LinearLayout resultSearchLinearLayout;
+    public static String Autor;
+    public static String Phone;
+    public static String Description;
+    public static String Name;
+    public static String Data;
+    public static Integer Rating;
+    public static Integer id_selectNote;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -108,17 +116,14 @@ public class Result_Search extends AppCompatActivity {
             String SQL1="SELECT id_user, name, data_of_update, rating, id_note FROM Note where id_type="+Search.ID_Type+" Order By data_of_update desc";
             Statement stmt = connection.createStatement();
             ResultSet rs =  stmt.executeQuery(SQL1);
-            //rs.last();
-            int rows = 2;//rs.getRow();
-            //rs.beforeFirst();
-            ArrayList<String> note_names=new ArrayList<String>();
-            ArrayList<String> note_datas=new ArrayList<String>();
-            ArrayList<Integer> note_ratings=new ArrayList<Integer>();
-            ArrayList<String> note_description=new ArrayList<String>();
-            ArrayList<String> note_price=new ArrayList<String>();
-            ArrayList<String> user_login=new ArrayList<String>();
-            ArrayList<String> user_phone=new ArrayList<String>();
-            ArrayList<Integer> rsIndex=new ArrayList<>();
+            final ArrayList<String> note_names=new ArrayList<String>();
+            final ArrayList<String> note_datas=new ArrayList<String>();
+            final ArrayList<Integer> note_ratings=new ArrayList<Integer>();
+            final ArrayList<String> note_description=new ArrayList<String>();
+            final ArrayList<String> note_price=new ArrayList<String>();
+            final ArrayList<String> user_login=new ArrayList<String>();
+            final ArrayList<String> user_phone=new ArrayList<String>();
+            final ArrayList<Integer> rsIndex=new ArrayList<>();
             ArrayList<Integer> rsIndex2=new ArrayList<>();
             while (rs.next()) {
                 note_names.add(rs.getString(2));
@@ -184,7 +189,7 @@ public class Result_Search extends AppCompatActivity {
            /* new DownloadImageTask(icon_image[0])
                     .execute("http://i.imgur.com/DvpvklR.png");
 */
-            URL newurl = new URL("http://vignette3.wikia.nocookie.net/simpsons/images/6/60/No_Image_Available.png/revision/latest?cb=20130527163652g");
+            URL newurl = new URL("http://s019.radikal.ru/i610/1706/e8/d719aef1e048.jpg");
             Bitmap mIcon_val = BitmapFactory.decodeStream(newurl.openConnection() .getInputStream());
             for(int j=0;j<note_names.size();j++)
             {
@@ -268,6 +273,21 @@ public class Result_Search extends AppCompatActivity {
                 //info_Layout[j].addView(ratingView[j]);
                 res_Layout[j].addView(image_Layout[j]);
                 res_Layout[j].addView(info_Layout[j]);
+                final int ID=j;
+                res_Layout[j].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        id_selectNote=rsIndex.get(ID);
+                        Autor=user_login.get(ID);
+                        Phone=user_phone.get(ID);
+                        Description=note_description.get(ID);
+                        Name=note_names.get(ID);
+                        Data=note_datas.get(ID);
+                        Rating=note_ratings.get(ID);
+                        Intent detailsIntent=new Intent(Result_Search.this, DetailsActivity.class);
+                            startActivity(detailsIntent);
+                    }
+                });
                 resultSearchLinearLayout.addView(res_Layout[j]);
             }
         }
@@ -375,14 +395,14 @@ public class Result_Search extends AppCompatActivity {
             //rs.last();
             int rows = 2;//rs.getRow();
             //rs.beforeFirst();
-            ArrayList<String> note_names=new ArrayList<String>();
-            ArrayList<String> note_datas=new ArrayList<String>();
-            ArrayList<Integer> note_ratings=new ArrayList<Integer>();
-            ArrayList<String> note_description=new ArrayList<String>();
-            ArrayList<String> note_price=new ArrayList<String>();
-            ArrayList<String> user_login=new ArrayList<String>();
-            ArrayList<String> user_phone=new ArrayList<String>();
-            ArrayList<Integer> rsIndex=new ArrayList<>();
+            final ArrayList<String> note_names=new ArrayList<String>();
+            final ArrayList<String> note_datas=new ArrayList<String>();
+            final ArrayList<Integer> note_ratings=new ArrayList<Integer>();
+            final ArrayList<String> note_description=new ArrayList<String>();
+            final ArrayList<String> note_price=new ArrayList<String>();
+            final ArrayList<String> user_login=new ArrayList<String>();
+            final ArrayList<String> user_phone=new ArrayList<String>();
+            final ArrayList<Integer> rsIndex=new ArrayList<>();
             ArrayList<Integer> rsIndex2=new ArrayList<>();
             while (rs.next()) {
                 note_names.add(rs.getString(2));
@@ -532,6 +552,21 @@ public class Result_Search extends AppCompatActivity {
                 //info_Layout[j].addView(ratingView[j]);
                 res_Layout[j].addView(image_Layout[j]);
                 res_Layout[j].addView(info_Layout[j]);
+                final int ID=j;
+                res_Layout[j].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        id_selectNote=rsIndex.get(ID);
+                        Autor=user_login.get(ID);
+                        Phone=user_phone.get(ID);
+                        Description=note_description.get(ID);
+                        Name=note_names.get(ID);
+                        Data=note_datas.get(ID);
+                        Rating=note_ratings.get(ID);
+                        Intent detailsIntent=new Intent(Result_Search.this, DetailsActivity.class);
+                        startActivity(detailsIntent);
+                    }
+                });
                 resultSearchLinearLayout.addView(res_Layout[j]);
             }
         }
@@ -568,14 +603,14 @@ public class Result_Search extends AppCompatActivity {
             //rs.last();
             int rows = 2;//rs.getRow();
             //rs.beforeFirst();
-            ArrayList<String> note_names=new ArrayList<String>();
-            ArrayList<String> note_datas=new ArrayList<String>();
-            ArrayList<Integer> note_ratings=new ArrayList<Integer>();
-            ArrayList<String> note_description=new ArrayList<String>();
-            ArrayList<String> note_price=new ArrayList<String>();
-            ArrayList<String> user_login=new ArrayList<String>();
-            ArrayList<String> user_phone=new ArrayList<String>();
-            ArrayList<Integer> rsIndex=new ArrayList<>();
+            final ArrayList<String> note_names=new ArrayList<String>();
+            final ArrayList<String> note_datas=new ArrayList<String>();
+            final ArrayList<Integer> note_ratings=new ArrayList<Integer>();
+            final ArrayList<String> note_description=new ArrayList<String>();
+            final ArrayList<String> note_price=new ArrayList<String>();
+            final ArrayList<String> user_login=new ArrayList<String>();
+            final ArrayList<String> user_phone=new ArrayList<String>();
+            final ArrayList<Integer> rsIndex=new ArrayList<>();
             ArrayList<Integer> rsIndex2=new ArrayList<>();
             while (rs.next()) {
                 note_names.add(rs.getString(2));
@@ -725,6 +760,21 @@ public class Result_Search extends AppCompatActivity {
                 //info_Layout[j].addView(ratingView[j]);
                 res_Layout[j].addView(image_Layout[j]);
                 res_Layout[j].addView(info_Layout[j]);
+                final int ID=j;
+                res_Layout[j].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        id_selectNote=rsIndex.get(ID);
+                        Autor=user_login.get(ID);
+                        Phone=user_phone.get(ID);
+                        Description=note_description.get(ID);
+                        Name=note_names.get(ID);
+                        Data=note_datas.get(ID);
+                        Rating=note_ratings.get(ID);
+                        Intent detailsIntent=new Intent(Result_Search.this, DetailsActivity.class);
+                        startActivity(detailsIntent);
+                    }
+                });
                 resultSearchLinearLayout.addView(res_Layout[j]);
             }
         }
@@ -758,17 +808,14 @@ public class Result_Search extends AppCompatActivity {
             String SQL1="SELECT n.id_user, n.name, n.data_of_update, n.rating, n.id_note, p.property_value FROM Note n, Property p Where n.id_type="+Search.ID_Type+" AND p.id_name=2 AND n.id_note=p.id_note Order By p.property_value desc";
             Statement stmt = connection.createStatement();
             ResultSet rs =  stmt.executeQuery(SQL1);
-            //rs.last();
-            int rows = 2;//rs.getRow();
-            //rs.beforeFirst();
-            ArrayList<String> note_names=new ArrayList<String>();
-            ArrayList<String> note_datas=new ArrayList<String>();
-            ArrayList<Integer> note_ratings=new ArrayList<Integer>();
-            ArrayList<String> note_description=new ArrayList<String>();
-            ArrayList<String> note_price=new ArrayList<String>();
-            ArrayList<String> user_login=new ArrayList<String>();
-            ArrayList<String> user_phone=new ArrayList<String>();
-            ArrayList<Integer> rsIndex=new ArrayList<>();
+            final ArrayList<String> note_names=new ArrayList<String>();
+            final ArrayList<String> note_datas=new ArrayList<String>();
+            final ArrayList<Integer> note_ratings=new ArrayList<Integer>();
+            final ArrayList<String> note_description=new ArrayList<String>();
+            final ArrayList<String> note_price=new ArrayList<String>();
+            final ArrayList<String> user_login=new ArrayList<String>();
+            final ArrayList<String> user_phone=new ArrayList<String>();
+            final ArrayList<Integer> rsIndex=new ArrayList<>();
             ArrayList<Integer> rsIndex2=new ArrayList<>();
             while (rs.next()) {
                 note_names.add(rs.getString(2));
@@ -918,6 +965,21 @@ public class Result_Search extends AppCompatActivity {
                 //info_Layout[j].addView(ratingView[j]);
                 res_Layout[j].addView(image_Layout[j]);
                 res_Layout[j].addView(info_Layout[j]);
+                final int ID=j;
+                res_Layout[j].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        id_selectNote=rsIndex.get(ID);
+                        Autor=user_login.get(ID);
+                        Phone=user_phone.get(ID);
+                        Description=note_description.get(ID);
+                        Name=note_names.get(ID);
+                        Data=note_datas.get(ID);
+                        Rating=note_ratings.get(ID);
+                        Intent detailsIntent=new Intent(Result_Search.this, DetailsActivity.class);
+                        startActivity(detailsIntent);
+                    }
+                });
                 resultSearchLinearLayout.addView(res_Layout[j]);
             }
         }

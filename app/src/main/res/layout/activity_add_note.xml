@@ -131,6 +131,35 @@
                 >
             </EditText>
             <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="5dp" >
+
+                <Button
+                    android:id="@+id/btnSelectPhoto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/border_button"
+                    android:textColor="@color/colorHeaderText"
+                    android:text="Виберіть фото" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="10dp" >
+
+                <ImageView
+                    android:id="@+id/ivImage"
+                    android:layout_width="250dp"
+                    android:layout_height="250dp"
+                    android:src="@drawable/nophoto" />
+            </LinearLayout>
+            <LinearLayout
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -144,6 +173,8 @@
 
                 </LinearLayout>
                 <Button
+                    android:id="@+id/add_note"
+                    android:visibility="gone"
                     android:gravity="center"
                     android:layout_gravity="center"
                     android:layout_width="0dp"

@@ -1,23 +1,46 @@
 package com.example.q.slavskehelp;
 
+import android.Manifest;
+import android.annotation.TargetApi;
+import android.app.Activity;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -27,9 +50,13 @@ import java.util.Date;
 import java.util.Locale;
 
 import myPackage.Connection.ConnectionClass;
+import myPackage.Connection.Utility;
 
 public class AddNote extends AppCompatActivity{
 
+    private Button btnSelect;
+    private Button addButton;
+    private ImageView ivImage;
     public String typeName;
     private ActionBarDrawerToggle mToggle;
     private NavigationView navigationView;
@@ -38,6 +65,8 @@ public class AddNote extends AppCompatActivity{
     private EditText note_name;
     private EditText note_description;
     private EditText note_price;
+
+    String encodedimage;
     String[] houseName={"готель","бази відпочинку","приватна садиба"};
     String[] taxiName={"всі сезони","зимове","літнє"};
     String[] actionName={"боулінг","більярд","сауна","великий теніс","кінний туризм","настільний теніс","подорожі на велосипедах","подорожі на квадроциклах"};
@@ -45,6 +74,7 @@ public class AddNote extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_note);
+        addButton=(Button)findViewById(R.id.add_note);
         note_name=(EditText)findViewById(R.id.note_name);
         note_description=(EditText)findViewById(R.id.note_description);
         note_price=(EditText)findViewById(R.id.note_price);
@@ -113,6 +143,15 @@ public class AddNote extends AppCompatActivity{
                 // TODO Auto-generated method stub
             }
         });
+        btnSelect = (Button) findViewById(R.id.btnSelectPhoto);
+        btnSelect.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                selectImage();
+            }
+        });
+        ivImage = (ImageView) findViewById(R.id.ivImage);
     }
 
 
@@ -237,15 +276,122 @@ public class AddNote extends AppCompatActivity{
             String query1 = "INSERT INTO Property(id_note, id_name, property_value) values(" + note_id + "," + 1 + ",'" + note_description.getText().toString() + "'),("+ note_id + "," + 2 + ",'" + note_price.getText().toString() + "')";
             PreparedStatement preparedStatement1 = connection4.prepareStatement(query1);
             preparedStatement1.executeUpdate();
+            Bitmap image=((BitmapDrawable)ivImage.getDrawable()).getBitmap();
+            ByteArrayOutputStream byteArrayOutputStream=new ByteArrayOutputStream();
+            image.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+            //encodedimage=Base64.encodeToString(byteArrayOutputStream.toByteArray(),Base64.DEFAULT);
+            String query2 = "INSERT INTO Note_Photo(id_note, photo) values(" + note_id + ", '" + Base64.encode(byteArrayOutputStream.toByteArray(), Base64.DEFAULT) + "')";
+            PreparedStatement preparedStatement2 = connection4.prepareStatement(query2);
+            preparedStatement2.executeUpdate();
             connection4.close();
             Toast.makeText(AddNote.this,
                     "Оголошення додано!",
                     Toast.LENGTH_SHORT).show();
             Intent newsIntent=new Intent(AddNote.this, Search.class);
             startActivity(newsIntent);
+
         }
         catch (SQLException e) {
             e.printStackTrace();
         }
     }
+
+    private void selectImage() {
+        final CharSequence[] items = { "Зробити фото", "Завантажити з галереї",
+                "Відмінити" };
+        AlertDialog.Builder builder = new AlertDialog.Builder(AddNote.this);
+        builder.setTitle("Add Photo!");
+        builder.setItems(items, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int item) {
+                boolean result=Utility.checkPermission(AddNote.this);
+                if (items[item].equals("Зробити фото")) {
+                    userChoosenTask="Зробити фото";
+                    if(result)
+                        cameraIntent();
+                } else if (items[item].equals("Завантажити з галереї")) {
+                    userChoosenTask="Завантажити з галереї";
+                    if(result)
+                        galleryIntent();
+                } else if (items[item].equals("Відмінити")) {
+                    dialog.dismiss();
+                }
+            }
+        });
+        builder.show();
+    }
+
+    private int REQUEST_CAMERA = 0, SELECT_FILE = 1;
+    private String userChoosenTask;
+    private void cameraIntent()
+    {
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(intent, REQUEST_CAMERA);
+    }
+    private void galleryIntent()
+    {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "Select File"),SELECT_FILE);
+    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        switch (requestCode) {
+            case Utility.MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    if(userChoosenTask.equals("Take Photo"))
+                        cameraIntent();
+                    else if(userChoosenTask.equals("Choose from Library"))
+                        galleryIntent();
+                } else {
+//code for deny
+                }
+                break;
+        }
+    }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == SELECT_FILE)
+                onSelectFromGalleryResult(data);
+            else if (requestCode == REQUEST_CAMERA)
+                onCaptureImageResult(data);
+        }
+    }
+    @SuppressWarnings("deprecation")
+    private void onSelectFromGalleryResult(Intent data) {
+        Bitmap bm=null;
+        if (data != null) {
+            try {
+                bm = MediaStore.Images.Media.getBitmap(getApplicationContext().getContentResolver(), data.getData());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        ivImage.setImageBitmap(bm);
+    }
+    private void onCaptureImageResult(Intent data) {
+        Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        if (thumbnail != null) {
+            thumbnail.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+        }
+        //encodedimage= Base64.encodeToString(bytes.toByteArray(), Base64.DEFAULT);
+        addButton.setVisibility(View.VISIBLE);
+        File destination = new File(Environment.getExternalStorageDirectory(),
+                System.currentTimeMillis() + ".jpg");
+        FileOutputStream fo;
+        try {
+            destination.createNewFile();
+            fo = new FileOutputStream(destination);
+            fo.write(bytes.toByteArray());
+            fo.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        ivImage.setImageBitmap(thumbnail);
+    }
+
 }
