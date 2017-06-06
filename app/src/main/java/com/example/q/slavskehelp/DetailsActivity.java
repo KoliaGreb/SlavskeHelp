@@ -15,9 +15,11 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -49,16 +51,85 @@ public class DetailsActivity extends AppCompatActivity {
     private TextView phone;
     private ImageView bad;
     private ImageView good;
-    private Integer id_User;
+    private Integer id_User=0;
     private TextView good_value;
     private TextView bad_value;
     private EditText comment_text;
     private LinearLayout commentLinearLayout;
+    private LinearLayout image_horisontal;
+    private LinearLayout changes_notes;
+
+    private LinearLayout taxi;
+    private LinearLayout house;
+    private LinearLayout entertainment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
         DrawerLayout mDrawerLayout;
+
+        house=(LinearLayout)findViewById(R.id.it_is_house);
+        taxi=(LinearLayout)findViewById(R.id.it_is_taxi);
+        entertainment=(LinearLayout)findViewById(R.id.it_is_entertainment);
+
+        TextView new_years_price=(TextView)findViewById(R.id.detail_price_new_year);
+        TextView winter_price=(TextView)findViewById(R.id.detail_price_winter);
+        TextView summer_price=(TextView)findViewById(R.id.detail_price_summer);
+        TextView other_price=(TextView)findViewById(R.id.detail_price_other);
+        TextView address_house=(TextView)findViewById(R.id.detail_address_house);
+        TextView number_room=(TextView)findViewById(R.id.detail_room_number);
+        TextView total_number=(TextView)findViewById(R.id.detail_total_place);
+        TextView main_service=(TextView)findViewById(R.id.detail_main_service);
+        TextView addition_service=(TextView)findViewById(R.id.detail_addition_service);
+        TextView marca_auto=(TextView)findViewById(R.id.detail_marca_taxi);
+        TextView number_people=(TextView)findViewById(R.id.detail_number_people_taxi);
+        TextView address_entertainment=(TextView)findViewById(R.id.detail_entertainment_address);
+        String str="";
+        if(Search.ID_Category==1)
+        {
+            str="Новорічна ціна від :"+Result_Search.New_Years_Price;
+            new_years_price.setText(str);
+            str="Ціна(зима, без НР) :"+Result_Search.Winter_Price;
+            winter_price.setText(str);
+            str="Ціна(літо) :"+Result_Search.Summer_Price;
+            summer_price.setText(str);
+            str="Ціна(весна/осінь) :"+Result_Search.Other_Price;
+            other_price.setText(str);
+            str="Адреса :"+Result_Search.Address_House;
+            address_house.setText(str);
+            str="Кількість номерів :"+Result_Search.Room_Number;
+            number_room.setText(str);
+            str="Загальна кількість місць :"+Result_Search.Total_Place;
+            total_number.setText(str);
+            str="Послуги, які входять в вартість :"+Result_Search.Main_Service;
+            main_service.setText(str);
+            str="Послуги за додаткову плату :"+Result_Search.Addition_Service;
+            addition_service.setText(str);
+            house.setVisibility(View.VISIBLE);
+            taxi.setVisibility(View.GONE);
+            entertainment.setVisibility(View.GONE);
+        }
+        else if(Search.ID_Category==2)
+        {
+            str="Марка автомобіля :"+Result_Search.Auto_Marca;
+            marca_auto.setText(str);
+            str="Кількість пасажирів :"+Result_Search.Number_People;
+            number_people.setText(str);
+            house.setVisibility(View.GONE);
+            taxi.setVisibility(View.VISIBLE);
+            entertainment.setVisibility(View.GONE);
+        }
+        else
+        {
+            str="Адреса :"+Result_Search.Address_Entertainment;
+            address_entertainment.setText(str);
+            house.setVisibility(View.GONE);
+            taxi.setVisibility(View.GONE);
+            entertainment.setVisibility(View.VISIBLE);
+        }
+
+        changes_notes=(LinearLayout)findViewById(R.id.change_note);
+        image_horisontal=(LinearLayout)findViewById(R.id.image_horisontal_layout);
         comment_text=(EditText)findViewById(R.id.new_comment_text);
         commentLinearLayout=(LinearLayout)findViewById(R.id.comment_layout);
         good_value=(TextView)findViewById(R.id.up_value);
@@ -162,6 +233,16 @@ public class DetailsActivity extends AppCompatActivity {
             good_value.setText(res_good);
             bad_value.setText(res_bad);
             rating.setText(res_rating);
+            int id_user_this_note=0;
+            String SQL5 = "SELECT id_user FROM Note where id_note="+Result_Search.id_selectNote;
+            ResultSet rs5 = stmt.executeQuery(SQL5);
+            while (rs5.next()) {
+                id_user_this_note=rs5.getInt(1);
+            }
+            if(id_user_this_note!=0 && id_User!=0 &&id_user_this_note==id_User)
+            {
+                changes_notes.setVisibility(View.VISIBLE);
+            }
             connection.close();
         }
         catch (SQLException e) {
@@ -260,6 +341,58 @@ public class DetailsActivity extends AppCompatActivity {
                 res_Layout[j].addView(login_Layout[j]);
 
                 commentLinearLayout.addView(res_Layout[j]);
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+
+        ConnectionClass connectionClass2=new ConnectionClass();
+        Connection connection2=connectionClass2.CONN();
+        if(connection2==null) {
+            Toast.makeText(DetailsActivity.this,
+                    "Сервер не доступний, вибачте за незручності!",
+                    Toast.LENGTH_SHORT).show();
+            return;
+        }
+        try
+        {
+            String SQL1="SELECT photo FROM Note_Photo WHERE id_note="+Result_Search.id_selectNote;
+            Statement stmt = connection2.createStatement();
+            ResultSet rs =  stmt.executeQuery(SQL1);
+            final ArrayList<String> photo=new ArrayList<String>();
+            while (rs.next()) {
+                photo.add(rs.getString(1));
+            }
+            rs.close();
+            connection2.close();
+            ImageView imView[]=new ImageView[photo.size()];
+
+            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams
+                    (LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            layoutParams.setMargins(2, 2, 2, 2);
+            LinearLayout image_Layout[]=new LinearLayout[photo.size()];
+            for(int j=0;j<photo.size();j++)
+            {
+                image_Layout[j]=new LinearLayout(this);
+                image_Layout[j].setOrientation(LinearLayout.HORIZONTAL);
+                image_Layout[j].setLayoutParams(layoutParams);
+                image_Layout[j].setBackgroundResource(R.drawable.button_shadow);
+                image_Layout[j].setPadding(2,2,2,2);
+                image_Layout[j].setMinimumHeight(200);
+                image_Layout[j].setGravity(Gravity.CENTER);
+
+                imView[j]=new ImageView(this);
+                imView[j].setLayoutParams(new GridView.LayoutParams(500, 500));
+                imView[j].setScaleType(ImageView.ScaleType.FIT_XY);
+                imView[j].setPadding(4, 4, 4, 4);
+                byte[] decodedString = Base64.decode(photo.get(j), Base64.DEFAULT);
+                Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                imView[j].setImageBitmap(decodedByte);
+                image_Layout[j].addView(imView[j]);
+                image_horisontal.addView(image_Layout[j]);
             }
         }
         catch (SQLException e) {
@@ -578,5 +711,39 @@ public class DetailsActivity extends AppCompatActivity {
             }
             comment_text.setText("");
         }
+    }
+
+    public void openPhotoClick(View view) {
+        Intent newsIntent=new Intent(DetailsActivity.this, Add_Photo.class);
+        startActivity(newsIntent);
+    }
+
+    public void deleteNote(View view) {
+        ConnectionClass connectionClass=new ConnectionClass();
+        Connection connection=connectionClass.CONN();
+        if(connection==null) {
+            Toast.makeText(DetailsActivity.this,
+                    "Сервер не доступний, вибачте за незручності!",
+                    Toast.LENGTH_SHORT).show();
+            return;
+        }
+        try {
+            String SQL0="DELETE FROM Note_Photo WHERE id_note="+Result_Search.id_selectNote+"; "+
+                    "DELETE FROM Response WHERE id_note="+Result_Search.id_selectNote+"; "+
+                    "DELETE FROM Comments WHERE id_note="+Result_Search.id_selectNote+"; "+
+                    "DELETE FROM Property WHERE id_note="+Result_Search.id_selectNote+"; "+
+                    "DELETE FROM Note WHERE id_note="+Result_Search.id_selectNote+"; ";
+            PreparedStatement preparedStmt = connection.prepareStatement(SQL0);
+            preparedStmt.executeUpdate();
+            connection.close();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        Toast.makeText(DetailsActivity.this,
+                "Оголошення видалено!",
+                Toast.LENGTH_SHORT).show();
+        Intent newsIntent=new Intent(DetailsActivity.this, Search.class);
+        startActivity(newsIntent);
     }
 }

@@ -130,6 +130,289 @@
                 android:padding="2dp"
                 >
             </EditText>
+
+        <LinearLayout
+            android:id="@+id/layout_add_note_entertainment"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="20dp"
+            android:visibility="gone">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/entertainment_address"
+                    android:layout_margin="4dp"
+                    android:textSize="14sp"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    />
+                <EditText
+                    android:inputType="text|textMultiLine"
+                    android:id="@+id/entertainmant_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:textSize="14sp"
+                    android:minHeight="36dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/border_black"
+                    android:padding="2dp"
+                    >
+                </EditText>
+            </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_add_note_taxi"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="20dp"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/auto_marca_text"
+                android:layout_margin="4dp"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                />
+            <EditText
+                android:inputType="text|textMultiLine"
+                android:id="@+id/taxi_marca_car"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:textSize="14sp"
+                android:minHeight="36dp"
+                android:layout_gravity="center"
+                android:background="@drawable/border_black"
+                android:padding="2dp"
+                >
+            </EditText>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/people_count_text"
+                android:layout_margin="4dp"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                />
+            <EditText
+                android:inputType="number"
+                android:id="@+id/taxi_people_count"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:textSize="14sp"
+                android:minHeight="36dp"
+                android:layout_gravity="center"
+                android:background="@drawable/border_black"
+                android:padding="2dp"
+                >
+                </EditText>
+            </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/layout_add_note_house"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="20dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/price_winter_text"
+                    android:layout_margin="4dp"
+                    android:textSize="14sp"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    />
+                <EditText
+                    android:inputType="number|numberDecimal"
+                    android:id="@+id/house_price_winter"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:textSize="14sp"
+                    android:minHeight="36dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/border_black"
+                    android:padding="2dp"
+                    >
+                </EditText>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/summer_price_text"
+                    android:layout_margin="4dp"
+                    android:textSize="14sp"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    />
+                <EditText
+                    android:inputType="number|numberDecimal"
+                    android:id="@+id/house_price_summer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:textSize="14sp"
+                    android:minHeight="36dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/border_black"
+                    android:padding="2dp"
+                    >
+                </EditText>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/other_price_text"
+                    android:layout_margin="4dp"
+                    android:textSize="14sp"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    />
+                <EditText
+                    android:inputType="number|numberDecimal"
+                    android:id="@+id/house_price_other"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:textSize="14sp"
+                    android:minHeight="36dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/border_black"
+                    android:padding="2dp"
+                    >
+                </EditText>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/house_address_text"
+                    android:layout_margin="4dp"
+                    android:textSize="14sp"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    />
+                <EditText
+                    android:inputType="text|textMultiLine"
+                    android:id="@+id/house_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:textSize="14sp"
+                    android:minHeight="36dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/border_black"
+                    android:padding="2dp"
+                    >
+                </EditText>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/room_count_text"
+                    android:layout_margin="4dp"
+                    android:textSize="14sp"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    />
+                <EditText
+                    android:inputType="number"
+                    android:id="@+id/number_room"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:textSize="14sp"
+                    android:minHeight="36dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/border_black"
+                    android:padding="2dp"
+                    >
+                </EditText>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/total_count_place"
+                    android:layout_margin="4dp"
+                    android:textSize="14sp"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    />
+                <EditText
+                    android:inputType="number"
+                    android:id="@+id/total_number_place"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:textSize="14sp"
+                    android:minHeight="36dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/border_black"
+                    android:padding="2dp"
+                    >
+                </EditText>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/main_service"
+                    android:layout_margin="4dp"
+                    android:textSize="14sp"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    />
+                <EditText
+                    android:inputType="text|textMultiLine"
+                    android:id="@+id/main_service"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:textSize="14sp"
+                    android:minHeight="36dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/border_black"
+                    android:padding="2dp"
+                    >
+                </EditText>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/addition_service_taxt"
+                    android:layout_margin="4dp"
+                    android:textSize="14sp"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    />
+                <EditText
+                    android:inputType="text|textMultiLine"
+                    android:id="@+id/addition_service"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:textSize="14sp"
+                    android:minHeight="36dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/border_black"
+                    android:padding="2dp"
+                    >
+                </EditText>
+
+            </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -142,7 +425,7 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/border_button"
                     android:textColor="@color/colorHeaderText"
-                    android:text="Виберіть фото" />
+                    android:text="@string/add_photo_string" />
 
             </LinearLayout>
 

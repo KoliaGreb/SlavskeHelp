@@ -3,6 +3,7 @@ package com.example.q.slavskehelp;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -16,6 +17,10 @@ import android.widget.Toast;
 public class News extends AppCompatActivity
        {
     public static String Auth_User="Авторизація не пройдена";
+           static{
+           StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+                   .permitAll().build();
+                StrictMode.setThreadPolicy(policy);}
            private NavigationView navigationView;
             private TextView text;
     private ActionBarDrawerToggle mToggle;

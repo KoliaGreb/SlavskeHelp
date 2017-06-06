@@ -62,5 +62,19 @@
     <string name="note_name">Назва : </string>
     <string name="note_description">Опис : </string>
     <string name="note_add">Додати </string>
-    <string name="note_price">Ціна(грн.): </string>
+    <string name="note_price">Ціна(Новий рік) від: </string>
+    <string name="add_photo_text">Додати фото</string>
+    <string name="delete_note_text">Видалити </string>
+    <string name="add_photo_string">Додати фото</string>
+    <string name="price_winter_text">Ціна(Зима) від:</string>
+    <string name="summer_price_text">Ціна(Літо) від:</string>
+    <string name="other_price_text">Ціна(ВеснаОсінь) від:</string>
+    <string name="room_count_text">Кількість кімнат</string>
+    <string name="total_count_place">Загальна кількість місць</string>
+    <string name="main_service">Послуги, включені в вартість</string>
+    <string name="addition_service_taxt">Послуги, за додаткову плату</string>
+    <string name="house_address_text">Адреса :</string>
+    <string name="auto_marca_text">Марка автомобіля</string>
+    <string name="people_count_text">Кількість пасажирів :</string>
+    <string name="entertainment_address">Адреса</string>
 </resources>

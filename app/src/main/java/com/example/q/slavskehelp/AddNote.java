@@ -1,29 +1,24 @@
 package com.example.q.slavskehelp;
 
-import android.Manifest;
-import android.annotation.TargetApi;
 import android.app.Activity;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
-import android.net.Uri;
-import android.os.Build;
+import android.os.AsyncTask;
+import android.os.Bundle;
 import android.os.Environment;
+import android.os.StrictMode;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Base64;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -38,9 +33,9 @@ import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -54,18 +49,31 @@ import myPackage.Connection.Utility;
 
 public class AddNote extends AppCompatActivity{
 
-    private Button btnSelect;
     private Button addButton;
     private ImageView ivImage;
     public String typeName;
     private ActionBarDrawerToggle mToggle;
-    private NavigationView navigationView;
-    private TextView text;
     private TextView typeNameView;
     private EditText note_name;
     private EditText note_description;
     private EditText note_price;
-
+    private LinearLayout house;
+    private LinearLayout taxi;
+    private LinearLayout entertainment;
+    //------------
+    private EditText winter_price;
+    private EditText summer_price;
+    private EditText other_price;
+    private EditText number_count;
+    private EditText total_namber_count;
+    private EditText main_service;
+    private EditText additional_service;
+    private EditText house_address;
+    private EditText auto_marca;
+    private EditText number_people_car;
+    private EditText entertainment_address;
+    int finalNote_id;
+    //------------
     String encodedimage;
     String[] houseName={"готель","бази відпочинку","приватна садиба"};
     String[] taxiName={"всі сезони","зимове","літнє"};
@@ -74,15 +82,31 @@ public class AddNote extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_note);
+        //-------------------------------------------------------------
+        winter_price=(EditText)findViewById(R.id.house_price_winter);
+        summer_price=(EditText)findViewById(R.id.house_price_summer);
+        other_price=(EditText)findViewById(R.id.house_price_other);
+        number_count=(EditText)findViewById(R.id.number_room);
+        total_namber_count=(EditText)findViewById(R.id.total_number_place);
+        main_service=(EditText)findViewById(R.id.main_service);
+        additional_service=(EditText)findViewById(R.id.addition_service);
+        house_address=(EditText)findViewById(R.id.house_address);
+        auto_marca=(EditText)findViewById(R.id.taxi_marca_car);
+        number_people_car=(EditText)findViewById(R.id.taxi_people_count);
+        entertainment_address=(EditText)findViewById(R.id.entertainmant_address);
+        //-------------------------------------------------------------
+        house=(LinearLayout) findViewById(R.id.layout_add_note_house);
+        taxi=(LinearLayout)findViewById(R.id.layout_add_note_taxi);
+        entertainment=(LinearLayout)findViewById(R.id.layout_add_note_entertainment);
         addButton=(Button)findViewById(R.id.add_note);
         note_name=(EditText)findViewById(R.id.note_name);
         note_description=(EditText)findViewById(R.id.note_description);
         note_price=(EditText)findViewById(R.id.note_price);
 
         DrawerLayout mDrawerLayout;
-        navigationView = (NavigationView) this.findViewById(R.id.navigation_left);
+        NavigationView navigationView = (NavigationView) this.findViewById(R.id.navigation_left);
         View navView = navigationView.getHeaderView(0);
-        text = (TextView) navView.findViewById(R.id.head);
+        TextView text = (TextView) navView.findViewById(R.id.head);
         text.setText(News.Auth_User);
         mDrawerLayout=(DrawerLayout) findViewById(R.id.drawer_layout);
         mToggle=new ActionBarDrawerToggle(this, mDrawerLayout, R.string.navigation_drawer_open,R.string.navigation_drawer_close);
@@ -100,11 +124,11 @@ public class AddNote extends AppCompatActivity{
                 .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         staticSpinner.setAdapter(staticAdapter);
         final Spinner dynamicSpinner = (Spinner) findViewById(R.id.type_spinner);
-        final ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(this,
+        final ArrayAdapter<String> adapter1 = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, houseName);
-        final ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this,
+        final ArrayAdapter<String> adapter2 = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, taxiName);
-        final ArrayAdapter<String> adapter3 = new ArrayAdapter<String>(this,
+        final ArrayAdapter<String> adapter3 = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, actionName);
         staticSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -115,15 +139,24 @@ public class AddNote extends AppCompatActivity{
                 if(parent.getItemAtPosition(position).equals("житло"))
                 {
                     dynamicSpinner.setAdapter(adapter1);
+                    house.setVisibility(View.VISIBLE);
+                    taxi.setVisibility(View.GONE);
+                    entertainment.setVisibility(View.GONE);
 
                 }
                 else if(parent.getItemAtPosition(position).equals("таксі"))
                 {
                     dynamicSpinner.setAdapter(adapter2);
+                    house.setVisibility(View.GONE);
+                    taxi.setVisibility(View.VISIBLE);
+                    entertainment.setVisibility(View.GONE);
                 }
                 else
                 {
                     dynamicSpinner.setAdapter(adapter3);
+                    house.setVisibility(View.GONE);
+                    taxi.setVisibility(View.GONE);
+                    entertainment.setVisibility(View.VISIBLE);
                 }
             }
             @Override
@@ -143,7 +176,7 @@ public class AddNote extends AppCompatActivity{
                 // TODO Auto-generated method stub
             }
         });
-        btnSelect = (Button) findViewById(R.id.btnSelectPhoto);
+        Button btnSelect = (Button) findViewById(R.id.btnSelectPhoto);
         btnSelect.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -222,19 +255,22 @@ public class AddNote extends AppCompatActivity{
                 break;
         }
     }
-
     public void AddClick(View view) {
+
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+                    .permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+
         ConnectionClass connectionClass=new ConnectionClass();
-        java.sql.Connection connection=connectionClass.CONN();
-        ConnectionClass connectionClass1=new ConnectionClass();
-        java.sql.Connection connection1=connectionClass1.CONN();
+        Connection connection=connectionClass.CONN();
         ConnectionClass connectionClass2=new ConnectionClass();
-        java.sql.Connection connection2=connectionClass2.CONN();
-        ConnectionClass connectionClass3=new ConnectionClass();
-        java.sql.Connection connection3=connectionClass3.CONN();
+        Connection connection2=connectionClass2.CONN();
+       /* ConnectionClass connectionClass3=new ConnectionClass();
+        Connection connection3=connectionClass3.CONN();*/
         ConnectionClass connectionClass4=new ConnectionClass();
-        java.sql.Connection connection4=connectionClass4.CONN();
-        if(connection==null ||connection1==null ||connection2==null) {
+        Connection connection4=connectionClass4.CONN();
+
+        if(connection==null ||connection2==null||connection4==null) {
             Toast.makeText(AddNote.this,
                     "Сервер не доступний, вибачте за незручності!",
                     Toast.LENGTH_SHORT).show();
@@ -249,15 +285,14 @@ public class AddNote extends AppCompatActivity{
             while (rs.next()) {
                 user_id=rs.getInt(1);
             }
-            connection.close();
+
             String SQL2="SELECT id_type FROM Type_of_category where name='"+typeName+"'";
-            Statement stmt2 = connection1.createStatement();
-            ResultSet rs2 =  stmt2.executeQuery(SQL2);
+            ///Statement stmt2 = connection.createStatement();
+            ResultSet rs2 =  stmt.executeQuery(SQL2);
             int type_id=0;
             while (rs2.next()) {
                 type_id=rs2.getInt(1);
             }
-            connection1.close();
             final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", new Locale("uk","UA"));
             String query = "INSERT INTO Note(id_user, id_type, name, data_of_update, rating) values(" + user_id + "," + type_id + ",'" + note_name.getText().toString() + "','"+ dateFormat.format(new Date())+"',"+0+")";
             PreparedStatement preparedStatement = connection2.prepareStatement(query);
@@ -265,25 +300,50 @@ public class AddNote extends AppCompatActivity{
             connection2.close();
 
             String SQL3="SELECT id_note FROM Note Where name='"+note_name.getText().toString()+"'";
-            Statement stmt3 = connection3.createStatement();
-            ResultSet rs3 =  stmt3.executeQuery(SQL3);
+           // Statement stmt3 = connection3.createStatement();
+            ResultSet rs3 =  stmt.executeQuery(SQL3);
             int note_id=0;
             while (rs3.next()) {
                 note_id=rs3.getInt(1);
             }
-            connection3.close();
+            //connection3.close();
+            connection.close();
+            String query1="";
+            if(house.getVisibility()==View.VISIBLE) {
+                query1 = "INSERT INTO Property(id_note, id_name, property_value) values("
+                        + note_id + "," + 1 + ",'" + note_description.getText().toString() + "'),("
+                        + note_id + "," + 2 + ",'" + note_price.getText().toString() + "'),("
+                        + note_id + "," + 5 + ",'" + winter_price.getText().toString() + "'),("
+                        + note_id + "," + 6 + ",'" + summer_price.getText().toString() + "'),("
+                        + note_id + "," + 7 + ",'" + other_price.getText().toString() + "'),("
+                        + note_id + "," + 8 + ",'" + house_address.getText().toString() + "'),("
+                        + note_id + "," + 9 + ",'" + number_count.getText().toString() + "'),("
+                        + note_id + "," + 10 + ",'" + total_namber_count.getText().toString() + "'),("
+                        + note_id + "," + 11 + ",'" + main_service.getText().toString() + "'),("
+                        + note_id + "," + 12 + ",'" + additional_service.getText().toString() + "')";
+            }
+            else if(taxi.getVisibility()==View.VISIBLE)
+            {
+                query1 = "INSERT INTO Property(id_note, id_name, property_value) values("
+                        + note_id + "," + 1 + ",'" + note_description.getText().toString() + "'),("
+                        + note_id + "," + 2 + ",'" + note_price.getText().toString() + "'),("
+                        + note_id + "," + 13 + ",'" + auto_marca.getText().toString() + "'),("
+                        + note_id + "," + 14 + ",'" + note_price.getText().toString() + "')";
 
-            String query1 = "INSERT INTO Property(id_note, id_name, property_value) values(" + note_id + "," + 1 + ",'" + note_description.getText().toString() + "'),("+ note_id + "," + 2 + ",'" + note_price.getText().toString() + "')";
+            }
+            else
+            {
+                query1 = "INSERT INTO Property(id_note, id_name, property_value) values("
+                        + note_id + "," + 1 + ",'" + note_description.getText().toString() + "'),("
+                        + note_id + "," + 2 + ",'" + note_price.getText().toString() + "'),("
+                        + note_id + "," + 15 + ",'" + entertainment_address.getText().toString() + "')";
+            }
             PreparedStatement preparedStatement1 = connection4.prepareStatement(query1);
             preparedStatement1.executeUpdate();
-            Bitmap image=((BitmapDrawable)ivImage.getDrawable()).getBitmap();
-            ByteArrayOutputStream byteArrayOutputStream=new ByteArrayOutputStream();
-            image.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
-            //encodedimage=Base64.encodeToString(byteArrayOutputStream.toByteArray(),Base64.DEFAULT);
-            String query2 = "INSERT INTO Note_Photo(id_note, photo) values(" + note_id + ", '" + Base64.encode(byteArrayOutputStream.toByteArray(), Base64.DEFAULT) + "')";
-            PreparedStatement preparedStatement2 = connection4.prepareStatement(query2);
-            preparedStatement2.executeUpdate();
             connection4.close();
+            finalNote_id = note_id;
+            AddingPhoto temp=new AddingPhoto(this);
+            temp.execute();
             Toast.makeText(AddNote.this,
                     "Оголошення додано!",
                     Toast.LENGTH_SHORT).show();
@@ -336,7 +396,7 @@ public class AddNote extends AppCompatActivity{
         startActivityForResult(Intent.createChooser(intent, "Select File"),SELECT_FILE);
     }
     @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode) {
             case Utility.MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE:
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
@@ -370,6 +430,7 @@ public class AddNote extends AppCompatActivity{
                 e.printStackTrace();
             }
         }
+        addButton.setVisibility(View.VISIBLE);
         ivImage.setImageBitmap(bm);
     }
     private void onCaptureImageResult(Intent data) {
@@ -379,7 +440,7 @@ public class AddNote extends AppCompatActivity{
             thumbnail.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
         }
         //encodedimage= Base64.encodeToString(bytes.toByteArray(), Base64.DEFAULT);
-        addButton.setVisibility(View.VISIBLE);
+
         File destination = new File(Environment.getExternalStorageDirectory(),
                 System.currentTimeMillis() + ".jpg");
         FileOutputStream fo;
@@ -391,7 +452,65 @@ public class AddNote extends AppCompatActivity{
         } catch (IOException e) {
             e.printStackTrace();
         }
+        addButton.setVisibility(View.VISIBLE);
         ivImage.setImageBitmap(thumbnail);
     }
 
+    class AddingPhoto extends AsyncTask<Void,Void,Void>
+    {
+
+        Activity activity;
+        public AddingPhoto(Activity activity)
+        {
+            this.activity=activity;
+
+        }
+        @Override
+        protected Void doInBackground(Void... params) {
+            activity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+                            .permitAll().build();
+                    StrictMode.setThreadPolicy(policy);
+                    Bitmap image=((BitmapDrawable)ivImage.getDrawable()).getBitmap();
+                    ByteArrayOutputStream byteArrayOutputStream=new ByteArrayOutputStream();
+                    image.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+                    encodedimage=Base64.encodeToString(byteArrayOutputStream.toByteArray(),Base64.DEFAULT);
+
+
+
+                    ConnectionClass connectionClass5=new ConnectionClass();
+                    Connection connection5=connectionClass5.CONN();
+                    if(connection5==null) {
+                        Toast.makeText(AddNote.this,
+                                "Сервер не доступний, вибачте за незручності!",
+                                Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    String query2 = "INSERT INTO Note_Photo(id_note, photo) values(" +finalNote_id  + ", '" + encodedimage + "')";
+                    PreparedStatement preparedStatement2 = null;
+                    try {
+                        preparedStatement2 = connection5.prepareStatement(query2);
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                    try {
+                        preparedStatement2.executeUpdate();
+                        connection5.close();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+
+                    Toast.makeText(AddNote.this,
+                            "Фото додано!",
+                            Toast.LENGTH_SHORT).show();
+                    Intent newsIntent=new Intent(AddNote.this, Search.class);
+                    startActivity(newsIntent);
+                }
+            });
+
+            return null;
+        }
+    }
 }

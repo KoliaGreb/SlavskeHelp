@@ -13,6 +13,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
@@ -56,6 +57,18 @@ public class Result_Search extends AppCompatActivity {
     public static String Name;
     public static String Data;
     public static Integer Rating;
+    public static String New_Years_Price="";
+    public static String Winter_Price="";
+    public static String Other_Price="";
+    public static String Summer_Price="";
+    public static String Address_House="";
+    public static String Room_Number="";
+    public static String Total_Place="";
+    public static String Main_Service="";
+    public static String Addition_Service="";
+    public static String Auto_Marca="";
+    public static String Number_People="";
+    public static String Address_Entertainment="";
     public static Integer id_selectNote;
 
     @Override
@@ -98,7 +111,6 @@ public class Result_Search extends AppCompatActivity {
                     {
                         startActivity(new Intent(Result_Search.this,AddNote.class));
                     }
-
                 }
             });
         }
@@ -116,13 +128,27 @@ public class Result_Search extends AppCompatActivity {
             String SQL1="SELECT id_user, name, data_of_update, rating, id_note FROM Note where id_type="+Search.ID_Type+" Order By data_of_update desc";
             Statement stmt = connection.createStatement();
             ResultSet rs =  stmt.executeQuery(SQL1);
-            final ArrayList<String> note_names=new ArrayList<String>();
-            final ArrayList<String> note_datas=new ArrayList<String>();
-            final ArrayList<Integer> note_ratings=new ArrayList<Integer>();
-            final ArrayList<String> note_description=new ArrayList<String>();
-            final ArrayList<String> note_price=new ArrayList<String>();
-            final ArrayList<String> user_login=new ArrayList<String>();
-            final ArrayList<String> user_phone=new ArrayList<String>();
+            final ArrayList<String> note_names=new ArrayList<>();
+            final ArrayList<String> note_datas=new ArrayList<>();
+            final ArrayList<Integer> note_ratings=new ArrayList<>();
+            final ArrayList<String> note_description=new ArrayList<>();
+            final ArrayList<String> note_price=new ArrayList<>();
+            final ArrayList<String> user_login=new ArrayList<>();
+            final ArrayList<String> user_phone=new ArrayList<>();
+            final ArrayList<String> user_photo=new ArrayList<>();
+            //------------------------------------------------
+            final ArrayList<String> note_summer=new ArrayList<>();
+            final ArrayList<String> note_winter=new ArrayList<>();
+            final ArrayList<String> note_other=new ArrayList<>();
+            final ArrayList<String> note_address=new ArrayList<>();
+            final ArrayList<String> note_room=new ArrayList<>();
+            final ArrayList<String> note_total=new ArrayList<>();
+            final ArrayList<String> note_main=new ArrayList<>();
+            final ArrayList<String> note_addition=new ArrayList<>();
+            final ArrayList<String> note_marca=new ArrayList<>();
+            final ArrayList<String> note_number_people=new ArrayList<>();
+            final ArrayList<String> note_entertainment_address=new ArrayList<>();
+            //-----------------------------------------------
             final ArrayList<Integer> rsIndex=new ArrayList<>();
             ArrayList<Integer> rsIndex2=new ArrayList<>();
             while (rs.next()) {
@@ -141,14 +167,95 @@ public class Result_Search extends AppCompatActivity {
                 while (rs2.next()) {
                     note_description.add(rs2.getString(1));
                 }
-                String SQL3="SELECT property_value FROM Property WHERE id_name=2 AND id_note="+rsIndex.get(j);
                 rs2.close();
-                //Statement stmt3 = connection.createStatement();
+                String SQL3="SELECT property_value FROM Property WHERE id_name=2 AND id_note="+rsIndex.get(j);
                 ResultSet rs3 =  stmt.executeQuery(SQL3);
                 while (rs3.next()) {
                     note_price.add(rs3.getString(1));
                 }
                 rs3.close();
+                if(Search.ID_Category==1) {
+                    String SQL3_1 = "SELECT property_value FROM Property WHERE id_name=5 AND id_note=" + rsIndex.get(j);
+                    ResultSet rs3_1 = stmt.executeQuery(SQL3_1);
+                    while (rs3_1.next()) {
+                        note_winter.add(rs3_1.getString(1));
+                    }
+                    rs3_1.close();
+
+                    String SQL3_2 = "SELECT property_value FROM Property WHERE id_name=6 AND id_note=" + rsIndex.get(j);
+                    ResultSet rs3_2 = stmt.executeQuery(SQL3_2);
+                    while (rs3_2.next()) {
+                        note_summer.add(rs3_2.getString(1));
+                    }
+                    rs3_2.close();
+
+                    String SQL3_3 = "SELECT property_value FROM Property WHERE id_name=7 AND id_note=" + rsIndex.get(j);
+                    ResultSet rs3_3 = stmt.executeQuery(SQL3_3);
+                    while (rs3_3.next()) {
+                        note_other.add(rs3_3.getString(1));
+                    }
+                    rs3_3.close();
+
+                    String SQL3_4 = "SELECT property_value FROM Property WHERE id_name=8 AND id_note=" + rsIndex.get(j);
+                    ResultSet rs3_4 = stmt.executeQuery(SQL3_4);
+                    while (rs3_4.next()) {
+                        note_address.add(rs3_4.getString(1));
+                    }
+                    rs3_4.close();
+
+                    String SQL3_5 = "SELECT property_value FROM Property WHERE id_name=9 AND id_note=" + rsIndex.get(j);
+                    ResultSet rs3_5 = stmt.executeQuery(SQL3_5);
+                    while (rs3_5.next()) {
+                        note_room.add(rs3_5.getString(1));
+                    }
+                    rs3_5.close();
+
+                    String SQL3_6 = "SELECT property_value FROM Property WHERE id_name=10 AND id_note=" + rsIndex.get(j);
+                    ResultSet rs3_6 = stmt.executeQuery(SQL3_6);
+                    while (rs3_6.next()) {
+                        note_total.add(rs3_6.getString(1));
+                    }
+                    rs3_6.close();
+
+                    String SQL3_7 = "SELECT property_value FROM Property WHERE id_name=11 AND id_note=" + rsIndex.get(j);
+                    ResultSet rs3_7 = stmt.executeQuery(SQL3_7);
+                    while (rs3_7.next()) {
+                        note_main.add(rs3_7.getString(1));
+                    }
+                    rs3_7.close();
+
+                    String SQL3_8 = "SELECT property_value FROM Property WHERE id_name=12 AND id_note=" + rsIndex.get(j);
+                    ResultSet rs3_8 = stmt.executeQuery(SQL3_8);
+                    while (rs3_8.next()) {
+                        note_addition.add(rs3_8.getString(1));
+                    }
+                    rs3_8.close();
+                }
+                else if(Search.ID_Category==2) {
+
+                    String SQL3_9 = "SELECT property_value FROM Property WHERE id_name=13 AND id_note=" + rsIndex.get(j);
+                    ResultSet rs3_9 = stmt.executeQuery(SQL3_9);
+                    while (rs3_9.next()) {
+                        note_marca.add(rs3_9.getString(1));
+                    }
+                    rs3_9.close();
+
+                    String SQL3_10 = "SELECT property_value FROM Property WHERE id_name=14 AND id_note=" + rsIndex.get(j);
+                    ResultSet rs3_10 = stmt.executeQuery(SQL3_10);
+                    while (rs3_10.next()) {
+                        note_number_people.add(rs3_10.getString(1));
+                    }
+                    rs3_10.close();
+                }
+                else {
+                    String SQL3_11 = "SELECT property_value FROM Property WHERE id_name=15 AND id_note=" + rsIndex.get(j);
+                    ResultSet rs3_11 = stmt.executeQuery(SQL3_11);
+                    while (rs3_11.next()) {
+                        note_entertainment_address.add(rs3_11.getString(1));
+                    }
+                    rs3_11.close();
+                }
+
                 String SQL4="SELECT login,phone FROM Auth_User WHERE id_user="+rsIndex2.get(j);
                 //Statement stmt4 = connection.createStatement();
                 ResultSet rs4 =  stmt.executeQuery(SQL4);
@@ -157,11 +264,18 @@ public class Result_Search extends AppCompatActivity {
                     user_phone.add(rs4.getString(2));
                 }
                 rs4.close();
+                String SQL5="SELECT TOP 1 photo FROM Note_Photo WHERE id_note="+rsIndex.get(j);
+                ResultSet rs5 =  stmt.executeQuery(SQL5);
+                if(rs5.next()) {
+                    user_photo.add(rs5.getString(1));
+                }
+                else
+                {
+                    user_photo.add("No Photo");
+                }
+                rs5.close();
             }
             connection.close();
-            /*Toast.makeText(Result_Search.this,
-                    "Дані зчитані з сервера!",
-                    Toast.LENGTH_SHORT).show();*/
             LinearLayout res_Layout[]=new LinearLayout[note_names.size()];
             LinearLayout info_Layout[]=new LinearLayout[note_names.size()];
             LinearLayout image_Layout[]=new LinearLayout[note_names.size()];
@@ -184,12 +298,10 @@ public class Result_Search extends AppCompatActivity {
             LinearLayout.LayoutParams params_info= new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT, 0, 1f);
 
-
-
            /* new DownloadImageTask(icon_image[0])
                     .execute("http://i.imgur.com/DvpvklR.png");
 */
-            URL newurl = new URL("http://s019.radikal.ru/i610/1706/e8/d719aef1e048.jpg");
+            URL newurl = new URL("http://vignette3.wikia.nocookie.net/simpsons/images/6/60/No_Image_Available.png/revision/latest?cb=20130527163652g");
             Bitmap mIcon_val = BitmapFactory.decodeStream(newurl.openConnection() .getInputStream());
             for(int j=0;j<note_names.size();j++)
             {
@@ -198,8 +310,16 @@ public class Result_Search extends AppCompatActivity {
                 icon_image[j].setLayoutParams(new GridView.LayoutParams(290, 290));
                 icon_image[j].setScaleType(ImageView.ScaleType.FIT_XY);
                 icon_image[j].setPadding(4, 4, 4, 4);
+                if(user_photo.get(j).equals("No Photo"))
+                {
+                    icon_image[j].setImageBitmap(mIcon_val);
+                }
+                else {
+                    byte[] decodedString = Base64.decode(user_photo.get(j), Base64.DEFAULT);
+                    Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                    icon_image[j].setImageBitmap(decodedByte);
+                }
 
-                icon_image[j].setImageBitmap(mIcon_val);
                 res_Layout[j]=new LinearLayout(this);
                 res_Layout[j].setOrientation(LinearLayout.HORIZONTAL);
                 res_Layout[j].setLayoutParams(layoutParams);
@@ -277,6 +397,7 @@ public class Result_Search extends AppCompatActivity {
                 res_Layout[j].setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+
                         id_selectNote=rsIndex.get(ID);
                         Autor=user_login.get(ID);
                         Phone=user_phone.get(ID);
@@ -284,6 +405,22 @@ public class Result_Search extends AppCompatActivity {
                         Name=note_names.get(ID);
                         Data=note_datas.get(ID);
                         Rating=note_ratings.get(ID);
+                        if(Search.ID_Category==1) {
+                            New_Years_Price = note_price.get(ID);
+                            Winter_Price = note_winter.get(ID);
+                            Summer_Price = note_summer.get(ID);
+                            Other_Price = note_other.get(ID);
+                            Address_House = note_address.get(ID);
+                            Room_Number = note_room.get(ID);
+                            Total_Place = note_total.get(ID);
+                            Main_Service = note_main.get(ID);
+                            Addition_Service = note_addition.get(ID);
+                        }else if(Search.ID_Category==2) {
+                            Auto_Marca = note_marca.get(ID);
+                            Number_People = note_number_people.get(ID);
+                        }else {
+                            Address_Entertainment = note_entertainment_address.get(ID);
+                        }
                         Intent detailsIntent=new Intent(Result_Search.this, DetailsActivity.class);
                             startActivity(detailsIntent);
                     }
@@ -392,16 +529,28 @@ public class Result_Search extends AppCompatActivity {
             String SQL1="SELECT id_user, name, data_of_update, rating, id_note FROM Note where id_type="+Search.ID_Type+" Order By data_of_update desc";
             Statement stmt = connection.createStatement();
             ResultSet rs =  stmt.executeQuery(SQL1);
-            //rs.last();
-            int rows = 2;//rs.getRow();
-            //rs.beforeFirst();
-            final ArrayList<String> note_names=new ArrayList<String>();
-            final ArrayList<String> note_datas=new ArrayList<String>();
-            final ArrayList<Integer> note_ratings=new ArrayList<Integer>();
-            final ArrayList<String> note_description=new ArrayList<String>();
-            final ArrayList<String> note_price=new ArrayList<String>();
-            final ArrayList<String> user_login=new ArrayList<String>();
-            final ArrayList<String> user_phone=new ArrayList<String>();
+            final ArrayList<String> note_names=new ArrayList<>();
+            final ArrayList<String> note_datas=new ArrayList<>();
+            final ArrayList<Integer> note_ratings=new ArrayList<>();
+            final ArrayList<String> note_description=new ArrayList<>();
+            final ArrayList<String> note_price=new ArrayList<>();
+            final ArrayList<String> user_login=new ArrayList<>();
+            final ArrayList<String> user_phone=new ArrayList<>();
+            final ArrayList<String> user_photo=new ArrayList<>();
+            //------------------------------------------------
+            final ArrayList<String> note_summer=new ArrayList<>();
+            final ArrayList<String> note_winter=new ArrayList<>();
+            final ArrayList<String> note_new_year=new ArrayList<>();
+            final ArrayList<String> note_other=new ArrayList<>();
+            final ArrayList<String> note_address=new ArrayList<>();
+            final ArrayList<String> note_room=new ArrayList<>();
+            final ArrayList<String> note_total=new ArrayList<>();
+            final ArrayList<String> note_main=new ArrayList<>();
+            final ArrayList<String> note_addition=new ArrayList<>();
+            final ArrayList<String> note_marca=new ArrayList<>();
+            final ArrayList<String> note_number_people=new ArrayList<>();
+            final ArrayList<String> note_entertainment_address=new ArrayList<>();
+            //-----------------------------------------------
             final ArrayList<Integer> rsIndex=new ArrayList<>();
             ArrayList<Integer> rsIndex2=new ArrayList<>();
             while (rs.next()) {
@@ -422,20 +571,110 @@ public class Result_Search extends AppCompatActivity {
                 }
                 String SQL3="SELECT property_value FROM Property WHERE id_name=2 AND id_note="+rsIndex.get(j);
                 rs2.close();
-                //Statement stmt3 = connection.createStatement();
                 ResultSet rs3 =  stmt.executeQuery(SQL3);
                 while (rs3.next()) {
                     note_price.add(rs3.getString(1));
                 }
                 rs3.close();
+                if(Search.ID_Category==1) {
+                    String SQL3_1 = "SELECT property_value FROM Property WHERE id_name=5 AND id_note=" + rsIndex.get(j);
+                    ResultSet rs3_1 = stmt.executeQuery(SQL3_1);
+                    while (rs3_1.next()) {
+                        note_winter.add(rs3_1.getString(1));
+                    }
+                    rs3_1.close();
+
+                    String SQL3_2 = "SELECT property_value FROM Property WHERE id_name=6 AND id_note=" + rsIndex.get(j);
+                    ResultSet rs3_2 = stmt.executeQuery(SQL3_2);
+                    while (rs3_2.next()) {
+                        note_summer.add(rs3_2.getString(1));
+                    }
+                    rs3_2.close();
+
+                    String SQL3_3 = "SELECT property_value FROM Property WHERE id_name=7 AND id_note=" + rsIndex.get(j);
+                    ResultSet rs3_3 = stmt.executeQuery(SQL3_3);
+                    while (rs3_3.next()) {
+                        note_other.add(rs3_3.getString(1));
+                    }
+                    rs3_3.close();
+
+                    String SQL3_4 = "SELECT property_value FROM Property WHERE id_name=8 AND id_note=" + rsIndex.get(j);
+                    ResultSet rs3_4 = stmt.executeQuery(SQL3_4);
+                    while (rs3_4.next()) {
+                        note_address.add(rs3_4.getString(1));
+                    }
+                    rs3_4.close();
+
+                    String SQL3_5 = "SELECT property_value FROM Property WHERE id_name=9 AND id_note=" + rsIndex.get(j);
+                    ResultSet rs3_5 = stmt.executeQuery(SQL3_5);
+                    while (rs3_5.next()) {
+                        note_room.add(rs3_5.getString(1));
+                    }
+                    rs3_5.close();
+
+                    String SQL3_6 = "SELECT property_value FROM Property WHERE id_name=10 AND id_note=" + rsIndex.get(j);
+                    ResultSet rs3_6 = stmt.executeQuery(SQL3_6);
+                    while (rs3_6.next()) {
+                        note_total.add(rs3_6.getString(1));
+                    }
+                    rs3_6.close();
+
+                    String SQL3_7 = "SELECT property_value FROM Property WHERE id_name=11 AND id_note=" + rsIndex.get(j);
+                    ResultSet rs3_7 = stmt.executeQuery(SQL3_7);
+                    while (rs3_7.next()) {
+                        note_main.add(rs3_7.getString(1));
+                    }
+                    rs3_7.close();
+
+                    String SQL3_8 = "SELECT property_value FROM Property WHERE id_name=12 AND id_note=" + rsIndex.get(j);
+                    ResultSet rs3_8 = stmt.executeQuery(SQL3_8);
+                    while (rs3_8.next()) {
+                        note_addition.add(rs3_8.getString(1));
+                    }
+                    rs3_8.close();
+                }
+                else if(Search.ID_Category==2) {
+
+                    String SQL3_9 = "SELECT property_value FROM Property WHERE id_name=13 AND id_note=" + rsIndex.get(j);
+                    ResultSet rs3_9 = stmt.executeQuery(SQL3_9);
+                    while (rs3_9.next()) {
+                        note_marca.add(rs3_9.getString(1));
+                    }
+                    rs3_9.close();
+
+                    String SQL3_10 = "SELECT property_value FROM Property WHERE id_name=14 AND id_note=" + rsIndex.get(j);
+                    ResultSet rs3_10 = stmt.executeQuery(SQL3_10);
+                    while (rs3_10.next()) {
+                        note_number_people.add(rs3_10.getString(1));
+                    }
+                    rs3_10.close();
+                }
+                else {
+                    String SQL3_11 = "SELECT property_value FROM Property WHERE id_name=15 AND id_note=" + rsIndex.get(j);
+                    ResultSet rs3_11 = stmt.executeQuery(SQL3_11);
+                    while (rs3_11.next()) {
+                        note_entertainment_address.add(rs3_11.getString(1));
+                    }
+                    rs3_11.close();
+                }
+
                 String SQL4="SELECT login,phone FROM Auth_User WHERE id_user="+rsIndex2.get(j);
-                //Statement stmt4 = connection.createStatement();
                 ResultSet rs4 =  stmt.executeQuery(SQL4);
                 while (rs4.next()) {
                     user_login.add(rs4.getString(1));
                     user_phone.add(rs4.getString(2));
                 }
                 rs4.close();
+                String SQL5="SELECT TOP 1 photo FROM Note_Photo WHERE id_note="+rsIndex.get(j);
+                ResultSet rs5 =  stmt.executeQuery(SQL5);
+                if(rs5.next()) {
+                    user_photo.add(rs5.getString(1));
+                }
+                else
+                {
+                    user_photo.add("No Photo");
+                }
+                rs5.close();
             }
             connection.close();
             /*Toast.makeText(Result_Search.this,
@@ -477,8 +716,15 @@ public class Result_Search extends AppCompatActivity {
                 icon_image[j].setLayoutParams(new GridView.LayoutParams(290, 290));
                 icon_image[j].setScaleType(ImageView.ScaleType.FIT_XY);
                 icon_image[j].setPadding(4, 4, 4, 4);
-
-                icon_image[j].setImageBitmap(mIcon_val);
+                if(user_photo.get(j).equals("No Photo"))
+                {
+                    icon_image[j].setImageBitmap(mIcon_val);
+                }
+                else {
+                    byte[] decodedString = Base64.decode(user_photo.get(j), Base64.DEFAULT);
+                    Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                    icon_image[j].setImageBitmap(decodedByte);
+                }
                 res_Layout[j]=new LinearLayout(this);
                 res_Layout[j].setOrientation(LinearLayout.HORIZONTAL);
                 res_Layout[j].setLayoutParams(layoutParams);
@@ -563,6 +809,22 @@ public class Result_Search extends AppCompatActivity {
                         Name=note_names.get(ID);
                         Data=note_datas.get(ID);
                         Rating=note_ratings.get(ID);
+                        if(Search.ID_Category==1) {
+                            New_Years_Price = note_price.get(ID);
+                            Winter_Price = note_winter.get(ID);
+                            Summer_Price = note_summer.get(ID);
+                            Other_Price = note_other.get(ID);
+                            Address_House = note_address.get(ID);
+                            Room_Number = note_room.get(ID);
+                            Total_Place = note_total.get(ID);
+                            Main_Service = note_main.get(ID);
+                            Addition_Service = note_addition.get(ID);
+                        }else if(Search.ID_Category==2) {
+                            Auto_Marca = note_marca.get(ID);
+                            Number_People = note_number_people.get(ID);
+                        }else {
+                            Address_Entertainment = note_entertainment_address.get(ID);
+                        }
                         Intent detailsIntent=new Intent(Result_Search.this, DetailsActivity.class);
                         startActivity(detailsIntent);
                     }
@@ -603,13 +865,27 @@ public class Result_Search extends AppCompatActivity {
             //rs.last();
             int rows = 2;//rs.getRow();
             //rs.beforeFirst();
-            final ArrayList<String> note_names=new ArrayList<String>();
-            final ArrayList<String> note_datas=new ArrayList<String>();
-            final ArrayList<Integer> note_ratings=new ArrayList<Integer>();
-            final ArrayList<String> note_description=new ArrayList<String>();
-            final ArrayList<String> note_price=new ArrayList<String>();
-            final ArrayList<String> user_login=new ArrayList<String>();
-            final ArrayList<String> user_phone=new ArrayList<String>();
+            final ArrayList<String> note_names=new ArrayList<>();
+            final ArrayList<String> note_datas=new ArrayList<>();
+            final ArrayList<Integer> note_ratings=new ArrayList<>();
+            final ArrayList<String> note_description=new ArrayList<>();
+            final ArrayList<String> note_price=new ArrayList<>();
+            final ArrayList<String> user_login=new ArrayList<>();
+            final ArrayList<String> user_phone=new ArrayList<>();
+            final ArrayList<String> user_photo=new ArrayList<>();
+            //------------------------------------------------
+            final ArrayList<String> note_summer=new ArrayList<>();
+            final ArrayList<String> note_winter=new ArrayList<>();
+            final ArrayList<String> note_other=new ArrayList<>();
+            final ArrayList<String> note_address=new ArrayList<>();
+            final ArrayList<String> note_room=new ArrayList<>();
+            final ArrayList<String> note_total=new ArrayList<>();
+            final ArrayList<String> note_main=new ArrayList<>();
+            final ArrayList<String> note_addition=new ArrayList<>();
+            final ArrayList<String> note_marca=new ArrayList<>();
+            final ArrayList<String> note_number_people=new ArrayList<>();
+            final ArrayList<String> note_entertainment_address=new ArrayList<>();
+            //-----------------------------------------------
             final ArrayList<Integer> rsIndex=new ArrayList<>();
             ArrayList<Integer> rsIndex2=new ArrayList<>();
             while (rs.next()) {
@@ -636,6 +912,88 @@ public class Result_Search extends AppCompatActivity {
                     note_price.add(rs3.getString(1));
                 }
                 rs3.close();
+                if(Search.ID_Category==1) {
+                    String SQL3_1 = "SELECT property_value FROM Property WHERE id_name=5 AND id_note=" + rsIndex.get(j);
+                    ResultSet rs3_1 = stmt.executeQuery(SQL3_1);
+                    while (rs3_1.next()) {
+                        note_winter.add(rs3_1.getString(1));
+                    }
+                    rs3_1.close();
+
+                    String SQL3_2 = "SELECT property_value FROM Property WHERE id_name=6 AND id_note=" + rsIndex.get(j);
+                    ResultSet rs3_2 = stmt.executeQuery(SQL3_2);
+                    while (rs3_2.next()) {
+                        note_summer.add(rs3_2.getString(1));
+                    }
+                    rs3_2.close();
+
+                    String SQL3_3 = "SELECT property_value FROM Property WHERE id_name=7 AND id_note=" + rsIndex.get(j);
+                    ResultSet rs3_3 = stmt.executeQuery(SQL3_3);
+                    while (rs3_3.next()) {
+                        note_other.add(rs3_3.getString(1));
+                    }
+                    rs3_3.close();
+
+                    String SQL3_4 = "SELECT property_value FROM Property WHERE id_name=8 AND id_note=" + rsIndex.get(j);
+                    ResultSet rs3_4 = stmt.executeQuery(SQL3_4);
+                    while (rs3_4.next()) {
+                        note_address.add(rs3_4.getString(1));
+                    }
+                    rs3_4.close();
+
+                    String SQL3_5 = "SELECT property_value FROM Property WHERE id_name=9 AND id_note=" + rsIndex.get(j);
+                    ResultSet rs3_5 = stmt.executeQuery(SQL3_5);
+                    while (rs3_5.next()) {
+                        note_room.add(rs3_5.getString(1));
+                    }
+                    rs3_5.close();
+
+                    String SQL3_6 = "SELECT property_value FROM Property WHERE id_name=10 AND id_note=" + rsIndex.get(j);
+                    ResultSet rs3_6 = stmt.executeQuery(SQL3_6);
+                    while (rs3_6.next()) {
+                        note_total.add(rs3_6.getString(1));
+                    }
+                    rs3_6.close();
+
+                    String SQL3_7 = "SELECT property_value FROM Property WHERE id_name=11 AND id_note=" + rsIndex.get(j);
+                    ResultSet rs3_7 = stmt.executeQuery(SQL3_7);
+                    while (rs3_7.next()) {
+                        note_main.add(rs3_7.getString(1));
+                    }
+                    rs3_7.close();
+
+                    String SQL3_8 = "SELECT property_value FROM Property WHERE id_name=12 AND id_note=" + rsIndex.get(j);
+                    ResultSet rs3_8 = stmt.executeQuery(SQL3_8);
+                    while (rs3_8.next()) {
+                        note_addition.add(rs3_8.getString(1));
+                    }
+                    rs3_8.close();
+                }
+                else if(Search.ID_Category==2) {
+
+                    String SQL3_9 = "SELECT property_value FROM Property WHERE id_name=13 AND id_note=" + rsIndex.get(j);
+                    ResultSet rs3_9 = stmt.executeQuery(SQL3_9);
+                    while (rs3_9.next()) {
+                        note_marca.add(rs3_9.getString(1));
+                    }
+                    rs3_9.close();
+
+                    String SQL3_10 = "SELECT property_value FROM Property WHERE id_name=14 AND id_note=" + rsIndex.get(j);
+                    ResultSet rs3_10 = stmt.executeQuery(SQL3_10);
+                    while (rs3_10.next()) {
+                        note_number_people.add(rs3_10.getString(1));
+                    }
+                    rs3_10.close();
+                }
+                else {
+                    String SQL3_11 = "SELECT property_value FROM Property WHERE id_name=15 AND id_note=" + rsIndex.get(j);
+                    ResultSet rs3_11 = stmt.executeQuery(SQL3_11);
+                    while (rs3_11.next()) {
+                        note_entertainment_address.add(rs3_11.getString(1));
+                    }
+                    rs3_11.close();
+                }
+
                 String SQL4="SELECT login,phone FROM Auth_User WHERE id_user="+rsIndex2.get(j);
                 //Statement stmt4 = connection.createStatement();
                 ResultSet rs4 =  stmt.executeQuery(SQL4);
@@ -644,6 +1002,16 @@ public class Result_Search extends AppCompatActivity {
                     user_phone.add(rs4.getString(2));
                 }
                 rs4.close();
+                String SQL5="SELECT TOP 1 photo FROM Note_Photo WHERE id_note="+rsIndex.get(j);
+                ResultSet rs5 =  stmt.executeQuery(SQL5);
+                if(rs5.next()) {
+                    user_photo.add(rs5.getString(1));
+                }
+                else
+                {
+                    user_photo.add("No Photo");
+                }
+                rs5.close();
             }
             connection.close();
             /*Toast.makeText(Result_Search.this,
@@ -685,8 +1053,16 @@ public class Result_Search extends AppCompatActivity {
                 icon_image[j].setLayoutParams(new GridView.LayoutParams(290, 290));
                 icon_image[j].setScaleType(ImageView.ScaleType.FIT_XY);
                 icon_image[j].setPadding(4, 4, 4, 4);
+                if(user_photo.get(j).equals("No Photo"))
+                {
+                    icon_image[j].setImageBitmap(mIcon_val);
+                }
+                else {
+                    byte[] decodedString = Base64.decode(user_photo.get(j), Base64.DEFAULT);
+                    Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                    icon_image[j].setImageBitmap(decodedByte);
+                }
 
-                icon_image[j].setImageBitmap(mIcon_val);
                 res_Layout[j]=new LinearLayout(this);
                 res_Layout[j].setOrientation(LinearLayout.HORIZONTAL);
                 res_Layout[j].setLayoutParams(layoutParams);
@@ -771,6 +1147,22 @@ public class Result_Search extends AppCompatActivity {
                         Name=note_names.get(ID);
                         Data=note_datas.get(ID);
                         Rating=note_ratings.get(ID);
+                        if(Search.ID_Category==1) {
+                            New_Years_Price = note_price.get(ID);
+                            Winter_Price = note_winter.get(ID);
+                            Summer_Price = note_summer.get(ID);
+                            Other_Price = note_other.get(ID);
+                            Address_House = note_address.get(ID);
+                            Room_Number = note_room.get(ID);
+                            Total_Place = note_total.get(ID);
+                            Main_Service = note_main.get(ID);
+                            Addition_Service = note_addition.get(ID);
+                        }else if(Search.ID_Category==2) {
+                            Auto_Marca = note_marca.get(ID);
+                            Number_People = note_number_people.get(ID);
+                        }else {
+                            Address_Entertainment = note_entertainment_address.get(ID);
+                        }
                         Intent detailsIntent=new Intent(Result_Search.this, DetailsActivity.class);
                         startActivity(detailsIntent);
                     }
@@ -805,16 +1197,31 @@ public class Result_Search extends AppCompatActivity {
         }
         try
         {
-            String SQL1="SELECT n.id_user, n.name, n.data_of_update, n.rating, n.id_note, p.property_value FROM Note n, Property p Where n.id_type="+Search.ID_Type+" AND p.id_name=2 AND n.id_note=p.id_note Order By p.property_value desc";
+            String SQL1="SELECT n.id_user, n.name, n.data_of_update, n.rating, n.id_note, p.property_value FROM Note n, Property p Where n.id_type="+Search.ID_Type+" AND p.id_name=2 AND n.id_note=p.id_note Order By CAST(p.property_value as int) desc";
             Statement stmt = connection.createStatement();
             ResultSet rs =  stmt.executeQuery(SQL1);
-            final ArrayList<String> note_names=new ArrayList<String>();
-            final ArrayList<String> note_datas=new ArrayList<String>();
-            final ArrayList<Integer> note_ratings=new ArrayList<Integer>();
-            final ArrayList<String> note_description=new ArrayList<String>();
-            final ArrayList<String> note_price=new ArrayList<String>();
-            final ArrayList<String> user_login=new ArrayList<String>();
-            final ArrayList<String> user_phone=new ArrayList<String>();
+            final ArrayList<String> note_names=new ArrayList<>();
+            final ArrayList<String> note_datas=new ArrayList<>();
+            final ArrayList<Integer> note_ratings=new ArrayList<>();
+            final ArrayList<String> note_description=new ArrayList<>();
+            final ArrayList<String> note_price=new ArrayList<>();
+            final ArrayList<String> user_login=new ArrayList<>();
+            final ArrayList<String> user_phone=new ArrayList<>();
+            final ArrayList<String> user_photo=new ArrayList<>();
+            //------------------------------------------------
+            final ArrayList<String> note_summer=new ArrayList<>();
+            final ArrayList<String> note_winter=new ArrayList<>();
+            final ArrayList<String> note_new_year=new ArrayList<>();
+            final ArrayList<String> note_other=new ArrayList<>();
+            final ArrayList<String> note_address=new ArrayList<>();
+            final ArrayList<String> note_room=new ArrayList<>();
+            final ArrayList<String> note_total=new ArrayList<>();
+            final ArrayList<String> note_main=new ArrayList<>();
+            final ArrayList<String> note_addition=new ArrayList<>();
+            final ArrayList<String> note_marca=new ArrayList<>();
+            final ArrayList<String> note_number_people=new ArrayList<>();
+            final ArrayList<String> note_entertainment_address=new ArrayList<>();
+            //-----------------------------------------------
             final ArrayList<Integer> rsIndex=new ArrayList<>();
             ArrayList<Integer> rsIndex2=new ArrayList<>();
             while (rs.next()) {
@@ -841,6 +1248,88 @@ public class Result_Search extends AppCompatActivity {
                     note_price.add(rs3.getString(1));
                 }
                 rs3.close();
+                if(Search.ID_Category==1) {
+                    String SQL3_1 = "SELECT property_value FROM Property WHERE id_name=5 AND id_note=" + rsIndex.get(j);
+                    ResultSet rs3_1 = stmt.executeQuery(SQL3_1);
+                    while (rs3_1.next()) {
+                        note_winter.add(rs3_1.getString(1));
+                    }
+                    rs3_1.close();
+
+                    String SQL3_2 = "SELECT property_value FROM Property WHERE id_name=6 AND id_note=" + rsIndex.get(j);
+                    ResultSet rs3_2 = stmt.executeQuery(SQL3_2);
+                    while (rs3_2.next()) {
+                        note_summer.add(rs3_2.getString(1));
+                    }
+                    rs3_2.close();
+
+                    String SQL3_3 = "SELECT property_value FROM Property WHERE id_name=7 AND id_note=" + rsIndex.get(j);
+                    ResultSet rs3_3 = stmt.executeQuery(SQL3_3);
+                    while (rs3_3.next()) {
+                        note_other.add(rs3_3.getString(1));
+                    }
+                    rs3_3.close();
+
+                    String SQL3_4 = "SELECT property_value FROM Property WHERE id_name=8 AND id_note=" + rsIndex.get(j);
+                    ResultSet rs3_4 = stmt.executeQuery(SQL3_4);
+                    while (rs3_4.next()) {
+                        note_address.add(rs3_4.getString(1));
+                    }
+                    rs3_4.close();
+
+                    String SQL3_5 = "SELECT property_value FROM Property WHERE id_name=9 AND id_note=" + rsIndex.get(j);
+                    ResultSet rs3_5 = stmt.executeQuery(SQL3_5);
+                    while (rs3_5.next()) {
+                        note_room.add(rs3_5.getString(1));
+                    }
+                    rs3_5.close();
+
+                    String SQL3_6 = "SELECT property_value FROM Property WHERE id_name=10 AND id_note=" + rsIndex.get(j);
+                    ResultSet rs3_6 = stmt.executeQuery(SQL3_6);
+                    while (rs3_6.next()) {
+                        note_total.add(rs3_6.getString(1));
+                    }
+                    rs3_6.close();
+
+                    String SQL3_7 = "SELECT property_value FROM Property WHERE id_name=11 AND id_note=" + rsIndex.get(j);
+                    ResultSet rs3_7 = stmt.executeQuery(SQL3_7);
+                    while (rs3_7.next()) {
+                        note_main.add(rs3_7.getString(1));
+                    }
+                    rs3_7.close();
+
+                    String SQL3_8 = "SELECT property_value FROM Property WHERE id_name=12 AND id_note=" + rsIndex.get(j);
+                    ResultSet rs3_8 = stmt.executeQuery(SQL3_8);
+                    while (rs3_8.next()) {
+                        note_addition.add(rs3_8.getString(1));
+                    }
+                    rs3_8.close();
+                }
+                else if(Search.ID_Category==2) {
+
+                    String SQL3_9 = "SELECT property_value FROM Property WHERE id_name=13 AND id_note=" + rsIndex.get(j);
+                    ResultSet rs3_9 = stmt.executeQuery(SQL3_9);
+                    while (rs3_9.next()) {
+                        note_marca.add(rs3_9.getString(1));
+                    }
+                    rs3_9.close();
+
+                    String SQL3_10 = "SELECT property_value FROM Property WHERE id_name=14 AND id_note=" + rsIndex.get(j);
+                    ResultSet rs3_10 = stmt.executeQuery(SQL3_10);
+                    while (rs3_10.next()) {
+                        note_number_people.add(rs3_10.getString(1));
+                    }
+                    rs3_10.close();
+                }
+                else {
+                    String SQL3_11 = "SELECT property_value FROM Property WHERE id_name=15 AND id_note=" + rsIndex.get(j);
+                    ResultSet rs3_11 = stmt.executeQuery(SQL3_11);
+                    while (rs3_11.next()) {
+                        note_entertainment_address.add(rs3_11.getString(1));
+                    }
+                    rs3_11.close();
+                }
+
                 String SQL4="SELECT login,phone FROM Auth_User WHERE id_user="+rsIndex2.get(j);
                 //Statement stmt4 = connection.createStatement();
                 ResultSet rs4 =  stmt.executeQuery(SQL4);
@@ -849,6 +1338,16 @@ public class Result_Search extends AppCompatActivity {
                     user_phone.add(rs4.getString(2));
                 }
                 rs4.close();
+                String SQL5="SELECT TOP 1 photo FROM Note_Photo WHERE id_note="+rsIndex.get(j);
+                ResultSet rs5 =  stmt.executeQuery(SQL5);
+                if(rs5.next()) {
+                    user_photo.add(rs5.getString(1));
+                }
+                else
+                {
+                    user_photo.add("No Photo");
+                }
+                rs5.close();
             }
             connection.close();
             /*Toast.makeText(Result_Search.this,
@@ -885,13 +1384,22 @@ public class Result_Search extends AppCompatActivity {
             Bitmap mIcon_val = BitmapFactory.decodeStream(newurl.openConnection() .getInputStream());
             for(int j=0;j<note_names.size();j++)
             {
+
                 ImageView icon_image[]=new ImageView[note_names.size()];
                 icon_image[j]=new ImageView(this);
                 icon_image[j].setLayoutParams(new GridView.LayoutParams(290, 290));
                 icon_image[j].setScaleType(ImageView.ScaleType.FIT_XY);
                 icon_image[j].setPadding(4, 4, 4, 4);
+                if(user_photo.get(j).equals("No Photo"))
+                {
+                    icon_image[j].setImageBitmap(mIcon_val);
+                }
+                else {
+                    byte[] decodedString = Base64.decode(user_photo.get(j), Base64.DEFAULT);
+                    Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                    icon_image[j].setImageBitmap(decodedByte);
+                }
 
-                icon_image[j].setImageBitmap(mIcon_val);
                 res_Layout[j]=new LinearLayout(this);
                 res_Layout[j].setOrientation(LinearLayout.HORIZONTAL);
                 res_Layout[j].setLayoutParams(layoutParams);
@@ -976,6 +1484,22 @@ public class Result_Search extends AppCompatActivity {
                         Name=note_names.get(ID);
                         Data=note_datas.get(ID);
                         Rating=note_ratings.get(ID);
+                        if(Search.ID_Category==1) {
+                            New_Years_Price = note_price.get(ID);
+                            Winter_Price = note_winter.get(ID);
+                            Summer_Price = note_summer.get(ID);
+                            Other_Price = note_other.get(ID);
+                            Address_House = note_address.get(ID);
+                            Room_Number = note_room.get(ID);
+                            Total_Place = note_total.get(ID);
+                            Main_Service = note_main.get(ID);
+                            Addition_Service = note_addition.get(ID);
+                        }else if(Search.ID_Category==2) {
+                            Auto_Marca = note_marca.get(ID);
+                            Number_People = note_number_people.get(ID);
+                        }else {
+                            Address_Entertainment = note_entertainment_address.get(ID);
+                        }
                         Intent detailsIntent=new Intent(Result_Search.this, DetailsActivity.class);
                         startActivity(detailsIntent);
                     }

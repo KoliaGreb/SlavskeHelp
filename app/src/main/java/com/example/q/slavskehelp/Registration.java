@@ -14,7 +14,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import myPackage.Connection.ConnectionClass;
 
@@ -23,6 +25,7 @@ public class Registration extends AppCompatActivity
            private ActionBarDrawerToggle mToggle;
            private EditText mLogin;
            private EditText mPassword;
+           private EditText mRePassword;
            private EditText mName;
            private EditText mSurname;
            private EditText mPhone;
@@ -42,6 +45,7 @@ public class Registration extends AppCompatActivity
         DrawerLayout mDrawerLayout;
         mLogin=(EditText) findViewById(R.id.login_input);
         mPassword=(EditText) findViewById(R.id.password_input);
+        mRePassword=(EditText)findViewById(R.id.password_check_input);
         mName=(EditText) findViewById(R.id.name_input);
         mSurname=(EditText) findViewById(R.id.surname_input);
         mPhone=(EditText) findViewById(R.id.phone_input);
@@ -92,7 +96,39 @@ public class Registration extends AppCompatActivity
                }
                try
                {
+                   String SQL0="SELECT login, password FROM Auth_User";
+                   Statement stmt = connection.createStatement();
+                   ResultSet rs =  stmt.executeQuery(SQL0);
+                   while (rs.next()) {
+                       if(rs.getString(1).equals(mLogin.getText().toString())) {
+                           Toast.makeText(Registration.this,
+                                   "Логін '"+mLogin.getText().toString()+"' вже існує!!",
+                                   Toast.LENGTH_SHORT).show();
+                           return;
+                       }
+                   }
                    int can_add=0;
+                   if(mLogin.getText().toString().equals("")|| mPassword.getText().toString().equals("") ||
+                           mName.getText().toString().equals("") ||
+                           mSurname.getText().toString().equals("") ||
+                           mPhone.getText().toString().equals("") ||
+                           mEmail.getText().toString().equals("") ||
+                           mCity.getText().toString().equals("")
+                           )
+                   {
+                       Toast.makeText(Registration.this,
+                               "Заповніть всі поля!!",
+                               Toast.LENGTH_SHORT).show();
+                       return;
+                   }
+                   if(!mPassword.getText().toString().equals(mRePassword.getText().toString()))
+                   {
+                       Toast.makeText(Registration.this,
+                               "Пароль не підтверджено!!",
+                               Toast.LENGTH_SHORT).show();
+                       return;
+                   }
+
                    if(mCity.getText().toString().equals("Славське")||
                            mCity.getText().toString().equals("Славсько")||
                            mCity.getText().toString().equals("Slavske")||

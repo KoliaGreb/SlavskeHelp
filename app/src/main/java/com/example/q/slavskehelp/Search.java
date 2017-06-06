@@ -49,6 +49,7 @@ public class Search extends AppCompatActivity {
     private NavigationView navigationView;
     private TextView text;
     public static int ID_Type=0;
+    public static int ID_Category=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -233,6 +234,7 @@ public class Search extends AppCompatActivity {
     public void hotel_select_click(View view) {
         mSearch_Button.setEnabled(true);
         ID_Type=1;
+        ID_Category=1;
         hotel_Layout.setBackgroundResource(R.drawable.border_red);
         base_Layout.setBackgroundResource(R.drawable.border_without);
         private_sector_Layout.setBackgroundResource(R.drawable.border_without);
@@ -252,6 +254,7 @@ public class Search extends AppCompatActivity {
     public void base_select_click(View view) {
         mSearch_Button.setEnabled(true);
         ID_Type=13;
+        ID_Category=1;
         hotel_Layout.setBackgroundResource(R.drawable.border_without);
         base_Layout.setBackgroundResource(R.drawable.border_red);
         private_sector_Layout.setBackgroundResource(R.drawable.border_without);
@@ -271,6 +274,7 @@ public class Search extends AppCompatActivity {
     public void private_sector_select_click(View view) {
         mSearch_Button.setEnabled(true);
         ID_Type=2;
+        ID_Category=1;
         hotel_Layout.setBackgroundResource(R.drawable.border_without);
         base_Layout.setBackgroundResource(R.drawable.border_without);
         private_sector_Layout.setBackgroundResource(R.drawable.border_red);
@@ -290,6 +294,7 @@ public class Search extends AppCompatActivity {
     public void all_seasons_select_click(View view) {
         mSearch_Button.setEnabled(true);
         ID_Type=4;
+        ID_Category=2;
         hotel_Layout.setBackgroundResource(R.drawable.border_without);
         base_Layout.setBackgroundResource(R.drawable.border_without);
         private_sector_Layout.setBackgroundResource(R.drawable.border_without);
@@ -309,6 +314,7 @@ public class Search extends AppCompatActivity {
     public void winter_select_click(View view) {
         mSearch_Button.setEnabled(true);
         ID_Type=3;
+        ID_Category=2;
         hotel_Layout.setBackgroundResource(R.drawable.border_without);
         base_Layout.setBackgroundResource(R.drawable.border_without);
         private_sector_Layout.setBackgroundResource(R.drawable.border_without);
@@ -328,6 +334,7 @@ public class Search extends AppCompatActivity {
     public void summer_select_click(View view) {
         mSearch_Button.setEnabled(true);
         ID_Type=5;
+        ID_Category=2;
         hotel_Layout.setBackgroundResource(R.drawable.border_without);
         base_Layout.setBackgroundResource(R.drawable.border_without);
         private_sector_Layout.setBackgroundResource(R.drawable.border_without);
@@ -347,6 +354,7 @@ public class Search extends AppCompatActivity {
     public void tenis_select_click(View view) {
         mSearch_Button.setEnabled(true);
         ID_Type=8;
+        ID_Category=3;
         hotel_Layout.setBackgroundResource(R.drawable.border_without);
         base_Layout.setBackgroundResource(R.drawable.border_without);
         private_sector_Layout.setBackgroundResource(R.drawable.border_without);
@@ -366,6 +374,7 @@ public class Search extends AppCompatActivity {
     public void sauna_select_click(View view) {
         mSearch_Button.setEnabled(true);
         ID_Type=14;
+        ID_Category=3;
         hotel_Layout.setBackgroundResource(R.drawable.border_without);
         base_Layout.setBackgroundResource(R.drawable.border_without);
         private_sector_Layout.setBackgroundResource(R.drawable.border_without);
@@ -385,6 +394,7 @@ public class Search extends AppCompatActivity {
     public void biliard_select_click(View view) {
         mSearch_Button.setEnabled(true);
         ID_Type=6;
+        ID_Category=3;
         hotel_Layout.setBackgroundResource(R.drawable.border_without);
         base_Layout.setBackgroundResource(R.drawable.border_without);
         private_sector_Layout.setBackgroundResource(R.drawable.border_without);
@@ -404,6 +414,7 @@ public class Search extends AppCompatActivity {
     public void bowling_select_click(View view) {
         mSearch_Button.setEnabled(true);
         ID_Type=7;
+        ID_Category=3;
         hotel_Layout.setBackgroundResource(R.drawable.border_without);
         base_Layout.setBackgroundResource(R.drawable.border_without);
         private_sector_Layout.setBackgroundResource(R.drawable.border_without);
@@ -423,6 +434,7 @@ public class Search extends AppCompatActivity {
     public void big_tenis_select_click(View view) {
         mSearch_Button.setEnabled(true);
         ID_Type=12;
+        ID_Category=3;
         hotel_Layout.setBackgroundResource(R.drawable.border_without);
         base_Layout.setBackgroundResource(R.drawable.border_without);
         private_sector_Layout.setBackgroundResource(R.drawable.border_without);
@@ -442,6 +454,7 @@ public class Search extends AppCompatActivity {
     public void bicycle_select_click(View view) {
         mSearch_Button.setEnabled(true);
         ID_Type=10;
+        ID_Category=3;
         hotel_Layout.setBackgroundResource(R.drawable.border_without);
         base_Layout.setBackgroundResource(R.drawable.border_without);
         private_sector_Layout.setBackgroundResource(R.drawable.border_without);
@@ -461,6 +474,7 @@ public class Search extends AppCompatActivity {
     public void kvadro_select_click(View view) {
         mSearch_Button.setEnabled(true);
         ID_Type=9;
+        ID_Category=3;
         hotel_Layout.setBackgroundResource(R.drawable.border_without);
         base_Layout.setBackgroundResource(R.drawable.border_without);
         private_sector_Layout.setBackgroundResource(R.drawable.border_without);
@@ -480,6 +494,7 @@ public class Search extends AppCompatActivity {
     public void horse_select_click(View view) {
         mSearch_Button.setEnabled(true);
         ID_Type=11;
+        ID_Category=3;
         hotel_Layout.setBackgroundResource(R.drawable.border_without);
         base_Layout.setBackgroundResource(R.drawable.border_without);
         private_sector_Layout.setBackgroundResource(R.drawable.border_without);

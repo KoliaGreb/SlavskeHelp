@@ -23,31 +23,44 @@
         >
         <HorizontalScrollView
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             >
             <LinearLayout
+                android:id="@+id/image_horisontal_layout"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 >
-            <ImageView
-                android:layout_width="250dp"
-                android:layout_height="250dp"
-                android:padding="2dp"
-                app:srcCompat="@drawable/nophoto"/>
+               <!-- <LinearLayout
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content">
 
+                <ImageView
+                    android:layout_width="250dp"
+                    android:layout_height="250dp"
+                    android:padding="2dp"
+                    app:srcCompat="@drawable/nophoto"/>
+                </LinearLayout>
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:orientation="horizontal">
                 <ImageView
                     android:id="@+id/imageView"
                     android:layout_width="250dp"
                     android:layout_height="250dp"
                     android:padding="2dp"
                     app:srcCompat="@drawable/nophoto" />
-
+            </LinearLayout>
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content">
                 <ImageView
-                android:padding="2dp"
-                android:layout_width="250dp"
-                android:layout_height="250dp"
-                app:srcCompat="@drawable/nophoto"/>
+                    android:padding="2dp"
+                    android:layout_width="250dp"
+                    android:layout_height="250dp"
+                    app:srcCompat="@drawable/nophoto"/>
+            </LinearLayout>-->
             </LinearLayout>
         </HorizontalScrollView>
         <LinearLayout
@@ -117,6 +130,176 @@
                 android:textSize="16sp"
                 />
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/it_is_taxi"
+            android:visibility="gone">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@drawable/button_shadow"
+                >
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:id="@+id/detail_marca_taxi"
+                    android:textSize="16sp"
+                    />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:id="@+id/detail_number_people_taxi"
+                    android:textSize="16sp"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/it_is_entertainment"
+            android:visibility="gone">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@drawable/button_shadow"
+                >
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:id="@+id/detail_entertainment_address"
+                    android:textSize="16sp"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/it_is_house">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:background="@drawable/button_shadow"
+                        >
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:id="@+id/detail_address_house"
+                            android:textSize="16sp"
+                            />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:background="@drawable/button_shadow"
+                        >
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:id="@+id/detail_price_new_year"
+                            android:textSize="16sp"
+                            />
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:id="@+id/detail_price_winter"
+                            android:textSize="16sp"
+                            />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:background="@drawable/button_shadow"
+                        >
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:id="@+id/detail_price_summer"
+                            android:textSize="16sp"
+                            />
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:id="@+id/detail_price_other"
+                            android:textSize="16sp"
+                            />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:background="@drawable/button_shadow"
+                        >
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:id="@+id/detail_room_number"
+                            android:textSize="16sp"
+                            />
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:id="@+id/detail_total_place"
+                            android:textSize="16sp"
+                            />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:background="@drawable/button_shadow"
+                        >
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:id="@+id/detail_main_service"
+                            android:textSize="16sp"
+                            />
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:id="@+id/detail_addition_service"
+                            android:textSize="16sp"
+                            />
+                    </LinearLayout>
+            </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -204,6 +387,38 @@
                 android:drawableRight="@drawable/ic_insert_comment_black_24dp"
                 android:drawableEnd="@drawable/ic_insert_comment_black_24dp"
                 />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/change_note"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:layout_marginBottom="50dp"
+            android:visibility="gone">
+            <Button
+                android:layout_margin="5dp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="@string/add_photo_text"
+                android:onClick="openPhotoClick"
+                android:background="@drawable/border_button"
+                android:textColor="@color/colorHeaderText"
+                android:drawableRight="@drawable/ic_add_a_photo_black_24dp"
+                android:drawableEnd="@drawable/ic_add_a_photo_black_24dp"/>
+            <Button
+                android:layout_margin="5dp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="@string/delete_note_text"
+                android:onClick="deleteNote"
+                android:background="@drawable/border_button"
+                android:textColor="@color/colorHeaderText"
+                android:drawableRight="@drawable/ic_delete_forever_black_24dp"
+                android:drawableEnd="@drawable/ic_delete_forever_black_24dp"/>
         </LinearLayout>
     </LinearLayout>
     </ScrollView>
