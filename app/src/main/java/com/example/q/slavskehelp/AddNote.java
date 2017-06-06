@@ -74,6 +74,8 @@ public class AddNote extends AppCompatActivity{
     private EditText entertainment_address;
     int finalNote_id;
     //------------
+
+    private ConnectionClass connectionClass;
     String encodedimage;
     String[] houseName={"готель","бази відпочинку","приватна садиба"};
     String[] taxiName={"всі сезони","зимове","літнє"};
@@ -82,6 +84,8 @@ public class AddNote extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_note);
+
+        connectionClass=ConnectionClass.getInstance();
         //-------------------------------------------------------------
         winter_price=(EditText)findViewById(R.id.house_price_winter);
         summer_price=(EditText)findViewById(R.id.house_price_summer);
@@ -257,20 +261,18 @@ public class AddNote extends AppCompatActivity{
     }
     public void AddClick(View view) {
 
-            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
-                    .permitAll().build();
-            StrictMode.setThreadPolicy(policy);
+            Connection connection=connectionClass.getConnection();
 
-        ConnectionClass connectionClass=new ConnectionClass();
+        /*ConnectionClass connectionClass=new ConnectionClass();
         Connection connection=connectionClass.CONN();
         ConnectionClass connectionClass2=new ConnectionClass();
         Connection connection2=connectionClass2.CONN();
        /* ConnectionClass connectionClass3=new ConnectionClass();
-        Connection connection3=connectionClass3.CONN();*/
+        Connection connection3=connectionClass3.CONN();
         ConnectionClass connectionClass4=new ConnectionClass();
-        Connection connection4=connectionClass4.CONN();
+        Connection connection4=connectionClass4.CONN();*/
 
-        if(connection==null ||connection2==null||connection4==null) {
+        if(connection==null) {
             Toast.makeText(AddNote.this,
                     "Сервер не доступний, вибачте за незручності!",
                     Toast.LENGTH_SHORT).show();
@@ -295,9 +297,9 @@ public class AddNote extends AppCompatActivity{
             }
             final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", new Locale("uk","UA"));
             String query = "INSERT INTO Note(id_user, id_type, name, data_of_update, rating) values(" + user_id + "," + type_id + ",'" + note_name.getText().toString() + "','"+ dateFormat.format(new Date())+"',"+0+")";
-            PreparedStatement preparedStatement = connection2.prepareStatement(query);
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.executeUpdate();
-            connection2.close();
+            preparedStatement.close();
 
             String SQL3="SELECT id_note FROM Note Where name='"+note_name.getText().toString()+"'";
            // Statement stmt3 = connection3.createStatement();
@@ -307,7 +309,6 @@ public class AddNote extends AppCompatActivity{
                 note_id=rs3.getInt(1);
             }
             //connection3.close();
-            connection.close();
             String query1="";
             if(house.getVisibility()==View.VISIBLE) {
                 query1 = "INSERT INTO Property(id_note, id_name, property_value) values("
@@ -338,9 +339,9 @@ public class AddNote extends AppCompatActivity{
                         + note_id + "," + 2 + ",'" + note_price.getText().toString() + "'),("
                         + note_id + "," + 15 + ",'" + entertainment_address.getText().toString() + "')";
             }
-            PreparedStatement preparedStatement1 = connection4.prepareStatement(query1);
+            PreparedStatement preparedStatement1 = connection.prepareStatement(query1);
             preparedStatement1.executeUpdate();
-            connection4.close();
+            preparedStatement1.close();
             finalNote_id = note_id;
             AddingPhoto temp=new AddingPhoto(this);
             temp.execute();
@@ -470,9 +471,7 @@ public class AddNote extends AppCompatActivity{
             activity.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
-                            .permitAll().build();
-                    StrictMode.setThreadPolicy(policy);
+
                     Bitmap image=((BitmapDrawable)ivImage.getDrawable()).getBitmap();
                     ByteArrayOutputStream byteArrayOutputStream=new ByteArrayOutputStream();
                     image.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
@@ -480,9 +479,9 @@ public class AddNote extends AppCompatActivity{
 
 
 
-                    ConnectionClass connectionClass5=new ConnectionClass();
-                    Connection connection5=connectionClass5.CONN();
-                    if(connection5==null) {
+
+                    Connection connection=connectionClass.getConnection();
+                    if(connection==null) {
                         Toast.makeText(AddNote.this,
                                 "Сервер не доступний, вибачте за незручності!",
                                 Toast.LENGTH_SHORT).show();
@@ -491,13 +490,13 @@ public class AddNote extends AppCompatActivity{
                     String query2 = "INSERT INTO Note_Photo(id_note, photo) values(" +finalNote_id  + ", '" + encodedimage + "')";
                     PreparedStatement preparedStatement2 = null;
                     try {
-                        preparedStatement2 = connection5.prepareStatement(query2);
+                        preparedStatement2 = connection.prepareStatement(query2);
                     } catch (SQLException e) {
                         e.printStackTrace();
                     }
                     try {
                         preparedStatement2.executeUpdate();
-                        connection5.close();
+                        connectionClass.close();
                     } catch (SQLException e) {
                         e.printStackTrace();
                     }

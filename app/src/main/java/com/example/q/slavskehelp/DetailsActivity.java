@@ -62,11 +62,15 @@ public class DetailsActivity extends AppCompatActivity {
     private LinearLayout taxi;
     private LinearLayout house;
     private LinearLayout entertainment;
+
+    ConnectionClass connectionClass;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
         DrawerLayout mDrawerLayout;
+
+        connectionClass=ConnectionClass.getInstance();
 
         house=(LinearLayout)findViewById(R.id.it_is_house);
         taxi=(LinearLayout)findViewById(R.id.it_is_taxi);
@@ -180,8 +184,8 @@ public class DetailsActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        ConnectionClass connectionClass=new ConnectionClass();
-        Connection connection=connectionClass.CONN();
+
+        Connection connection=connectionClass.getConnection();
         if(connection==null) {
             Toast.makeText(DetailsActivity.this,
                     "Сервер не доступний, вибачте за незручності!",
@@ -243,24 +247,17 @@ public class DetailsActivity extends AppCompatActivity {
             {
                 changes_notes.setVisibility(View.VISIBLE);
             }
-            connection.close();
+
         }
         catch (SQLException e) {
             e.printStackTrace();
 
         }
-        ConnectionClass connectionClass1=new ConnectionClass();
-        Connection connection1=connectionClass1.CONN();
-        if(connection1==null) {
-            Toast.makeText(DetailsActivity.this,
-                    "Сервер не доступний, вибачте за незручності!",
-                    Toast.LENGTH_SHORT).show();
-            return;
-        }
+
         try
         {
             String SQL1="SELECT text, id_user FROM Comments WHERE id_note="+Result_Search.id_selectNote;
-            Statement stmt = connection1.createStatement();
+            Statement stmt = connection.createStatement();
             ResultSet rs =  stmt.executeQuery(SQL1);
             final ArrayList<String> comment_text=new ArrayList<String>();
             final ArrayList<Integer> comment_id_user=new ArrayList<Integer>();
@@ -278,7 +275,7 @@ public class DetailsActivity extends AppCompatActivity {
                 }
                 rs4.close();
             }
-            connection1.close();
+
             LinearLayout res_Layout[]=new LinearLayout[comment_text.size()];
             TextView textView[]=new TextView[comment_text.size()];
             TextView loginView[]=new TextView[comment_text.size()];
@@ -349,9 +346,9 @@ public class DetailsActivity extends AppCompatActivity {
 
 
 
-        ConnectionClass connectionClass2=new ConnectionClass();
-        Connection connection2=connectionClass2.CONN();
-        if(connection2==null) {
+
+        connection=connectionClass.getConnection();
+        if(connection==null) {
             Toast.makeText(DetailsActivity.this,
                     "Сервер не доступний, вибачте за незручності!",
                     Toast.LENGTH_SHORT).show();
@@ -360,14 +357,13 @@ public class DetailsActivity extends AppCompatActivity {
         try
         {
             String SQL1="SELECT photo FROM Note_Photo WHERE id_note="+Result_Search.id_selectNote;
-            Statement stmt = connection2.createStatement();
+            Statement stmt = connection.createStatement();
             ResultSet rs =  stmt.executeQuery(SQL1);
             final ArrayList<String> photo=new ArrayList<String>();
             while (rs.next()) {
                 photo.add(rs.getString(1));
             }
             rs.close();
-            connection2.close();
             ImageView imView[]=new ImageView[photo.size()];
 
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams
@@ -394,6 +390,7 @@ public class DetailsActivity extends AppCompatActivity {
                 image_Layout[j].addView(imView[j]);
                 image_horisontal.addView(image_Layout[j]);
             }
+            connectionClass.close();
         }
         catch (SQLException e) {
             e.printStackTrace();
@@ -480,8 +477,8 @@ public class DetailsActivity extends AppCompatActivity {
         else {
             bad.setImageDrawable(getResources().getDrawable(R.drawable.ic_thumb_down_select_24dp));
             good.setImageDrawable(getResources().getDrawable(R.drawable.ic_thumb_up_black_24dp));
-            ConnectionClass connectionClass = new ConnectionClass();
-            Connection connection = connectionClass.CONN();
+
+            Connection connection = connectionClass.getConnection();
             if (connection == null) {
                 Toast.makeText(DetailsActivity.this,
                         "Сервер не доступний, вибачте за незручності!",
@@ -538,8 +535,7 @@ public class DetailsActivity extends AppCompatActivity {
         else {
             bad.setImageDrawable(getResources().getDrawable(R.drawable.ic_thumb_down_black_24dp));
             good.setImageDrawable(getResources().getDrawable(R.drawable.ic_thumb_up_select_24dp));
-            ConnectionClass connectionClass = new ConnectionClass();
-            Connection connection = connectionClass.CONN();
+            Connection connection = connectionClass.getConnection();
             if (connection == null) {
                 Toast.makeText(DetailsActivity.this,
                         "Сервер не доступний, вибачте за незручності!",
@@ -573,7 +569,7 @@ public class DetailsActivity extends AppCompatActivity {
                 String SQLrating = "UPDATE Note Set rating="+ rating_new+" where id_note="+Result_Search.id_selectNote;
                 PreparedStatement preparedStmt1 = connection.prepareStatement(SQLrating);
                 preparedStmt1.executeUpdate();
-                connection.close();
+                connectionClass.close();
 
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -592,8 +588,7 @@ public class DetailsActivity extends AppCompatActivity {
         }
         else {
 
-            ConnectionClass connectionClass=new ConnectionClass();
-            Connection connection=connectionClass.CONN();
+            Connection connection=connectionClass.getConnection();
             if(connection==null) {
                 Toast.makeText(DetailsActivity.this,
                         "Сервер не доступний, вибачте за незручності!",
@@ -612,8 +607,7 @@ public class DetailsActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
             commentLinearLayout.removeAllViews();
-            ConnectionClass connectionClass1=new ConnectionClass();
-            Connection connection1=connectionClass1.CONN();
+            Connection connection1=connectionClass.getConnection();
             if(connection1==null) {
                 Toast.makeText(DetailsActivity.this,
                         "Сервер не доступний, вибачте за незручності!",
@@ -719,8 +713,7 @@ public class DetailsActivity extends AppCompatActivity {
     }
 
     public void deleteNote(View view) {
-        ConnectionClass connectionClass=new ConnectionClass();
-        Connection connection=connectionClass.CONN();
+        Connection connection=connectionClass.getConnection();
         if(connection==null) {
             Toast.makeText(DetailsActivity.this,
                     "Сервер не доступний, вибачте за незручності!",
@@ -735,6 +728,7 @@ public class DetailsActivity extends AppCompatActivity {
                     "DELETE FROM Note WHERE id_note="+Result_Search.id_selectNote+"; ";
             PreparedStatement preparedStmt = connection.prepareStatement(SQL0);
             preparedStmt.executeUpdate();
+            preparedStmt.close();
             connection.close();
         }
         catch (SQLException e) {

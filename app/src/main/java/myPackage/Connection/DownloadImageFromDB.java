@@ -26,8 +26,8 @@ public class DownloadImageFromDB extends AsyncTask<Void, Void, Bitmap> {
         Bitmap temp=null;
         try {
 
-            ConnectionClass connectionClass=new ConnectionClass();
-            java.sql.Connection connection=connectionClass.CONN();
+            ConnectionClass connectionClass=ConnectionClass.getInstance();
+            java.sql.Connection connection=connectionClass.getConnection();
             if(connection==null) {
                 return null;
             }

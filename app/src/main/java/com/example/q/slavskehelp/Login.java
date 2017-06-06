@@ -29,7 +29,7 @@ public class Login extends AppCompatActivity
     private TextView mError_text;
     private NavigationView navigationView;
     private TextView text;
-
+ConnectionClass connectionClass;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +50,8 @@ public class Login extends AppCompatActivity
         if(getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
+
+        connectionClass=ConnectionClass.getInstance();
     }
 
 
@@ -83,8 +85,7 @@ public class Login extends AppCompatActivity
     }
 
     public void Sing_inClick(View view) {
-        ConnectionClass connectionClass=new ConnectionClass();
-        java.sql.Connection connection=connectionClass.CONN();
+        java.sql.Connection connection=connectionClass.getConnection();
         if(connection==null) {
             Toast.makeText(Login.this,
                     "Сервер не доступний, вибачте за незручності!",
@@ -122,7 +123,7 @@ public class Login extends AppCompatActivity
                 mError_text.setText("Не вірні логін та пароль!");
                 mError_layout.setVisibility(View.VISIBLE);
             }
-            connection.close();
+            connectionClass.close();
         }
         catch (SQLException e) {
             e.printStackTrace();

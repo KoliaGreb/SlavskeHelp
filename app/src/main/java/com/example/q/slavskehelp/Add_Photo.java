@@ -1,59 +1,38 @@
 package com.example.q.slavskehelp;
 
-import android.Manifest;
-import android.annotation.TargetApi;
 import android.app.Activity;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
-import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Build;
+import android.os.Bundle;
 import android.os.Environment;
 import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.AsyncTaskLoader;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Base64;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
-import java.util.concurrent.TimeUnit;
 
 import myPackage.Connection.ConnectionClass;
 import myPackage.Connection.Utility;
@@ -72,6 +51,7 @@ public class Add_Photo extends AppCompatActivity{
     private EditText note_description;
     private EditText note_price;
 
+    private ConnectionClass connectionClass;
     String encodedimage;
     String[] houseName={"готель","бази відпочинку","приватна садиба"};
     String[] taxiName={"всі сезони","зимове","літнє"};
@@ -80,6 +60,9 @@ public class Add_Photo extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add__photo);
+
+        connectionClass=ConnectionClass.getInstance();
+
         addButton=(Button)findViewById(R.id.add_photo);
         note_name=(EditText)findViewById(R.id.note_name);
         note_description=(EditText)findViewById(R.id.note_description);
@@ -279,9 +262,6 @@ public class Add_Photo extends AppCompatActivity{
     }
 
         public void Add_PhotoClick(View view) {
-            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
-                    .permitAll().build();
-            StrictMode.setThreadPolicy(policy);
        AddingPhoto addingPhoto=new AddingPhoto(this);
         addingPhoto.execute();
     }
@@ -298,17 +278,14 @@ public class Add_Photo extends AppCompatActivity{
             activity.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
-                            .permitAll().build();
-                    StrictMode.setThreadPolicy(policy);
                     Bitmap image=((BitmapDrawable)ivImage.getDrawable()).getBitmap();
                     ByteArrayOutputStream byteArrayOutputStream=new ByteArrayOutputStream();
                     image.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
                     encodedimage=Base64.encodeToString(byteArrayOutputStream.toByteArray(),Base64.DEFAULT);
 
-                    ConnectionClass connectionClass5=new ConnectionClass();
-                    final Connection connection5=connectionClass5.CONN();
-                    if(connection5==null) {
+
+                    Connection connection=connectionClass.getConnection();
+                    if(connection==null) {
                         Toast.makeText(Add_Photo.this,
                                 "Сервер не доступний, вибачте за незручності!",
                                 Toast.LENGTH_SHORT).show();
@@ -317,20 +294,16 @@ public class Add_Photo extends AppCompatActivity{
                     String query2 = "INSERT INTO Note_Photo(id_note, photo) values(" + Result_Search.id_selectNote + ", '" + encodedimage + "')";
                     PreparedStatement preparedStatement2 = null;
                     try {
-                        preparedStatement2 = connection5.prepareStatement(query2);
+                        preparedStatement2 = connection.prepareStatement(query2);
                     } catch (SQLException e) {
                         e.printStackTrace();
                     }
                     try {
-                        StrictMode.ThreadPolicy policy1 = new StrictMode.ThreadPolicy.Builder()
-                                .permitAll().build();
-                        StrictMode.setThreadPolicy(policy1);
                         preparedStatement2.executeUpdate();
-                        connection5.close();
+                        connectionClass.close();
                     } catch (SQLException e) {
                         e.printStackTrace();
                     }
-
                     Toast.makeText(Add_Photo.this,
                             "Фото додано!",
                             Toast.LENGTH_SHORT).show();

@@ -34,6 +34,8 @@ public class Registration extends AppCompatActivity
            private NavigationView navigationView;
            private TextView text;
 
+           ConnectionClass connectionClass;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +60,8 @@ public class Registration extends AppCompatActivity
         if(getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
+
+        connectionClass=ConnectionClass.getInstance();
     }
 
     @Override
@@ -86,8 +90,7 @@ public class Registration extends AppCompatActivity
            }
 
            public void Registration_click(View view) {
-               ConnectionClass connectionClass=new ConnectionClass();
-               java.sql.Connection connection=connectionClass.CONN();
+               java.sql.Connection connection=connectionClass.getConnection();
                if(connection==null) {
                    Toast.makeText(Registration.this,
                            "Сервер не доступний, вибачте за незручності!",
@@ -144,7 +147,8 @@ public class Registration extends AppCompatActivity
                            "','"+mCity.getText().toString()+"',"+can_add+")";
                    PreparedStatement preparedStmt = connection.prepareStatement(SQL1);
                    preparedStmt.executeUpdate();
-                   connection.close();
+                   preparedStmt.close();
+                   connectionClass.close();
                }
                catch (SQLException e) {
                    e.printStackTrace();

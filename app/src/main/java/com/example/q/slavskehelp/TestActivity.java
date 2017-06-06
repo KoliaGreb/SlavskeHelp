@@ -17,9 +17,9 @@ public class TestActivity extends AppCompatActivity {
         setContentView(R.layout.activity_test);
     }
     public void dbTest(View view) {
-        ConnectionClass connectionClass=new ConnectionClass();
-        java.sql.Connection connection=connectionClass.CONN();
-        if(connection==null)
+       /* ConnectionClass connectionClass=new ConnectionClass();
+        java.sql.Connection connection=connectionClass.CONN();*/
+        /*if(connection==null)
             return; // тут ексепшен напишег
         try
         {
@@ -32,7 +32,7 @@ public class TestActivity extends AppCompatActivity {
     }
           		   catch (SQLException e) {
         e.printStackTrace();
-    }
+    }*/
         //тут повинен робочий код. все ізі
         //підключення на вічному циклі у пошуках мережі
         // вийде з пошуку тільки сервер рішає, то 120 сек

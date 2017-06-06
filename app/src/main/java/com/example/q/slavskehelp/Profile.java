@@ -34,6 +34,8 @@ public class Profile extends AppCompatActivity {
     private NavigationView navigationView;
     private TextView text;
 
+    ConnectionClass connectionClass;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,8 +60,8 @@ public class Profile extends AppCompatActivity {
         if(getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
-        ConnectionClass connectionClass=new ConnectionClass();
-        java.sql.Connection connection=connectionClass.CONN();
+        connectionClass= ConnectionClass.getInstance();
+        java.sql.Connection connection=connectionClass.getConnection();
         if(connection==null) {
             Toast.makeText(Profile.this,
                     "Сервер не доступний, вибачте за незручності!",
@@ -80,7 +82,7 @@ public class Profile extends AppCompatActivity {
                 mEmail.setText(rs.getString(5));
                 mCity.setText(rs.getString(6));
             }
-            connection.close();
+            connectionClass.close();
         }
         catch (SQLException e) {
             e.printStackTrace();
@@ -129,8 +131,7 @@ public class Profile extends AppCompatActivity {
     }
 
     public void Change_profile_button_click(View view) {
-        ConnectionClass connectionClass=new ConnectionClass();
-        java.sql.Connection connection=connectionClass.CONN();
+        java.sql.Connection connection=connectionClass.getConnection();
         if(connection==null) {
             Toast.makeText(Profile.this,
                     "Сервер не доступний, вибачте за незручності!",

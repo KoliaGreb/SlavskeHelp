@@ -71,10 +71,15 @@ public class Result_Search extends AppCompatActivity {
     public static String Address_Entertainment="";
     public static Integer id_selectNote;
 
+    ConnectionClass connectionClass;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result__search);
+
+        connectionClass=ConnectionClass.getInstance();
+
         prices=(ImageButton)findViewById(R.id.b_price);
         times=(ImageButton)findViewById(R.id.b_time);
         ratings=(ImageButton)findViewById(R.id.b_rating);
@@ -115,8 +120,7 @@ public class Result_Search extends AppCompatActivity {
             });
         }
         //-----------------------------------------------------------------------------------
-        ConnectionClass connectionClass=new ConnectionClass();
-        Connection connection=connectionClass.CONN();
+        Connection connection=connectionClass.getConnection();
         if(connection==null) {
             Toast.makeText(Result_Search.this,
                     "Сервер не доступний, вибачте за незручності!",
@@ -275,7 +279,7 @@ public class Result_Search extends AppCompatActivity {
                 }
                 rs5.close();
             }
-            connection.close();
+            connectionClass.close();
             LinearLayout res_Layout[]=new LinearLayout[note_names.size()];
             LinearLayout info_Layout[]=new LinearLayout[note_names.size()];
             LinearLayout image_Layout[]=new LinearLayout[note_names.size()];
@@ -428,12 +432,7 @@ public class Result_Search extends AppCompatActivity {
                 resultSearchLinearLayout.addView(res_Layout[j]);
             }
         }
-        catch (SQLException e) {
-            e.printStackTrace();
-
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        catch (SQLException |  IOException e) {
             e.printStackTrace();
         }
     }
@@ -516,8 +515,7 @@ public class Result_Search extends AppCompatActivity {
             ratings.setBackground(getResources().getDrawable(R.drawable.button_shadow_accent));
         }
         resultSearchLinearLayout.removeAllViews();
-        ConnectionClass connectionClass=new ConnectionClass();
-        Connection connection=connectionClass.CONN();
+        Connection connection=connectionClass.getConnection();
         if(connection==null) {
             Toast.makeText(Result_Search.this,
                     "Сервер не доступний, вибачте за незручності!",
@@ -849,8 +847,7 @@ public class Result_Search extends AppCompatActivity {
             ratings.setBackground(getResources().getDrawable(R.drawable.button_shadow_light_accent));
         }
         resultSearchLinearLayout.removeAllViews();
-        ConnectionClass connectionClass=new ConnectionClass();
-        Connection connection=connectionClass.CONN();
+        Connection connection=connectionClass.getConnection();
         if(connection==null) {
             Toast.makeText(Result_Search.this,
                     "Сервер не доступний, вибачте за незручності!",
@@ -1187,8 +1184,7 @@ public class Result_Search extends AppCompatActivity {
             ratings.setBackground(getResources().getDrawable(R.drawable.button_shadow_accent));
         }
         resultSearchLinearLayout.removeAllViews();
-        ConnectionClass connectionClass=new ConnectionClass();
-        Connection connection=connectionClass.CONN();
+        Connection connection=connectionClass.getConnection();
         if(connection==null) {
             Toast.makeText(Result_Search.this,
                     "Сервер не доступний, вибачте за незручності!",
